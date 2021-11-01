@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 export const useRetailers = () => {
   const { retailers } = useStaticQuery(
     graphql`
-      query Retailers {
+      #query Retailers {
       #   allGraphCmsRetailer {
       #     nodes {
       #       title
