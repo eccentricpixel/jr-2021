@@ -3,7 +3,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 function BookTemplate({
-    data: { pageImage, bookImage, retailers },
+    data: { pageImage, bookImage },
     pageContext: { nextBook, book, previousBook },
 }) {    
   console.log(book)
@@ -115,7 +115,7 @@ function BookTemplate({
           </ul>
         
       </section>
-      <section id="book_buyLinks" className="py-10 bg-gradient-to-r from-yellow-700 via-red-700 to-red-900 my-10">
+      {/* <section id="book_buyLinks" className="py-10 bg-gradient-to-r from-yellow-700 via-red-700 to-red-900 my-10">
         <div className="py-10 container mx-auto text-white gap-10 grid grid-cols-3">
           <h2 className="text-3xl tracking-widest uppercase" ><span>Buy The Book</span><span className="block text-lg tracking-wide normal-case">at any one of these retailers</span></h2>        
           <div className="col-span-2 gap-4 grid">
@@ -205,7 +205,7 @@ function BookTemplate({
             <div><a href={book.tor} target="_blank" className="font-extrabold block text-lg">Tor:</a> <div className="block"></div></div>
           </div>
         </div>
-      </section>
+      </section> */}
       <footer className="text-sm font-medium leading-5 pb-20 max-w-7xl mx-auto px-5">
           {(nextBook || previousBook) && (
             <div className="flex justify-between">
@@ -262,13 +262,13 @@ export const pageQuery = graphql`
     pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
       ...BookAssetFields
     }
-    retailers: allGraphCmsRetailer {
-      nodes {
-        id
-        description
-        title
-      }
-    }    
+    # retailers: allGraphCmsRetailer {
+    #   nodes {
+    #     id
+    #     description
+    #     title
+    #   }
+    # }    
   }
 `
 
