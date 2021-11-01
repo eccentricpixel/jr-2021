@@ -9,20 +9,20 @@ import Transition from './transition'
 function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const location = useLocation()
-  const { series } = useStaticQuery(graphql`
-    {
-      series: allGraphCmsContentSetting {
-        nodes {
-          seriesPlural {
-            id
-            title
-            slug
-          }
-        }
-      }
+  // const { series } = useStaticQuery(graphql`
+  //   {
+  //     series: allGraphCmsContentSetting {
+  //       nodes {
+  //         seriesPlural {
+  //           id
+  //           title
+  //           slug
+  //         }
+  //       }
+  //     }
       
-    }
-  `)
+  //   }
+  // `)
 
   useEffect(
     () =>
@@ -130,7 +130,7 @@ function Header() {
                   <Link to="/books">BOOKS</Link>
                 </h2>
                 <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
-                   {series.nodes.map(item => {                                            
+                   {/* {series.nodes.map(item => {                                            
                       return (
                         item.seriesPlural.map(link => {
                           const isActive = location.pathname.startsWith(`/${link.slug}`)
@@ -153,7 +153,7 @@ function Header() {
                       )
                       
                     
-                  })}
+                  })} */}
                 </nav>
               </div>
               <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
