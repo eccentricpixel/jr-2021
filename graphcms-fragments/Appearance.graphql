@@ -1,0 +1,67 @@
+fragment Appearance on Appearance {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  date
+  price
+  description {
+    ... on AppearanceDescriptionRichText {
+      raw
+      json
+      html
+      markdown
+      text
+      references {
+        ... on Asset {
+          remoteTypeName: __typename
+          remoteId: id
+          locale
+          stage
+        }
+      }
+    }
+  }
+  organizers
+  link
+  tags
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  venue {
+    ... on Venue {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  featuredImage {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  categories
+}

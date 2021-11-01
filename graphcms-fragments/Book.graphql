@@ -1,0 +1,220 @@
+fragment Book on Book {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  filterKeywords
+  title
+  subheading
+  slug
+  bookNumber
+  releaseDate
+  synopsis {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  leadText {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  bodyText {
+    ... on BookBodyTextRichText {
+      raw
+      json
+      html
+      markdown
+      text
+      references {
+        ... on Asset {
+          remoteTypeName: __typename
+          remoteId: id
+          locale
+          stage
+        }
+      }
+    }
+  }
+  dustJacketColor {
+    ... on Color {
+      hex
+      rgba {
+        ... on RGBA {
+          r
+          g
+          b
+          a
+        }
+      }
+      css
+    }
+  }
+  bibliographyUrl
+  downloadExcerpt
+  browseInside
+  bookExcerpt
+  amazon
+  kindle
+  barnesAndNoble
+  nook
+  booksAMillion
+  bookshop
+  googlePlay
+  iBookstore
+  indieBound
+  kobo
+  thePoisonedPen
+  torBooksMacmillanPublishers
+  international
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  series {
+    ... on Series {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bookCover {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  pageBackground {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  bibliography {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  seo {
+    ... on Seo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  faqs {
+    ... on Faq {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  criticalAcclaims {
+    ... on CriticalAcclaim {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  videos {
+    ... on Video {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  photos {
+    ... on Photo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  readerGuides {
+    ... on ReaderGuide {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  downloads {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  audios {
+    ... on Audio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  contentSetting {
+    ... on ContentSetting {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  exclusives {
+    ... on Exclusive {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  retailers {
+    ... on Retailer {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  usa_book {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  territories {
+    ... on Territory {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+}

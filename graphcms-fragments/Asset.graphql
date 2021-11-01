@@ -1,0 +1,331 @@
+fragment Asset on Asset {
+  stage
+  locale
+  remoteId: id
+  createdAt(variation: COMBINED)
+  updatedAt(variation: COMBINED)
+  publishedAt(variation: COMBINED)
+  handle
+  fileName
+  height
+  width
+  size
+  mimeType
+  filterKeywords
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  seoImage {
+    ... on Seo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  authorAvatar {
+    ... on Author {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImagePost {
+    ... on Post {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bookCoverBook {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  pageBackgroundBook {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bibliographyBook {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  flagTerritory {
+    ... on Territory {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  posterImageVideo {
+    ... on Video {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  seriesImageSeries {
+    ... on Series {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imagePhoto {
+    ... on Photo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  fileReaderGuide {
+    ... on ReaderGuide {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImageReaderGuide {
+    ... on ReaderGuide {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  marqueePromotion {
+    ... on Promotion {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imageExclusive {
+    ... on Exclusive {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  thumbnailDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  fileDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  iconCommunity {
+    ... on Community {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imageAudio {
+    ... on Audio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  fileAudio {
+    ... on Audio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  featuredImageAppearance {
+    ... on Appearance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bioAboutImageContentSetting {
+    ... on ContentSetting {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  size800X600Download {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  size1024X768Download {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  size1280X960Download {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  size1920X1080Download {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  screensaver_macDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  screensaverFilePcDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  ringtoneZipFileDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  size2560X1440Download {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imagePromotion {
+    ... on Promotion {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  otherPostImagesPost {
+    ... on Post {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImageAudio {
+    ... on Audio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  featuredImageDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImageDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImageExclusive {
+    ... on Exclusive {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  downloadFileExclusive {
+    ... on Exclusive {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bookCoversDownload {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImagePhoto {
+    ... on Photo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  downloadFilePhoto {
+    ... on Photo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  featuredImageReaderGuide {
+    ... on ReaderGuide {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  coverImageVideo {
+    ... on Video {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  downloadFileVideo {
+    ... on Video {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  url
+}

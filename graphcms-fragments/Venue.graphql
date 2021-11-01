@@ -1,0 +1,44 @@
+fragment Venue on Venue {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  address
+  address2
+  city
+  zipcode
+  phoneNumber
+  email
+  website
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  appearances {
+    ... on Appearance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  state
+}

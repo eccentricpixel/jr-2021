@@ -1,0 +1,52 @@
+fragment CriticalAcclaim on CriticalAcclaim {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  reviewerName
+  reviewDate
+  theReview {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  approvalStatus
+  readerReview
+  featureOnAbout
+  featureOnCriticalAcclaim
+  priority
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  books {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  categories
+}

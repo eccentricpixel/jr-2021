@@ -1,0 +1,119 @@
+fragment Series on Series {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  slug
+  description {
+    ... on SeriesDescriptionRichText {
+      raw
+      json
+      html
+      markdown
+      text
+      references {
+        ... on Asset {
+          remoteTypeName: __typename
+          remoteId: id
+          locale
+          stage
+        }
+      }
+    }
+  }
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  books {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  faqs {
+    ... on Faq {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  seriesImage {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  readerGuides {
+    ... on ReaderGuide {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  downloads {
+    ... on Download {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  contentSetting {
+    ... on ContentSetting {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  audios {
+    ... on Audio {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  videos {
+    ... on Video {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  exclusives {
+    ... on Exclusive {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  photos {
+    ... on Photo {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  layoutStyle
+}

@@ -1,0 +1,189 @@
+fragment ContentSetting on ContentSetting {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  bioIntro {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  bioExtendedContent {
+    ... on ContentSettingBioExtendedContentRichText {
+      raw
+      json
+      html
+      markdown
+      text
+      references {
+        ... on Asset {
+          remoteTypeName: __typename
+          remoteId: id
+          locale
+          stage
+        }
+      }
+    }
+  }
+  pageTurningAdventuresIntro {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  pageTurningAdventuresExtendedContent {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbAboutPage
+  blurbInternational {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbSelectATerritory {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbBibliography {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbWallpapers {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbNewsletters {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbScreensavers {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbDustJackets {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbRingtones {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbOther {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbExclusives {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbRegisterForAccess {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  blurbBuyPage {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  seriesPlural {
+    ... on Series {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  bioAboutImage {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  books {
+    ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+}
