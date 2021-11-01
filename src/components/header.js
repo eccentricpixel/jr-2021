@@ -9,15 +9,8 @@ import Transition from './transition'
 function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const location = useLocation()
-  const { pages, series } = useStaticQuery(graphql`
+  const { series } = useStaticQuery(graphql`
     {
-      pages: allGraphCmsPage {
-        nodes {
-          id
-          slug
-          title
-        }
-      }
       series: allGraphCmsContentSetting {
         nodes {
           seriesPlural {
@@ -76,25 +69,7 @@ function Header() {
           </div>
         </div>
         <div className="hidden md:flex md:ml-10 md:pr-4 space-x-8">
-          {/* {pages.nodes.map((page) => {
-            const isActive = location.pathname.startsWith(`/${page.slug}`)
-
-            return (
-              <Link
-                key={page.id}
-                to={`/${page.slug}`}
-                className={cx(
-                  'inline-flex items-center px-1 pt-1 border-b-2 text-lg font-medium leading-5 focus:outline-none transition duration-150 ease-in-out',
-                  {
-                    'border-purple-500 text-gray-900 focus:border-purple-600': isActive,
-                    'border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300 focus:text-gray-600 focus:border-grey-600': !isActive,
-                  }
-                )}
-              >
-                {page.title}
-              </Link>
-            )
-          })} */}
+          
         </div>
       </nav>
       <Transition
