@@ -5,20 +5,20 @@ import cx from 'classnames'
 
 function Footer() {
   const location = useLocation()
-  const { series } = useStaticQuery(graphql`
-    {
-      series: allGraphCmsContentSetting {
-        nodes {
-          seriesPlural {
-            id
-            title
-            slug
-          }
-        }
-      }
+  // const { series } = useStaticQuery(graphql`
+  //   {
+  //     series: allGraphCmsContentSetting {
+  //       nodes {
+  //         seriesPlural {
+  //           id
+  //           title
+  //           slug
+  //         }
+  //       }
+  //     }
       
-    }
-  `)
+  //   }
+  // `)
 
 
 
@@ -60,7 +60,7 @@ function Footer() {
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">BOOKS</h2>
             <nav className="list-none mb-10">
-              {series.nodes.map(item => {                                            
+              {/* {series.nodes.map(item => {                                            
                   return (
                     item.seriesPlural.map(link => {
                       const isActive = location.pathname.startsWith(`/${link.slug}`)
@@ -85,7 +85,7 @@ function Footer() {
                   )
                   
                 
-              })}
+              })} */}
             </nav>
           </div>
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
