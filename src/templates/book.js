@@ -3,7 +3,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 function BookTemplate({
-    data: { pageImage, bookImage, retailers },
+    data: { pageImage, bookImage },
     pageContext: { nextBook, book, previousBook },
 }) {    
   
@@ -256,12 +256,12 @@ export const pageQuery = graphql`
   
 
   query BookQuery($id: String!) {
-    # bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
-    #   ...BookAssetFields
-    # }
-    # pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
-    #   ...BookAssetFields
-    # }
+    bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
+      ...BookAssetFields
+    }
+    pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
+      ...BookAssetFields
+    }
     # retailers: allGraphCmsRetailer {
     #   nodes {
     #     id

@@ -4,58 +4,58 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Swiper from 'swiper';
 
 //function IndexPage({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } }) {
-const IndexPage = ({data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews }}) => {
-  const categoryData = allGraphCmsSeries.nodes.map((series) => {  
-    return (
-      series.slug
-    )
-  })
-  const [index,setIndex] = useState(0)
-  const [category,setCategory] = useState(['All'])
-  const swiper = useRef(null);
+const IndexPage = () => {
+  // const categoryData = allGraphCmsSeries.nodes.map((series) => {  
+  //   return (
+  //     series.slug
+  //   )
+  // })
+  // const [index,setIndex] = useState(0)
+  // const [category,setCategory] = useState(['All'])
+  // const swiper = useRef(null);
   
 
-  useEffect(()=>{
-      swiper.current = new Swiper('.swiper-container',{
-          effect: 'coverflow',
-          grabCursor: true,
-          centeredSlides: true,
-          slidesPerView: 'auto',
-          mousewheel: true,          
-          // coverflowEffect: {
-          //   rotate: 50,
-          //   stretch: 0,
-          //   depth: 100,
-          //   modifier: 1,
-          //   slideShadows : true,
-          // },
-          pagination: {
-            el: '.swiper-pagination',
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
+  // useEffect(()=>{
+  //     swiper.current = new Swiper('.swiper-container',{
+  //         effect: 'coverflow',
+  //         grabCursor: true,
+  //         centeredSlides: true,
+  //         slidesPerView: 'auto',
+  //         mousewheel: true,          
+  //         // coverflowEffect: {
+  //         //   rotate: 50,
+  //         //   stretch: 0,
+  //         //   depth: 100,
+  //         //   modifier: 1,
+  //         //   slideShadows : true,
+  //         // },
+  //         pagination: {
+  //           el: '.swiper-pagination',
+  //         },
+  //         navigation: {
+  //           nextEl: '.swiper-button-next',
+  //           prevEl: '.swiper-button-prev',
+  //         },
           
-          // breakpoints: {
-          //   2000: {              
-          //     slidesPerView: 5
-          //   },
-          //   1280: {              
-          //     slidesPerView: 3
-          //   }            
-          // }
-        })
-  },[])
+  //         // breakpoints: {
+  //         //   2000: {              
+  //         //     slidesPerView: 5
+  //         //   },
+  //         //   1280: {              
+  //         //     slidesPerView: 3
+  //         //   }            
+  //         // }
+  //       })
+  // },[])
 
-  useEffect(()=>{
-      swiper.current.update();
-  },[index])
+  // useEffect(()=>{
+  //     swiper.current.update();
+  // },[index])
 
 
   return (
     <div>
-      <div className="marquee bg-gradient-to-r from-gray-100 py-8">
+      {/* <div className="marquee bg-gradient-to-r from-gray-100 py-8">
         <div className="contentWrapper flex gap-4 mx-auto mt-20">        
           <div id="sidebar" className="flex-shrink invisible xl:visible">              
               <div id="utilityNav" className="sticky top-40 rounded-md filterContainer">
@@ -92,7 +92,7 @@ const IndexPage = ({data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews }})
                         if(book.bookCover.localFile){
                         return(
                           <div className="swiper-slide" key={key} >                                
-                            {/* <div className="bookCover">
+                            <div className="bookCover">
                             <Link to={`/books/${book.slug}`}>
                               <GatsbyImage
                                   image={book.bookCover.localFile.childImageSharp.gatsbyImageData}
@@ -110,7 +110,7 @@ const IndexPage = ({data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews }})
                                   <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
                                 )}
                               </div>                            
-                            </div> */}
+                            </div>
                           </div>
                         )}
                         }
@@ -120,9 +120,9 @@ const IndexPage = ({data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews }})
                     })}
                   </div>
                   
-                  {/* <div className="swiper-pagination"></div>                
+                  <div className="swiper-pagination"></div>                
                   <div className="swiper-button-prev"></div>
-                  <div className="swiper-button-next"></div> */}
+                  <div className="swiper-button-next"></div>
                 </div>
               </div>
             </div>              
@@ -171,66 +171,66 @@ const IndexPage = ({data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews }})
             })}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
 
-export const indexPageQuery = graphql`
-  {
-    allGraphCmsBook(
-      sort: {fields: releaseDate, order: DESC}
-      filter: {international: {eq: false}, series: {slug: {ne: null}}}
-    ) {
-      nodes {
-        id
-        releaseDate: formattedDate
-        synopsis {
-          html
-        }
-        slug
-        title
-        series {
-          id
-          slug
-        }
-        bookCover {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
-            }
-          }
-        }
-      }
-    }
-    allGraphCmsSeries {
-      nodes {
-        id
-        slug
-        title
-      }
-    }
-    bio: allGraphCmsContentSetting {
-      nodes {
-        bioIntro {
-          html
-        }
-      }
-    }
-    reviews: allGraphCmsCriticalAcclaim(limit: 1, filter: {approvalStatus: {eq: true}}) {
-      edges {
-        node {
-          id          
-          reviewerName
-          readerReview
-          theReview {
-            html
-          }          
-        }
-      }
-    }
-  }
+// export const indexPageQuery = graphql`
+//   {
+//     allGraphCmsBook(
+//       sort: {fields: releaseDate, order: DESC}
+//       filter: {international: {eq: false}, series: {slug: {ne: null}}}
+//     ) {
+//       nodes {
+//         id
+//         releaseDate: formattedDate
+//         synopsis {
+//           html
+//         }
+//         slug
+//         title
+//         series {
+//           id
+//           slug
+//         }
+//         bookCover {
+//           localFile {
+//             childImageSharp {
+//               gatsbyImageData(layout: FULL_WIDTH)
+//             }
+//           }
+//         }
+//       }
+//     }
+//     allGraphCmsSeries {
+//       nodes {
+//         id
+//         slug
+//         title
+//       }
+//     }
+//     bio: allGraphCmsContentSetting {
+//       nodes {
+//         bioIntro {
+//           html
+//         }
+//       }
+//     }
+//     reviews: allGraphCmsCriticalAcclaim(limit: 1, filter: {approvalStatus: {eq: true}}) {
+//       edges {
+//         node {
+//           id          
+//           reviewerName
+//           readerReview
+//           theReview {
+//             html
+//           }          
+//         }
+//       }
+//     }
+//   }
   
-`
+//`
 
 export default IndexPage
