@@ -1,10 +1,12 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, PageProps } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import ReactPlayer from 'react-player'
+import Layout from "../components/layout"
 
 function AboutPage({ data: { allGraphCmsVideo, reviews } }) {
-  return (
+ return (
+
     <div className="">
         <div className="page_background w-screen absolute top-0 right-0 -z-1">
             
@@ -14,7 +16,7 @@ function AboutPage({ data: { allGraphCmsVideo, reviews } }) {
           
         </h1>
         <p className="text-lg leading-7 text-gray-500">
-          
+        
         </p>
       </div>
 
@@ -39,7 +41,7 @@ function AboutPage({ data: { allGraphCmsVideo, reviews } }) {
       </section>
       
     </div>
-  )
+ )
 }
 
 export const aboutPageQuery = graphql`

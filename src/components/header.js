@@ -3,7 +3,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import { globalHistory, useLocation } from '@reach/router'
 import cx from 'classnames'
 
-import Logo from '../svg/logo.svg'
+import Logo from '../svg/white-logo.svg'
 import Transition from './transition'
 
 function Header() {
@@ -96,13 +96,13 @@ function Header() {
                 </svg>
               </button>
             </div>
-          <div class="container px-5 py-15 mx-auto">
-            <div class="text-center mb-15">
+          <div class="container px-5 py-10 mx-auto">
+            <div class="text-center mb-10 mx-auto max-w-7xl">
               <Link to="/" aria-label="Home">
                 <Logo className="h-15 mx-auto" />              
               </Link>              
             </div>
-            <div class="flex flex-wrap -m-4 uppercase">
+            <div class="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl">
               <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
                 <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/about">ABOUT</Link>
