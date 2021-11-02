@@ -19,7 +19,7 @@ function Layout({ children, pageContext: { page } }) {
           <Header />
           <main className="flex-grow mb-8">{children}</main>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </React.Fragment>
   )

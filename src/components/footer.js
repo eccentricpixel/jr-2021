@@ -3,19 +3,10 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import { useLocation } from '@reach/router'
 import cx from 'classnames'
 
-
-
 function Footer() {
   const location = useLocation()
-  const { pages, series } = useStaticQuery(graphql`
+  const { series } = useStaticQuery(graphql`
     {
-      pages: allGraphCmsPage {
-        nodes {
-          id
-          slug
-          title
-        }
-      }
       series: allGraphCmsContentSetting {
         nodes {
           seriesPlural {
