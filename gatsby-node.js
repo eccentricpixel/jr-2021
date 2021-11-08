@@ -48,6 +48,26 @@ exports.createSchemaCustomization= ({ actions }) => {
                 }
             }
         }
+
+        books: allGraphCmsBook(sort: {fields: releaseDate, order: ASC }) {
+            edges {
+              nextBook: next {
+                slug
+                title
+              }
+              book: node {
+                id                                                  
+                slug
+                title
+                releaseDate: formattedDate                
+                slug                                
+              }
+              previousBook: previous {
+                slug
+                title
+              }
+            }
+        }
       }
     `);
     
@@ -69,6 +89,18 @@ exports.createSchemaCustomization= ({ actions }) => {
                 post,
                 previousPost,
                 nextPost,
+            },            
+        })
+    );
+    data.books.edges.forEach(({ nextBook, book, previousBook }) => 
+        createPage({
+            path: `/books/${book.slug}`,
+            component: require.resolve('./src/templates/book.js'),
+            context: {
+                id: book.id,
+                book,
+                previousBook,
+                nextBook,
             },            
         })
     );
@@ -222,21 +254,21 @@ exports.createResolvers = ({ createResolvers }) => {
         },
       },
     },
-    // GraphCMS_Book: {
-    //   formattedDate: {
-    //     type: 'String',
-    //     resolve: (source) => {
-    //       const date = new Date(source.releaseDate)
+    GraphCMS_Book: {
+      formattedDate: {
+        type: 'String',
+        resolve: (source) => {
+          const date = new Date(source.releaseDate)
 
-    //       return new Intl.DateTimeFormat('en-US', {
-    //         weekday: 'long',
-    //         year: 'numeric',
-    //         month: 'long',
-    //         day: 'numeric',
-    //       }).format(date)
-    //     },
-    //   },
-    // },
+          return new Intl.DateTimeFormat('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(date)
+        },
+      },
+    },
     // GraphCMS_Video: {
     //   formattedDate: {
     //     type: 'String',

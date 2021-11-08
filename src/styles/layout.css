@@ -10,6 +10,9 @@ body {
     @apply font-light;
 }    
 
+p {
+    margin-bottom:1em;
+}
 
 /* media elements */
 .player-wrapper {

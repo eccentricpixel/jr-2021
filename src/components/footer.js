@@ -10,7 +10,7 @@ function Footer() {
       series: allGraphCmsContentSetting {
         nodes {
           seriesPlural {
-            remoteId
+            id
             title
             slug
           }
@@ -67,7 +67,7 @@ function Footer() {
                       return (      
                         <li>
                           <Link
-                            key={link.remoteId}
+                            key={link.id}
                             to={`/series/${link.slug}`}
                             className={cx(
                               '',
