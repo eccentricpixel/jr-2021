@@ -1,0 +1,1446 @@
+### Type definitions saved at 2021-11-08T01:18:56.617Z ###
+
+type File implements Node @dontInfer {
+  sourceInstanceName: String!
+  absolutePath: String!
+  relativePath: String!
+  extension: String!
+  size: Int!
+  prettySize: String!
+  modifiedTime: Date! @dateformat
+  accessTime: Date! @dateformat
+  changeTime: Date! @dateformat
+  birthTime: Date! @dateformat
+  root: String!
+  dir: String!
+  base: String!
+  ext: String!
+  name: String!
+  relativeDirectory: String!
+  dev: Int!
+  mode: Int!
+  nlink: Int!
+  uid: Int!
+  gid: Int!
+  rdev: Int!
+  ino: Float!
+  atimeMs: Float!
+  mtimeMs: Float!
+  ctimeMs: Float!
+  atime: Date! @dateformat
+  mtime: Date! @dateformat
+  ctime: Date! @dateformat
+  birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+  birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+  blksize: Int
+  blocks: Int
+  url: String
+}
+
+type Directory implements Node @dontInfer {
+  sourceInstanceName: String!
+  absolutePath: String!
+  relativePath: String!
+  extension: String!
+  size: Int!
+  prettySize: String!
+  modifiedTime: Date! @dateformat
+  accessTime: Date! @dateformat
+  changeTime: Date! @dateformat
+  birthTime: Date! @dateformat
+  root: String!
+  dir: String!
+  base: String!
+  ext: String!
+  name: String!
+  relativeDirectory: String!
+  dev: Int!
+  mode: Int!
+  nlink: Int!
+  uid: Int!
+  gid: Int!
+  rdev: Int!
+  ino: Float!
+  atimeMs: Float!
+  mtimeMs: Float!
+  ctimeMs: Float!
+  atime: Date! @dateformat
+  mtime: Date! @dateformat
+  ctime: Date! @dateformat
+  birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+  birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
+}
+
+type Site implements Node @dontInfer {
+  buildTime: Date @dateformat
+  siteMetadata: SiteSiteMetadata
+  polyfill: Boolean
+  pathPrefix: String
+}
+
+type SiteSiteMetadata {
+  title: String
+  description: String
+  author: String
+}
+
+type SiteFunction implements Node @dontInfer {
+  functionRoute: String!
+  pluginName: String!
+  originalAbsoluteFilePath: String!
+  originalRelativeFilePath: String!
+  relativeCompiledFilePath: String!
+  absoluteCompiledFilePath: String!
+  matchPath: String
+}
+
+type SitePage implements Node @dontInfer {
+  path: String!
+  component: String!
+  internalComponentName: String!
+  componentChunkName: String!
+  matchPath: String
+  pageContext: JSON @proxy(from: "context", fromNode: false)
+  pluginCreator: SitePlugin @link(by: "id", from: "pluginCreatorId")
+}
+
+type SitePlugin implements Node @dontInfer {
+  resolve: String
+  name: String
+  version: String
+  nodeAPIs: [String]
+  browserAPIs: [String]
+  ssrAPIs: [String]
+  pluginFilepath: String
+  pluginOptions: JSON
+  packageJson: JSON
+}
+
+type SiteBuildMetadata implements Node @dontInfer {
+  buildTime: Date @dateformat
+}
+
+enum GatsbyImageFormat {
+  NO_CHANGE
+  AUTO
+  JPG
+  PNG
+  WEBP
+  AVIF
+}
+
+enum GatsbyImageLayout {
+  FIXED
+  FULL_WIDTH
+  CONSTRAINED
+}
+
+enum GatsbyImagePlaceholder {
+  DOMINANT_COLOR
+  TRACED_SVG
+  BLURRED
+  NONE
+}
+
+enum ImageFormat {
+  NO_CHANGE
+  AUTO
+  JPG
+  PNG
+  WEBP
+  AVIF
+}
+
+enum ImageFit {
+  COVER
+  CONTAIN
+  FILL
+  INSIDE
+  OUTSIDE
+}
+
+enum ImageLayout {
+  FIXED
+  FULL_WIDTH
+  CONSTRAINED
+}
+
+enum ImageCropFocus {
+  CENTER
+  NORTH
+  NORTHEAST
+  EAST
+  SOUTHEAST
+  SOUTH
+  SOUTHWEST
+  WEST
+  NORTHWEST
+  ENTROPY
+  ATTENTION
+}
+
+input DuotoneGradient {
+  highlight: String!
+  shadow: String!
+  opacity: Int
+}
+
+enum PotraceTurnPolicy {
+  TURNPOLICY_BLACK
+  TURNPOLICY_WHITE
+  TURNPOLICY_LEFT
+  TURNPOLICY_RIGHT
+  TURNPOLICY_MINORITY
+  TURNPOLICY_MAJORITY
+}
+
+input Potrace {
+  turnPolicy: PotraceTurnPolicy
+  turdSize: Float
+  alphaMax: Float
+  optCurve: Boolean
+  optTolerance: Float
+  threshold: Int
+  blackOnWhite: Boolean
+  color: String
+  background: String
+}
+
+type ImageSharpFixed {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float
+  width: Float!
+  height: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  originalName: String
+}
+
+type ImageSharpFluid {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  sizes: String!
+  originalImg: String
+  originalName: String
+  presentationWidth: Int!
+  presentationHeight: Int!
+}
+
+enum ImagePlaceholder {
+  DOMINANT_COLOR
+  TRACED_SVG
+  BLURRED
+  NONE
+}
+
+input BlurredOptions {
+  """Width of the generated low-res preview. Default is 20px"""
+  width: Int
+
+  """
+  Force the output format for the low-res preview. Default is to use the same
+  format as the input. You should rarely need to change this
+  """
+  toFormat: ImageFormat
+}
+
+input JPGOptions {
+  quality: Int
+  progressive: Boolean = true
+}
+
+input PNGOptions {
+  quality: Int
+  compressionSpeed: Int = 4
+}
+
+input WebPOptions {
+  quality: Int
+}
+
+input AVIFOptions {
+  quality: Int
+  lossless: Boolean
+  speed: Int
+}
+
+input TransformOptions {
+  grayscale: Boolean = false
+  duotone: DuotoneGradient
+  rotate: Int = 0
+  trim: Float = 0
+  cropFocus: ImageCropFocus = ATTENTION
+  fit: ImageFit = COVER
+}
+
+type ImageSharpOriginal {
+  width: Float
+  height: Float
+  src: String
+}
+
+type ImageSharpResize {
+  src: String
+  tracedSVG: String
+  width: Int
+  height: Int
+  aspectRatio: Float
+  originalName: String
+}
+
+type ImageSharp implements Node @childOf(types: ["File"]) @dontInfer {
+  fixed(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpFixed
+  fluid(
+    maxWidth: Int
+    maxHeight: Int
+    base64Width: Int
+    grayscale: Boolean = false
+    jpegProgressive: Boolean = true
+    pngCompressionSpeed: Int = 4
+    duotone: DuotoneGradient
+    traceSVG: Potrace
+    quality: Int
+    jpegQuality: Int
+    pngQuality: Int
+    webpQuality: Int
+    toFormat: ImageFormat = AUTO
+    toFormatBase64: ImageFormat = AUTO
+    cropFocus: ImageCropFocus = ATTENTION
+    fit: ImageFit = COVER
+    background: String = "rgba(0,0,0,1)"
+    rotate: Int = 0
+    trim: Float = 0
+    sizes: String = ""
+
+    """
+    A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    """
+    srcSetBreakpoints: [Int] = []
+  ): ImageSharpFluid
+  gatsbyImageData(
+    """
+    The layout for the image.
+    FIXED: A static image sized, that does not resize according to the screen width
+    FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if
+    it isn't going to be the full width of the screen.
+    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    """
+    layout: ImageLayout = CONSTRAINED
+
+    """
+    The display width of the generated image for layout = FIXED, and the maximum
+    display width of the largest image for layout = CONSTRAINED.
+    Ignored if layout = FLUID.
+    """
+    width: Int
+
+    """
+    The display height of the generated image for layout = FIXED, and the
+    maximum display height of the largest image for layout = CONSTRAINED.
+    The image will be cropped if the aspect ratio does not match the source
+    image. If omitted, it is calculated from the supplied width,
+    matching the aspect ratio of the source image.
+    """
+    height: Int
+
+    """
+    If set along with width or height, this will set the value of the other
+    dimension to match the provided aspect ratio, cropping the image if needed.
+    If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    """
+    aspectRatio: Float
+
+    """
+    Format of generated placeholder image, displayed while the main image loads.
+    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    TRACED_SVG: a low-resolution traced SVG of the image.
+    NONE: no placeholder. Set "background" to use a fixed background color.
+    """
+    placeholder: ImagePlaceholder
+
+    """
+    Options for the low-resolution placeholder image. Set placeholder to "BLURRED" to use this
+    """
+    blurredOptions: BlurredOptions
+
+    """
+    Options for traced placeholder SVGs. You also should set placeholder to "TRACED_SVG".
+    """
+    tracedSVGOptions: Potrace
+
+    """
+    The image formats to generate. Valid values are "AUTO" (meaning the same
+    format as the source image), "JPG", "PNG", "WEBP" and "AVIF".
+    The default value is [AUTO, WEBP], and you should rarely need to change
+    this. Take care if you specify JPG or PNG when you do
+    not know the formats of the source images, as this could lead to unwanted
+    results such as converting JPEGs to PNGs. Specifying
+    both PNG and JPG is not supported and will be ignored.
+    """
+    formats: [ImageFormat]
+
+    """
+    A list of image pixel densities to generate. It will never generate images
+    larger than the source, and will always include a 1x image.
+    Default is [ 1, 2 ] for FIXED images, meaning 1x and 2x and [0.25, 0.5, 1,
+    2] for CONSTRAINED. In this case, an image with a constrained layout
+    and width = 400 would generate images at 100, 200, 400 and 800px wide.
+    Ignored for FULL_WIDTH images, which use breakpoints instead
+    """
+    outputPixelDensities: [Float]
+
+    """
+    Specifies the image widths to generate. For FIXED and CONSTRAINED images it
+    is better to allow these to be determined automatically,
+    based on the image size. For FULL_WIDTH images this can be used to override
+    the default, which is [750, 1080, 1366, 1920].
+    It will never generate any images larger than the source.
+    """
+    breakpoints: [Int]
+
+    """
+    The "sizes" property, passed to the img tag. This describes the display size of the image.
+    This does not affect the generated images, but is used by the browser to decide which images to download.
+    You should usually leave this blank, and a suitable value will be calculated. The exception is if a FULL_WIDTH image
+    does not actually span the full width of the screen, in which case you should pass the correct size here.
+    """
+    sizes: String
+
+    """The default quality. This is overridden by any format-specific options"""
+    quality: Int
+
+    """Options to pass to sharp when generating JPG images."""
+    jpgOptions: JPGOptions
+
+    """Options to pass to sharp when generating PNG images."""
+    pngOptions: PNGOptions
+
+    """Options to pass to sharp when generating WebP images."""
+    webpOptions: WebPOptions
+
+    """Options to pass to sharp when generating AVIF images."""
+    avifOptions: AVIFOptions
+
+    """
+    Options to pass to sharp to control cropping and other image manipulations.
+    """
+    transformOptions: TransformOptions
+
+    """
+    Background color applied to the wrapper. Also passed to sharp to use as a
+    background when "letterboxing" an image to another aspect ratio.
+    """
+    backgroundColor: String
+  ): JSON!
+  original: ImageSharpOriginal
+  resize(width: Int, height: Int, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, jpegProgressive: Boolean = true, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, base64: Boolean = false, traceSVG: Potrace, toFormat: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResize
+}
+
+type GraphCMS_Asset implements Node @dontInfer {
+  localFile: File @link(by: "id")
+  remoteTypeName: String!
+  remoteId: ID!
+  locale: GraphCMS_Locale!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  handle: String!
+  fileName: String!
+  height: Float
+  width: Float
+  size: Float
+  mimeType: String
+  filterKeywords: [String!]!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seoImage: [GraphCMS_Seo!]!
+  authorAvatar: [GraphCMS_Author!]!
+  coverImagePost: [GraphCMS_Post!]!
+  bookCoverBook: [GraphCMS_Book!]!
+  pageBackgroundBook: [GraphCMS_Book!]!
+  bibliographyBook: [GraphCMS_Book!]!
+  flagTerritory: [GraphCMS_Territory!]!
+  posterImageVideo: [GraphCMS_Video!]!
+  seriesImageSeries: [GraphCMS_Series!]!
+  imagePhoto: [GraphCMS_Photo!]!
+  fileReaderGuide: [GraphCMS_ReaderGuide!]!
+  coverImageReaderGuide: [GraphCMS_ReaderGuide!]!
+  marqueePromotion: [GraphCMS_Promotion!]!
+  imageExclusive: [GraphCMS_Exclusive!]!
+  thumbnailDownload: [GraphCMS_Download!]!
+  fileDownload: [GraphCMS_Download!]!
+  iconCommunity: [GraphCMS_Community!]!
+  imageAudio: [GraphCMS_Audio!]!
+  fileAudio: [GraphCMS_Audio!]!
+  featuredImageAppearance: [GraphCMS_Appearance!]!
+  bioAboutImageContentSetting: [GraphCMS_ContentSetting!]!
+  size800X600Download: [GraphCMS_Download!]!
+  size1024X768Download: [GraphCMS_Download!]!
+  size1280X960Download: [GraphCMS_Download!]!
+  size1920X1080Download: [GraphCMS_Download!]!
+  screensaver_macDownload: [GraphCMS_Download!]!
+  screensaverFilePcDownload: [GraphCMS_Download!]!
+  ringtoneZipFileDownload: [GraphCMS_Download!]!
+  size2560X1440Download: [GraphCMS_Download!]!
+  imagePromotion: [GraphCMS_Promotion!]!
+  otherPostImagesPost: [GraphCMS_Post!]!
+  coverImageAudio: [GraphCMS_Audio!]!
+  featuredImageDownload: [GraphCMS_Download!]!
+  coverImageDownload: [GraphCMS_Download!]!
+  coverImageExclusive: [GraphCMS_Exclusive!]!
+  downloadFileExclusive: [GraphCMS_Exclusive!]!
+  bookCoversDownload: [GraphCMS_Download!]!
+  coverImagePhoto: [GraphCMS_Photo!]!
+  downloadFilePhoto: [GraphCMS_Photo!]!
+  featuredImageReaderGuide: [GraphCMS_ReaderGuide!]!
+  coverImageVideo: [GraphCMS_Video!]!
+  downloadFileVideo: [GraphCMS_Video!]!
+  url: String!
+}
+
+enum GraphCMS_Locale {
+  en
+}
+
+enum GraphCMS_Stage {
+  DRAFT
+  PUBLISHED
+}
+
+type GraphCMS_User implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  name: String!
+  picture: String
+  isActive: Boolean!
+  kind: GraphCMS_UserKind!
+}
+
+enum GraphCMS_UserKind {
+  MEMBER
+  PUBLIC
+  PAT
+  WEBHOOK
+}
+
+type GraphCMS_Seo implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  description: String
+  keywords: [String!]!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  image: GraphCMS_Asset
+  book: GraphCMS_Book
+  remoteParent: GraphCMS_SeoParent
+}
+
+type GraphCMS_Book implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  filterKeywords: [String!]!
+  title: String
+  subheading: String
+  slug: String
+  bookNumber: Int
+  releaseDate: JSON
+  synopsis: GraphCMS_RichText
+  leadText: GraphCMS_RichText
+  bodyText: GraphCMS_BookBodyTextRichText
+  dustJacketColor: GraphCMS_Color
+  bibliographyUrl: String
+  downloadExcerpt: String
+  browseInside: String
+  bookExcerpt: String
+  amazon: String
+  kindle: String
+  barnesAndNoble: String
+  nook: String
+  booksAMillion: String
+  bookshop: String
+  googlePlay: String
+  iBookstore: String
+  indieBound: String
+  kobo: String
+  thePoisonedPen: String
+  torBooksMacmillanPublishers: String
+  international: Boolean!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  series: GraphCMS_Series
+  bookCover: GraphCMS_Asset
+  pageBackground: GraphCMS_Asset
+  bibliography: GraphCMS_Asset
+  seo: GraphCMS_Seo
+  faqs: [GraphCMS_Faq!]!
+  criticalAcclaims: [GraphCMS_CriticalAcclaim!]!
+  videos: [GraphCMS_Video!]!
+  photos: [GraphCMS_Photo!]!
+  readerGuides: [GraphCMS_ReaderGuide!]!
+  downloads: [GraphCMS_Download!]!
+  audios: [GraphCMS_Audio!]!
+  contentSetting: GraphCMS_ContentSetting
+  exclusives: [GraphCMS_Exclusive!]!
+  retailers: [GraphCMS_Retailer!]!
+  usa_book: GraphCMS_Book
+  territories: [GraphCMS_Territory!]!
+}
+
+type GraphCMS_RichText {
+  markdownNode: GraphCMS_MarkdownNode @link(by: "id")
+  remoteTypeName: String!
+  raw: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+}
+
+type GraphCMS_MarkdownNode implements Node @dontInfer
+
+type GraphCMS_BookBodyTextRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_BookBodyTextRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_BookBodyTextRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Color {
+  remoteTypeName: String!
+  hex: JSON!
+  rgba: GraphCMS_RGBA!
+  css: String!
+}
+
+type GraphCMS_RGBA {
+  remoteTypeName: String!
+  r: JSON!
+  g: JSON!
+  b: JSON!
+  a: JSON!
+}
+
+type GraphCMS_Series implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_SeriesDescriptionRichText
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  books: [GraphCMS_Book!]!
+  faqs: [GraphCMS_Faq!]!
+  seriesImage: GraphCMS_Asset
+  readerGuides: [GraphCMS_ReaderGuide!]!
+  downloads: [GraphCMS_Download!]!
+  contentSetting: GraphCMS_ContentSetting
+  audios: [GraphCMS_Audio!]!
+  videos: [GraphCMS_Video!]!
+  exclusives: [GraphCMS_Exclusive!]!
+  photos: [GraphCMS_Photo!]!
+  layoutStyle: GraphCMS_LayoutStyle
+}
+
+type GraphCMS_SeriesDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_SeriesDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_SeriesDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Faq implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  slug: String
+  title: String
+  question: String
+  answer: GraphCMS_FaqAnswerRichText
+  onlyShowOnBookPage: Boolean
+  priority: Int
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  categories: [GraphCMS_FAQCategories!]!
+}
+
+type GraphCMS_FaqAnswerRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_FaqAnswerRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_FaqAnswerRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_FAQCategories {
+  Themes_and_Philosophies
+  Research
+  Print_versus_Digital
+  Nuts_and_Bolts
+  Influences_and_Favorites
+  Hard_Cover_Editions
+  Getting_Started
+  Book_to_Film_Status
+  Books
+  At_Home
+  Appearances_and_Touring
+}
+
+type GraphCMS_ReaderGuide implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_ReaderGuideDescriptionRichText
+  date: JSON
+  priority: Int
+  tags: [String!]!
+  externalDownloadLink: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  featuredImage: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  file: GraphCMS_Asset
+  categories: [GraphCMS_ReaderGuidesCategories!]!
+}
+
+type GraphCMS_ReaderGuideDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_ReaderGuideDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_ReaderGuideDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_ReaderGuidesCategories {
+  jim
+}
+
+type GraphCMS_Download implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_DownloadDescriptionRichText
+  date: JSON
+  priority: Int
+  tags: [String!]!
+  external_download_file: String
+  includeInPressKit: Boolean
+  featureOnHomePage: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  featuredImage: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  bookCovers: [GraphCMS_Asset!]!
+  size_640x480: GraphCMS_Asset
+  size800X600: GraphCMS_Asset
+  size1024X768: GraphCMS_Asset
+  size1280X960: GraphCMS_Asset
+  size1920X1080: GraphCMS_Asset
+  size2560X1440: GraphCMS_Asset
+  screensaver_mac: GraphCMS_Asset
+  screensaverFilePc: GraphCMS_Asset
+  ringtoneZipFile: GraphCMS_Asset
+  file: GraphCMS_Asset
+  type: [GraphCMS_DownloadType!]!
+}
+
+type GraphCMS_DownloadDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_DownloadDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_DownloadDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_DownloadType {
+  Wallpaper
+  Newsletter
+  Screensaver
+  Dust_Jacket
+  Ringtone
+  Bibliography
+  Other
+}
+
+type GraphCMS_ContentSetting implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  bioIntro: GraphCMS_RichText
+  bioExtendedContent: GraphCMS_ContentSettingBioExtendedContentRichText
+  pageTurningAdventuresIntro: GraphCMS_RichText
+  pageTurningAdventuresExtendedContent: GraphCMS_RichText
+  blurbAboutPage: String
+  blurbInternational: GraphCMS_RichText
+  blurbSelectATerritory: GraphCMS_RichText
+  blurbBibliography: GraphCMS_RichText
+  blurbWallpapers: GraphCMS_RichText
+  blurbNewsletters: GraphCMS_RichText
+  blurbScreensavers: GraphCMS_RichText
+  blurbDustJackets: GraphCMS_RichText
+  blurbRingtones: GraphCMS_RichText
+  blurbOther: GraphCMS_RichText
+  blurbExclusives: GraphCMS_RichText
+  blurbRegisterForAccess: GraphCMS_RichText
+  blurbBuyPage: GraphCMS_RichText
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  bioAboutImage: GraphCMS_Asset
+  books: [GraphCMS_Book!]!
+}
+
+type GraphCMS_ContentSettingBioExtendedContentRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_ContentSettingBioExtendedContentRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_ContentSettingBioExtendedContentRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Audio implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_AudioDescriptionRichText
+  date: JSON
+  priority: Int
+  tags: [String!]!
+  youtubeId: String
+  embedCode: GraphCMS_AudioEmbedCodeRichText
+  links: [String!]!
+  featureOnAbout: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  image: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  file: GraphCMS_Asset
+  categories: [GraphCMS_AudioCategories!]!
+}
+
+type GraphCMS_AudioDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_AudioDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_AudioDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_AudioEmbedCodeRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_AudioEmbedCodeRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_AudioEmbedCodeRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_AudioCategories {
+  about_jim
+  book_tour
+  individual_adventures
+  jake_ransom_series
+  moonfall_saga
+  the_order_of_the_sanguines
+  sigma_series
+  tucker_wayne_series
+}
+
+type GraphCMS_Video implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_VideoDescriptionRichText
+  date: JSON
+  priority: Int
+  tags: [String!]!
+  youTubeVimeoID: String
+  embedCode: String
+  externalDownloadFile: String
+  links: [String!]!
+  featureOn: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  featuredImage: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  downloadFile: GraphCMS_Asset
+  categories: [GraphCMS_MediaCategories!]!
+}
+
+type GraphCMS_VideoDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_VideoDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_VideoDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_MediaCategories {
+  Jim
+  Research
+  Other
+  Appearances
+  Trailer
+  Cover
+  About_the_Book
+  Tour
+}
+
+type GraphCMS_Exclusive implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_ExclusiveDescriptionRichText
+  date: JSON
+  priority: Int
+  tags: [String!]!
+  expiredItem: Boolean
+  link: String
+  featureOnHomePage: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  image: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  downloadFile: GraphCMS_Asset
+  promotionType: [GraphCMS_PromotionType!]!
+}
+
+type GraphCMS_ExclusiveDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_ExclusiveDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_ExclusiveDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+enum GraphCMS_PromotionType {
+  e_book
+  image
+  map
+}
+
+type GraphCMS_Photo implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  slug: String
+  description: GraphCMS_RichText
+  date: JSON
+  priority: Int
+  caption: String
+  tags: [String!]!
+  externalDownloadLink: String
+  featuredOnAbout: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seriesPlural: [GraphCMS_Series!]!
+  books: [GraphCMS_Book!]!
+  image: GraphCMS_Asset
+  coverImage: GraphCMS_Asset
+  downloadFile: GraphCMS_Asset
+  categories: [GraphCMS_MediaCategories!]!
+}
+
+enum GraphCMS_LayoutStyle {
+  type_1
+  type_2
+  type_3
+  type_4
+  type_5
+}
+
+type GraphCMS_CriticalAcclaim implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  reviewerName: String
+  reviewDate: JSON
+  theReview: GraphCMS_RichText
+  approvalStatus: Boolean
+  readerReview: Boolean
+  featureOnAbout: Boolean
+  featureOnCriticalAcclaim: Boolean
+  priority: Int
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  books: [GraphCMS_Book!]!
+  categories: [GraphCMS_CriticalAcclaimCategories!]!
+}
+
+enum GraphCMS_CriticalAcclaimCategories {
+  Publisher
+  Reader_Reviews
+  Author_Reviews
+}
+
+type GraphCMS_Retailer implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  tags: [String!]!
+  link: String
+  description: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  territories: [GraphCMS_Territory!]!
+  books: [GraphCMS_Book!]!
+}
+
+type GraphCMS_Territory implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  description: GraphCMS_RichText
+  publisherInfo: String
+  specialNote: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  flag: GraphCMS_Asset
+  retailers: [GraphCMS_Retailer!]!
+}
+
+union GraphCMS_SeoParent = GraphCMS_Page | GraphCMS_Post
+
+type GraphCMS_Author implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  name: String!
+  title: String
+  biography: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  picture: GraphCMS_Asset
+  posts: [GraphCMS_Post!]!
+}
+
+type GraphCMS_Post implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String!
+  slug: String
+  date: JSON!
+  excerpt: String
+  content: GraphCMS_RichText!
+  tags: [String!]!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  marquee: GraphCMS_Asset
+  otherPostImages: GraphCMS_Asset
+  author: GraphCMS_Author
+  blogCategories: [GraphCMS_BlogCategories!]!
+  seo: GraphCMS_Seo
+}
+
+enum GraphCMS_BlogCategories {
+  international_books
+  news
+  download
+  photo
+  press_kit
+  usa_books
+}
+
+type GraphCMS_Promotion implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  link: String
+  description: GraphCMS_PromotionDescriptionRichText
+  expiredItem: Boolean
+  priority: Int
+  featureOnHomePage: Boolean
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  marquee: GraphCMS_Asset
+  image: GraphCMS_Asset
+  promotionType: [GraphCMS_PromotionType!]!
+}
+
+type GraphCMS_PromotionDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_PromotionDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_PromotionDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Community implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  enable: Boolean
+  description: GraphCMS_RichText
+  link: String
+  apiKey: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  icon: GraphCMS_Asset
+}
+
+type GraphCMS_Appearance implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  date: JSON
+  price: Float
+  description: GraphCMS_AppearanceDescriptionRichText
+  organizers: [String!]!
+  link: String
+  tags: [String!]!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  venue: GraphCMS_Venue
+  featuredImage: GraphCMS_Asset
+  categories: [GraphCMS_AppearanceCategories!]!
+}
+
+type GraphCMS_AppearanceDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_AppearanceDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_AppearanceDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Venue implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  address: String
+  address2: String
+  city: String
+  zipcode: String
+  phoneNumber: String
+  email: String
+  website: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  appearances: [GraphCMS_Appearance!]!
+  state: GraphCMS_States
+}
+
+enum GraphCMS_States {
+  AL
+  AK
+  AZ
+  AR
+  CA
+  CO
+  CT
+  DE
+  DC
+  FL
+  GA
+  HI
+  ID
+  IL
+  IN
+  IA
+  KS
+  KY
+  LA
+  ME
+  MD
+  MA
+  MI
+  MN
+  MS
+  MO
+  MT
+  NE
+  NV
+  NH
+  NJ
+  NC
+  NY
+  ND
+  OH
+  OK
+  OR
+  PA
+  RI
+  SC
+  SD
+  TN
+  TX
+  UT
+  VT
+  VA
+  WA
+  WV
+  WI
+  WY
+}
+
+enum GraphCMS_AppearanceCategories {
+  Signings
+  Conference
+  Radio
+  Teaching
+  TV
+  Other
+}
+
+type GraphCMS_ContactForm implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  description: GraphCMS_ContactFormDescriptionRichText
+  notes: GraphCMS_ContactFormNotesRichText
+  email: String
+  link: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+}
+
+type GraphCMS_ContactFormDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_ContactFormDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_ContactFormDescriptionRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_ContactFormNotesRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_ContactFormNotesRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_ContactFormNotesRichTextEmbeddedTypes = GraphCMS_Asset
+
+type GraphCMS_Page implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String!
+  slug: String!
+  subtitle: String
+  content: GraphCMS_RichText!
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+  seo: GraphCMS_Seo
+}
+
+type GraphCMS_Recommendation implements Node @dontInfer {
+  remoteTypeName: String!
+  remoteId: ID!
+  stage: GraphCMS_Stage!
+  createdAt: JSON!
+  updatedAt: JSON!
+  publishedAt: JSON
+  title: String
+  description: GraphCMS_RecommendationDescriptionRichText
+  link: String
+  createdBy: GraphCMS_User
+  updatedBy: GraphCMS_User
+  publishedBy: GraphCMS_User
+}
+
+type GraphCMS_RecommendationDescriptionRichText {
+  remoteTypeName: String!
+  raw: JSON!
+  json: JSON!
+  html: String!
+  markdown: String!
+  text: String!
+  references: [GraphCMS_RecommendationDescriptionRichTextEmbeddedTypes!]!
+}
+
+union GraphCMS_RecommendationDescriptionRichTextEmbeddedTypes = GraphCMS_Asset

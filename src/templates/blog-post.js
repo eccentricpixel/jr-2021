@@ -3,9 +3,11 @@ import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image";
 
 function BlogPostTemplate({
-  data: { authorImage, coverImage },
   pageContext: { nextPost, post, previousPost },
+  data: { postContent, coverImage }
 }) {
+
+  console.log('postContent:', postContent);
   return (
     <article>
       <header className="pt-6 lg:pb-10">
@@ -38,7 +40,7 @@ function BlogPostTemplate({
               fadeIn={false} />
           )}
           <div className="prose max-w-none pt-10 pb-8">
-          <div dangerouslySetInnerHTML={{__html: post.content.html}}></div>
+          <div dangerouslySetInnerHTML={{__html: postContent.content.html}}></div>
           </div>
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 lg:col-start-1 lg:row-start-2">
@@ -50,7 +52,7 @@ function BlogPostTemplate({
                     Next Post
                   </h2>
                   <div className="text-purple-500 hover:text-purple-600">
-                    <Link to={`/posts/${nextPost.slug}`}>{nextPost.title}</Link>
+                    <Link to={`/blog/${nextPost.slug}`}>{nextPost.title}</Link>
                   </div>
                 </div>
               )}
@@ -60,7 +62,7 @@ function BlogPostTemplate({
                     Previous Post
                   </h2>
                   <div className="text-purple-500 hover:text-purple-600">
-                    <Link to={`/posts/${previousPost.slug}`}>
+                    <Link to={`/blog/${previousPost.slug}`}>
                       {previousPost.title}
                     </Link>
                   </div>
@@ -79,7 +81,9 @@ function BlogPostTemplate({
   );
 }
 
-export const postQuery = graphql`
+
+
+export const BlogPageQuery = graphql`
   fragment BlogAssetFields on GraphCMS_Asset {
     id
     localFile {
@@ -90,13 +94,13 @@ export const postQuery = graphql`
   }
 
   query BlogPostQuery($id: String!) {
-    authorImage: graphCmsAsset(
-      authorAvatar: {elemMatch: {posts: {elemMatch: {id: {in: [$id]}}}}}
-    ) {
-      ...BlogAssetFields
-    }
     coverImage: graphCmsAsset(coverImagePost: {elemMatch: {id: {eq: $id}}}) {
       ...BlogAssetFields
+    }
+    postContent: graphCmsPost(id: {eq: $id}) {
+      content {
+        html
+      }
     }
   }
 `

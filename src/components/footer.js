@@ -10,7 +10,7 @@ function Footer() {
       series: allGraphCmsContentSetting {
         nodes {
           seriesPlural {
-            id
+            remoteId
             title
             slug
           }

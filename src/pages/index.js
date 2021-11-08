@@ -4,7 +4,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Swiper from 'swiper';
 
 //function IndexPage({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } }) {
-const IndexPage = () => {
+const IndexPage = ({ data: { reviews } }) => {
   // const categoryData = allGraphCmsSeries.nodes.map((series) => {  
   //   return (
   //     series.slug
@@ -153,6 +153,7 @@ const IndexPage = () => {
           </div>
         </div>
       </section>
+                */}
 
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
@@ -171,66 +172,66 @@ const IndexPage = () => {
             })}
           </div>
         </div>
-      </section> */}
+      </section> 
     </div>
   )
 }
 
-// export const indexPageQuery = graphql`
-//   {
-//     allGraphCmsBook(
-//       sort: {fields: releaseDate, order: DESC}
-//       filter: {international: {eq: false}, series: {slug: {ne: null}}}
-//     ) {
-//       nodes {
-//         id
-//         releaseDate: formattedDate
-//         synopsis {
-//           html
-//         }
-//         slug
-//         title
-//         series {
-//           id
-//           slug
-//         }
-//         bookCover {
-//           localFile {
-//             childImageSharp {
-//               gatsbyImageData(layout: FULL_WIDTH)
-//             }
-//           }
-//         }
-//       }
-//     }
-//     allGraphCmsSeries {
-//       nodes {
-//         id
-//         slug
-//         title
-//       }
-//     }
-//     bio: allGraphCmsContentSetting {
-//       nodes {
-//         bioIntro {
-//           html
-//         }
-//       }
-//     }
-//     reviews: allGraphCmsCriticalAcclaim(limit: 1, filter: {approvalStatus: {eq: true}}) {
-//       edges {
-//         node {
-//           id          
-//           reviewerName
-//           readerReview
-//           theReview {
-//             html
-//           }          
-//         }
-//       }
-//     }
-//   }
+export const indexPageQuery = graphql`
+  {
+    # allGraphCmsBook(
+    #   sort: {fields: releaseDate, order: DESC}
+    #   filter: {international: {eq: false}, series: {slug: {ne: null}}}
+    # ) {
+    #   nodes {
+    #     id
+    #     releaseDate: formattedDate
+    #     synopsis {
+    #       html
+    #     }
+    #     slug
+    #     title
+    #     series {
+    #       id
+    #       slug
+    #     }
+    #     bookCover {
+    #       localFile {
+    #         childImageSharp {
+    #           gatsbyImageData(layout: FULL_WIDTH)
+    #         }
+    #       }
+    #     }
+    #   }
+    # }
+    # allGraphCmsSeries {
+    #   nodes {
+    #     id
+    #     slug
+    #     title
+    #   }
+    # }
+    # bio: allGraphCmsContentSetting {
+    #   nodes {
+    #     bioIntro {
+    #       html
+    #     }
+    #   }
+    # }
+    reviews: allGraphCmsCriticalAcclaim(limit: 1, filter: {approvalStatus: {eq: true}}) {
+      edges {
+        node {
+          id          
+          reviewerName
+          readerReview
+          theReview {
+            html
+          }          
+        }
+      }
+    }
+  }
   
-//`
+`
 
 export default IndexPage
