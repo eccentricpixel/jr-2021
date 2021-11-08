@@ -6,12 +6,11 @@ function BlogPostTemplate({
   pageContext: { nextPost, post, previousPost },
   data: { postContent, coverImage }
 }) {
-
-  console.log('postContent:', postContent);
   return (
-    <article>
-      <header className="pt-6 lg:pb-10">
-        <div className="space-y-1 text-center">
+    <article class="text-gray-600 body-font py-12">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="text-center mb-20">
+          <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">{post.title}</h1>
           <dl className="space-y-10">
             <div>
               <dt className="sr-only">Published on</dt>
@@ -20,28 +19,18 @@ function BlogPostTemplate({
               </dd>
             </div>
           </dl>
-          <div>
-            <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-              {post.title}
-            </h1>
-          </div>
         </div>
-      </header>
-      <div
-        className="divide-y lg:divide-y-0 divide-gray-200 lg:grid lg:grid-cols-4 lg:col-gap-6 pb-16 lg:pb-20"
-        style={{ gridTemplateRows: 'auto 1fr' }}
-      >
-        
-        <div className="divide-y divide-gray-200 lg:pb-0 lg:col-span-3 lg:row-span-2">
-          {coverImage && (
-            <GatsbyImage
-              image={coverImage.localFile.childImageSharp.gatsbyImageData}
-              className="mb-8 rounded"
-              fadeIn={false} />
-          )}
-          <div className="prose max-w-none pt-10 pb-8">
-          <div dangerouslySetInnerHTML={{__html: postContent.content.html}}></div>
+        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+          <div className="divide-y divide-gray-200 lg:pb-0 lg:col-span-3 lg:row-span-2">
+            {coverImage && (
+              <GatsbyImage
+                image={coverImage.localFile.childImageSharp.gatsbyImageData}
+                className="mb-8 rounded"
+                fadeIn={false} />
+            )}
           </div>
+    
+          <div className="leading-relaxed text-lg" dangerouslySetInnerHTML={{__html: postContent.content?.html}}></div>
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 lg:col-start-1 lg:row-start-2">
           {(nextPost || previousPost) && (

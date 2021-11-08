@@ -67,6 +67,7 @@ export const newsPageQuery = graphql`
       nodes {
         title
         id
+        slug
         content {
           html
         }
