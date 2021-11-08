@@ -52,7 +52,7 @@ function BlogPostTemplate({
                     Next Post
                   </h2>
                   <div className="text-purple-500 hover:text-purple-600">
-                    <Link to={`/blog/${nextPost.slug}`}>{nextPost.title}</Link>
+                    <Link to={`/news/${nextPost.slug}`}>{nextPost.title}</Link>
                   </div>
                 </div>
               )}
@@ -62,7 +62,7 @@ function BlogPostTemplate({
                     Previous Post
                   </h2>
                   <div className="text-purple-500 hover:text-purple-600">
-                    <Link to={`/blog/${previousPost.slug}`}>
+                    <Link to={`/news/${previousPost.slug}`}>
                       {previousPost.title}
                     </Link>
                   </div>
@@ -72,7 +72,7 @@ function BlogPostTemplate({
           )}
           <div className="pt-8">
             <Link to="/" className="text-purple-500 hover:text-purple-600">
-              &larr; Back to the blog
+              &larr; See more news
             </Link>
           </div>
         </footer>

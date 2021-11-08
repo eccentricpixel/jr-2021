@@ -67,7 +67,7 @@ function Footer() {
                       return (      
                         <li>
                           <Link
-                            key={link.id}
+                            key={link.remoteId}
                             to={`/series/${link.slug}`}
                             className={cx(
                               '',
