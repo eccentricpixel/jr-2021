@@ -26,7 +26,8 @@ exports.createSchemaCustomization= ({ actions }) => {
         pages: allGraphCmsPage {
             nodes {
                 id            
-                slug            
+                slug         
+                title   
             }
         }
         
@@ -68,6 +69,63 @@ exports.createSchemaCustomization= ({ actions }) => {
               }
             }
         }
+
+        faqs: allGraphCmsFaq {
+            edges {
+              nextFaq: next {
+                slug
+                title
+              }
+              faq: node {
+                id                                                  
+                slug                
+                title                                                       
+              }
+              previousFaq: previous {
+                slug
+                title
+              }
+            }
+        }
+
+        videos: allGraphCmsVideo {
+            edges {
+              nextVideo: next {
+                slug
+                title
+              }
+              video: node {
+                id                                                  
+                slug                              
+                title                                                         
+                date: formattedDate                
+              }
+              previousVideo: previous {
+                slug
+                title
+              }
+            }
+        }
+
+        photos: allGraphCmsPhoto {
+            edges {
+              nextPhoto: next {
+                slug
+                title
+              }
+              photo: node {
+                id                                                  
+                slug                              
+                title   
+                date: formattedDate                                       
+              }
+              previousPhoto: previous {
+                slug
+                title
+              }
+            }
+        }
+
       }
     `);
     
@@ -77,6 +135,7 @@ exports.createSchemaCustomization= ({ actions }) => {
             component: require.resolve('./src/templates/default-page.js'),
             context: {
                 page,
+                id: page.id
             },            
         })
     );
@@ -101,6 +160,44 @@ exports.createSchemaCustomization= ({ actions }) => {
                 book,
                 previousBook,
                 nextBook,
+            },            
+        })
+    );
+    data.faqs.edges.forEach(({ nextFaq, faq, previousFaq }) => 
+        createPage({
+            path: `/faqs/${faq.slug}`,
+            component: require.resolve('./src/templates/faq.js'),
+            context: {
+                id: faq.id,
+                faq,
+                previousFaq,
+                nextFaq,
+            },            
+        })
+    );
+
+    data.videos.edges.forEach(({ nextVideo, video, previousVideo }) => 
+        createPage({
+            path: `/videos/${video.slug}`,
+            component: require.resolve('./src/templates/video.js'),
+            context: {
+                id: video.id,
+                video,
+                previousVideo,
+                nextVideo,
+            },            
+        })
+    );
+
+    data.photos.edges.forEach(({ nextPhoto, photo, previousPhoto }) => 
+        createPage({
+            path: `/photos/${photo.slug}`,
+            component: require.resolve('./src/templates/photo.js'),
+            context: {
+                id: photo.id,
+                photo,
+                previousPhoto,
+                nextPhoto,
             },            
         })
     );
@@ -269,36 +366,36 @@ exports.createResolvers = ({ createResolvers }) => {
         },
       },
     },
-    // GraphCMS_Video: {
-    //   formattedDate: {
-    //     type: 'String',
-    //     resolve: (source) => {
-    //       const date = new Date(source.date)
+    GraphCMS_Video: {
+      formattedDate: {
+        type: 'String',
+        resolve: (source) => {
+          const date = new Date(source.date)
 
-    //       return new Intl.DateTimeFormat('en-US', {
-    //         weekday: 'long',
-    //         year: 'numeric',
-    //         month: 'long',
-    //         day: 'numeric',
-    //       }).format(date)
-    //     },
-    //   },
-    // },
-    // GraphCMS_Photo: {
-    //   formattedDate: {
-    //     type: 'String',
-    //     resolve: (source) => {
-    //       const date = new Date(source.date)
+          return new Intl.DateTimeFormat('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(date)
+        },
+      },
+    },
+    GraphCMS_Photo: {
+      formattedDate: {
+        type: 'String',
+        resolve: (source) => {
+          const date = new Date(source.date)
 
-    //       return new Intl.DateTimeFormat('en-US', {
-    //         weekday: 'long',
-    //         year: 'numeric',
-    //         month: 'long',
-    //         day: 'numeric',
-    //       }).format(date)
-    //     },
-    //   },
-    // },
+          return new Intl.DateTimeFormat('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }).format(date)
+        },
+      },
+    },
 
   }
 

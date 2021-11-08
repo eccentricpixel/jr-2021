@@ -35,7 +35,7 @@ function Header() {
   const toggleMobileNavOpen = () => setMobileNavOpen((open) => !open)
   
   return (
-    <header className="py-5 px-5 absolute z-50 w-full bg-gradient-to-r from-gray-600 via-transparent">
+    <header className="py-5 px-5 absolute z-50 w-full bg-gradient-to-r from-gray-600 via-transparent sticky top-0">
       <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start w-screen">
         <div className="flex items-center flex-grow flex-shrink-0">
           <div className="flex items-center justify-between w-full">
