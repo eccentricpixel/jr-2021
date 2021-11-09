@@ -4,7 +4,6 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { v4 as uuidv4} from 'uuid'
 import {Swiper, SwiperSlide} from 'swiper';
   
-
 function DownloadsPage({ data: {bibliography, dustJackets, wallpapers} }) {
 
     // const wallpapers640Loop = wallpapers.edges.map((download, i) => 
