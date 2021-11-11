@@ -14,7 +14,7 @@ function Header() {
       series: allGraphCmsContentSetting {
         nodes {
           seriesPlural {
-            id
+            remoteId
             title
             slug
           }
@@ -136,7 +136,7 @@ function Header() {
                         const isActive = location.pathname.startsWith(`/${link.slug}`)
                         return (                                
                           <Link
-                            key={link.id}
+                            key={link.remoteId}
                             to={`/series/${link.slug}`}                              
                           >
                             {link.title}
