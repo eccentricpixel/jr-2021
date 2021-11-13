@@ -1,11 +1,14 @@
 import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
 
 function BookTemplate({
-    data: { pageImage, bookImage, retailers, bookContent },
+    data: { pageImage, bookImage, retailers, bookContent, faqs },
     pageContext: { nextBook, book, previousBook },
 }) {    
+  const bookCoverImage = getImage(bookContent.bookCover)
+  const pageBackgroundImage = getImage(pageImage)
+  console.log(bookContent.bookCover.url)
   
   return (
     <article>
@@ -17,7 +20,7 @@ function BookTemplate({
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
           {pageImage && (
               <GatsbyImage
-                image={pageImage.localFile.childImageSharp.gatsbyImageData}
+                image={pageBackgroundImage}
                 className="w-screen absolute top-0 right-0 placeholder-transparent"
                 alt=""                
               />
@@ -29,13 +32,13 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-            {bookImage && (
-                <GatsbyImage
-                  image={bookImage.localFile.childImageSharp.gatsbyImageData}
+            
+                <img
+                  src={bookContent.bookCover.url}
                   className="mb-8 "
                   alt=""
                 />
-            )}    
+            
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
           <div className="prose max-w-none pt-15 pb-8">
@@ -108,14 +111,14 @@ function BookTemplate({
         <StaticImage src="../images/qa-header@2x.png" width="480" className="justify-self-center mb-10" alt="" />
         
           <ul className="grid grid-cols-2 grid-flow-row auto-rows-max gap-10">            
-          {bookContent.faqs?.map((faq) => {
-            return (
-            <li key={faq.id}>
-              <div className="text-lg pb-5">{faq.question}</div>
-              <div className="text-sm text-gray-500" dangerouslySetInnerHTML={{__html: faq.answer?.html}}></div>
-            </li>              
-            )
-          })}
+          {faqs.nodes.map((faq) => 
+              
+              <li key={faq.id}>
+                <div className="text-lg pb-5">{faq.question}</div>
+                <div className="text-sm text-gray-500" dangerouslySetInnerHTML={{__html: faq.answer?.html}}></div>
+              </li>              
+              
+          )}
           </ul>
         
       </section>
@@ -249,20 +252,30 @@ function BookTemplate({
 
 export const pageQuery = graphql`
   fragment BookAssetFields on GraphCMS_Asset {
-    id
+    id    
     localFile {
       childImageSharp {
         gatsbyImageData(layout: FULL_WIDTH)
       }
     }
+    
+  }
+
+  fragment BookFaqs on GraphCMS_Faq {
+    id
+    question
+    answer {
+      html 
+    }
+
   }
   
   
 
   query BookQuery($id: String!) {
-    bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
-      ...BookAssetFields
-    }
+    # bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
+    #   ...BookAssetFields
+    # }
     pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
       ...BookAssetFields
     }
@@ -273,6 +286,15 @@ export const pageQuery = graphql`
         title
       }
     }    
+    faqs: allGraphCmsFaq(filter: {books: {elemMatch: {id: {eq: $id}}}}){
+      nodes {
+        id
+        question
+        answer {
+          html 
+        }
+      }
+    }
     bookContent: graphCmsBook(id: {eq: $id}) {
       leadText {
         html
@@ -282,6 +304,9 @@ export const pageQuery = graphql`
       }
       bodyText { 
         html
+      }
+      bookCover {
+        url        
       }
       bookNumber
       subheading
@@ -303,15 +328,7 @@ export const pageQuery = graphql`
       torBooksMacmillanPublishers        
       dustJacketColor {
         hex 
-      }
-      faqs {
-        id
-        question
-        answer {
-          html
-        }
-        categories
-      }
+      }      
     }
   }
 `

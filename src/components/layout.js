@@ -13,7 +13,7 @@ import SEO from './seo'
 function Layout({ children, pageContext: { page } }) {
   return (
     <React.Fragment>
-      <SEO {...page} />
+      {/* <SEO {...page} /> */}
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow mx-auto w-full">
           <Header />

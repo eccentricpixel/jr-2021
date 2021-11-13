@@ -1,24 +1,26 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
 import { v4 as uuidv4} from 'uuid'
 import {Swiper, SwiperSlide} from 'swiper';
   
 function DownloadsPage({ data: {bibliography, dustJackets, wallpapers} }) {
 
-    // const wallpapers640Loop = wallpapers.edges.map((download, i) => 
-    //     download.node.size_640x480.localFile.url &&                    
-    //         <SwiperSlide key={download.node.size_640x480.id}>
-    //             <a href={download.node.size_640x480.localFile.url} download target="_blank">
-    //                 <GatsbyImage 
-    //                 image={download.node.size_640x480.localFile.childImageSharp.gatsbyImageData} 
-    //                 alt={download.node.title}
-    //                 />
-    //                 <small className="font-bold">{download.node.title}</small>
-    //                 <small className="font-semibold block"><span className="text-gray-600 font-normal tracking-wide text-xs">SIZE:</span> 640 x 480</small>
-    //             </a>
-    //         </SwiperSlide>                             
-    // )
+    const wallpapers640Loop = wallpapers.edges.map((download, i) => {
+        console.log(download)
+        getImage(download.node.size_640x480) &&                    
+            <SwiperSlide key={download.node.size_640x480.id}>
+                <a href={download.node.size_640x480.localFile.url} download target="_blank">
+                    <GatsbyImage 
+                    image={download.node.size_640x480.localFile.childImageSharp.gatsbyImageData} 
+                    alt={download.node.title}
+                    />
+                    <small className="font-bold">{download.node.title}</small>
+                    <small className="font-semibold block"><span className="text-gray-600 font-normal tracking-wide text-xs">SIZE:</span> 640 x 480</small>
+                </a>
+            </SwiperSlide>                             
+        }
+    )
     // const wallpapers800Loop = wallpapers.edges.map((download) =>                                  
     //     download.node.size800X600 &&
     //         <SwiperSlide key={download.node.size800X600.id}>
