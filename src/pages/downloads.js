@@ -6,21 +6,21 @@ import {Swiper, SwiperSlide} from 'swiper';
   
 function DownloadsPage({ data: {bibliography, dustJackets, wallpapers} }) {
 
-    const wallpapers640Loop = wallpapers.edges.map((download, i) => {
-        console.log(download)
-        getImage(download.node.size_640x480) &&                    
-            <SwiperSlide key={download.node.size_640x480.id}>
-                <a href={download.node.size_640x480.localFile.url} download target="_blank">
-                    <GatsbyImage 
-                    image={download.node.size_640x480.localFile.childImageSharp.gatsbyImageData} 
-                    alt={download.node.title}
-                    />
-                    <small className="font-bold">{download.node.title}</small>
-                    <small className="font-semibold block"><span className="text-gray-600 font-normal tracking-wide text-xs">SIZE:</span> 640 x 480</small>
-                </a>
-            </SwiperSlide>                             
-        }
-    )
+    // const wallpapers640Loop = wallpapers.edges.map((download, i) => {
+    //     console.log(download)
+    //     getImage(download.node.size_640x480) &&                    
+    //         <SwiperSlide key={download.node.size_640x480.id}>
+    //             <a href={download.node.size_640x480.localFile.url} download target="_blank">
+    //                 <GatsbyImage 
+    //                 image={download.node.size_640x480.localFile.childImageSharp.gatsbyImageData} 
+    //                 alt={download.node.title}
+    //                 />
+    //                 <small className="font-bold">{download.node.title}</small>
+    //                 <small className="font-semibold block"><span className="text-gray-600 font-normal tracking-wide text-xs">SIZE:</span> 640 x 480</small>
+    //             </a>
+    //         </SwiperSlide>                             
+    //     }
+    // )
     // const wallpapers800Loop = wallpapers.edges.map((download) =>                                  
     //     download.node.size800X600 &&
     //         <SwiperSlide key={download.node.size800X600.id}>
@@ -225,95 +225,95 @@ function DownloadsPage({ data: {bibliography, dustJackets, wallpapers} }) {
 export const downloadsPageQuery = graphql`  
 
     query downloadsQuery {
-        bibliography: allGraphCmsDownload(filter: {type: {eq: Bibliography}}) {
-            edges {
-                node {
-                    id
-                    external_download_file                    
-                }
-            }
-        }
+        # bibliography: allGraphCmsDownload(filter: {type: {eq: Bibliography}}) {
+        #     edges {
+        #         node {
+        #             id
+        #             external_download_file                    
+        #         }
+        #     }
+        # }
 
-        wallpapers: allGraphCmsDownload(filter: {type: {eq: Wallpaper}}) {
-            edges {
-                node {
-                    id
-                    title                    
-                  	size_640x480 {
-                  	    id
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                     
-                  	}
-                    size800X600 {
-                  	    id
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                     
-                  	}
-                    size1024X768 {
-                  	    id
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                     
-                  	}      
-                    size1280X960 {
-                  	    id
-                          localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                      
-                  	}
-                    size1920X1080 {
-                  	    id
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                     
-                  	}
-                    size2560X1440 {
-                  	    id
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }                     
-                  	}
-                }
-            }
-        }
+        # wallpapers: allGraphCmsDownload(filter: {type: {eq: Wallpaper}}) {
+        #     edges {
+        #         node {
+        #             id
+        #             title                    
+        #           	size_640x480 {
+        #           	    id
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                     
+        #           	}
+        #             size800X600 {
+        #           	    id
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                     
+        #           	}
+        #             size1024X768 {
+        #           	    id
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                     
+        #           	}      
+        #             size1280X960 {
+        #           	    id
+        #                   localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                      
+        #           	}
+        #             size1920X1080 {
+        #           	    id
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                     
+        #           	}
+        #             size2560X1440 {
+        #           	    id
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }                     
+        #           	}
+        #         }
+        #     }
+        # }
 
-        dustJackets: allGraphCmsDownload(filter: {type: {eq: Dust_Jacket}}) {
-            edges {
-                node {
-                    id
-                    title
-                    bookCovers {
-                        id                        
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FULL_WIDTH)
-                            }
-                            url
-                        }
-                    }
-                }
-            }
-        }
+        # dustJackets: allGraphCmsDownload(filter: {type: {eq: Dust_Jacket}}) {
+        #     edges {
+        #         node {
+        #             id
+        #             title
+        #             bookCovers {
+        #                 id                        
+        #                 localFile {
+        #                     childImageSharp {
+        #                         gatsbyImageData(layout: FULL_WIDTH)
+        #                     }
+        #                     url
+        #                 }
+        #             }
+        #         }
+        #     }
+        # }
     
     }   
 `
