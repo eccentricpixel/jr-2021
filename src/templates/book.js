@@ -6,10 +6,10 @@ function BookTemplate({
     data: { pageImage, bookImage, retailers, bookContent, faqs },
     pageContext: { nextBook, book, previousBook },
 }) {    
-  const bookCoverImage = getImage(bookContent.bookCover)
-  const pageBackgroundImage = getImage(pageImage)
-  console.log(bookContent.bookCover.url)
   
+  
+  console.log(bookImage)
+
   return (
     <article>
       <header className="pt-6 lg:pb-10">
@@ -19,8 +19,8 @@ function BookTemplate({
       </header>
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
           {pageImage && (
-              <GatsbyImage
-                image={pageBackgroundImage}
+              <StaticImage
+                src={pageImage.url}
                 className="w-screen absolute top-0 right-0 placeholder-transparent"
                 alt=""                
               />
@@ -32,12 +32,13 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-            
+            {bookImage.url && (
                 <img
-                  src={bookContent.bookCover.url}
+                  src={bookImage.url}
                   className="mb-8 "
                   alt=""
                 />
+            )}
             
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
@@ -253,11 +254,7 @@ function BookTemplate({
 export const pageQuery = graphql`
   fragment BookAssetFields on GraphCMS_Asset {
     id    
-    localFile {
-      childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
-      }
-    }
+    url
     
   }
 
@@ -273,9 +270,9 @@ export const pageQuery = graphql`
   
 
   query BookQuery($id: String!) {
-    # bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
-    #   ...BookAssetFields
-    # }
+    bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
+      ...BookAssetFields
+    }
     pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
       ...BookAssetFields
     }
@@ -304,10 +301,7 @@ export const pageQuery = graphql`
       }
       bodyText { 
         html
-      }
-      bookCover {
-        url        
-      }
+      }      
       bookNumber
       subheading
       bibliographyUrl
