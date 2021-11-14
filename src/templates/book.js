@@ -6,10 +6,21 @@ function BookTemplate({
     data: { pageImage, bookImage, retailers, bookContent, faqs },
     pageContext: { nextBook, book, previousBook },
 }) {    
-  
-  
-  console.log(bookImage)
+ 
+  let pageBackground;
+  if(pageImage){
+    pageBackground = <img src={pageBackground} className="w-screen absolute top-0 right-0 placeholder-transparent" alt="" />
+  }else {
+    pageBackground = '';
+  }
 
+  let bookCover;
+  if(bookImage){
+    bookCover = <img src={bookImage.url} className="w-full placeholder-transparent" alt="" />
+  } else {
+    bookCover = '';
+  }
+  
   return (
     <article>
       <header className="pt-6 lg:pb-10">
@@ -18,13 +29,7 @@ function BookTemplate({
         </div>
       </header>
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
-          {pageImage.url && (
-              <StaticImage
-                src={pageImage.url}
-                className="w-screen absolute top-0 right-0 placeholder-transparent"
-                alt=""                
-              />
-          )}    
+        {pageBackground}
       </div>
       <section       
         id="book_overview"
@@ -32,13 +37,7 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-            {bookImage.url && (
-                <img
-                  src={bookImage.url}
-                  className="mb-8 "
-                  alt=""
-                />
-            )}
+            {bookCover}
             
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
