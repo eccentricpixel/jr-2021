@@ -81,7 +81,7 @@ function Header() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="bg-black w-screen h-screen absolute top-0 left-0 text-white bg-opacity-80">
+        <div className="bg-black w-screen h-screen absolute top-0 left-0 text-white bg-opacity-90">
           <div id="closeMainMenu" className="-mr-2 flex items-center absolute top-5 right-8">
               <button
                 onClick={() => toggleMobileNavOpen()}
