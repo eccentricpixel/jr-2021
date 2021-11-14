@@ -18,7 +18,7 @@ function BookTemplate({
         </div>
       </header>
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
-          {pageImage && (
+          {pageImage.url && (
               <StaticImage
                 src={pageImage.url}
                 className="w-screen absolute top-0 right-0 placeholder-transparent"
