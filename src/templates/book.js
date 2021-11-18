@@ -1,25 +1,36 @@
 import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
+import Image from "@graphcms/react-image";
+
 
 function BookTemplate({
     data: { pageImage, bookImage, retailers, bookContent, faqs },
     pageContext: { nextBook, book, previousBook },
 }) {    
  
-  let pageBackground;
-  if(pageImage){
-    pageBackground = <img src={pageBackground} className="w-screen absolute top-0 right-0 placeholder-transparent" alt="" />
-  }else {
-    pageBackground = '';
+  const bookCover = {
+    handle: bookContent.bookCover.handle,
+    width: bookContent.bookCover.width,
+    height: bookContent.bookCover.height
   }
+  // let pageBackground;
+  // if(pageImage){
+  //   // pageBackground = <img src={pageImage.url} className="w-screen absolute top-0 right-0 placeholder-transparent" alt="" />
+  //   background = getImage(pageImage.url)
+  //   pageBackground = <GatsbyImage image={background} alt={book.title} />
+  // }else {
+  //   pageBackground = '';
+  // }
 
-  let bookCover;
-  if(bookImage){
-    bookCover = <img src={bookImage.url} className="w-full placeholder-transparent" alt="" />
-  } else {
-    bookCover = '';
-  }
+  // let bookCover;
+  // if(bookImage){
+  //   // bookCover = <img src={bookImage.url} className="w-full placeholder-transparent" alt="" />
+  //   cover = getImage(bookImage.url)
+  //   bookCover = <GatsbyImage image={cover} alt={book.title} />
+  // } else {
+  //   bookCover = '';
+  // }
   
   return (
     <article>
@@ -29,7 +40,7 @@ function BookTemplate({
         </div>
       </header>
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
-        {pageBackground}
+       
       </div>
       <section       
         id="book_overview"
@@ -37,7 +48,7 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-            {bookCover}
+          <Image image={bookCover} />
             
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
@@ -298,9 +309,15 @@ export const pageQuery = graphql`
       synopsis {
         html
       }
-      bodyText { 
+      bodyText {
         html
-      }      
+      }
+      bookCover {
+        url
+        handle
+        height
+        width
+      }
       bookNumber
       subheading
       bibliographyUrl
@@ -318,10 +335,10 @@ export const pageQuery = graphql`
       indieBound
       kobo
       thePoisonedPen
-      torBooksMacmillanPublishers        
+      torBooksMacmillanPublishers
       dustJacketColor {
-        hex 
-      }      
+        hex
+      }     
     }
   }
 `
