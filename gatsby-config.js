@@ -3,7 +3,7 @@ require('dotenv').config()
 module.exports = {
   siteMetadata: {
     title: `James Rollins`,
-    description: ``,
+    description: `The official site of author James Rollins`,
     author: `@eccentricpixel`,
   },  
   plugins: [
@@ -25,6 +25,13 @@ module.exports = {
     },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        // Configure SASS to process Tailwind
+        postCssPlugins: [require('tailwindcss')],
+      },
+    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,

@@ -454,59 +454,59 @@ type GraphCMS_Asset implements Node @dontInfer {
   createdAt: JSON!
   updatedAt: JSON!
   publishedAt: JSON
-  handle: String!
-  fileName: String!
+  handle: String
+  fileName: String
   height: Float
   width: Float
   size: Float
   mimeType: String
-  filterKeywords: [String!]!
+  filterKeywords: [String!]
   createdBy: GraphCMS_User
   updatedBy: GraphCMS_User
   publishedBy: GraphCMS_User
-  seoImage: [GraphCMS_Seo!]!
-  authorAvatar: [GraphCMS_Author!]!
-  coverImagePost: [GraphCMS_Post!]!
-  bookCoverBook: [GraphCMS_Book!]!
-  pageBackgroundBook: [GraphCMS_Book!]!
-  bibliographyBook: [GraphCMS_Book!]!
-  flagTerritory: [GraphCMS_Territory!]!
-  posterImageVideo: [GraphCMS_Video!]!
-  seriesImageSeries: [GraphCMS_Series!]!
-  imagePhoto: [GraphCMS_Photo!]!
-  fileReaderGuide: [GraphCMS_ReaderGuide!]!
-  coverImageReaderGuide: [GraphCMS_ReaderGuide!]!
-  marqueePromotion: [GraphCMS_Promotion!]!
-  imageExclusive: [GraphCMS_Exclusive!]!
-  thumbnailDownload: [GraphCMS_Download!]!
-  fileDownload: [GraphCMS_Download!]!
-  iconCommunity: [GraphCMS_Community!]!
-  imageAudio: [GraphCMS_Audio!]!
-  fileAudio: [GraphCMS_Audio!]!
-  featuredImageAppearance: [GraphCMS_Appearance!]!
-  bioAboutImageContentSetting: [GraphCMS_ContentSetting!]!
-  size800X600Download: [GraphCMS_Download!]!
-  size1024X768Download: [GraphCMS_Download!]!
-  size1280X960Download: [GraphCMS_Download!]!
-  size1920X1080Download: [GraphCMS_Download!]!
-  screensaver_macDownload: [GraphCMS_Download!]!
-  screensaverFilePcDownload: [GraphCMS_Download!]!
-  ringtoneZipFileDownload: [GraphCMS_Download!]!
-  size2560X1440Download: [GraphCMS_Download!]!
-  imagePromotion: [GraphCMS_Promotion!]!
-  otherPostImagesPost: [GraphCMS_Post!]!
-  coverImageAudio: [GraphCMS_Audio!]!
-  featuredImageDownload: [GraphCMS_Download!]!
-  coverImageDownload: [GraphCMS_Download!]!
-  coverImageExclusive: [GraphCMS_Exclusive!]!
-  downloadFileExclusive: [GraphCMS_Exclusive!]!
-  bookCoversDownload: [GraphCMS_Download!]!
-  coverImagePhoto: [GraphCMS_Photo!]!
-  downloadFilePhoto: [GraphCMS_Photo!]!
-  featuredImageReaderGuide: [GraphCMS_ReaderGuide!]!
-  coverImageVideo: [GraphCMS_Video!]!
-  downloadFileVideo: [GraphCMS_Video!]!
-  url: String!
+  seoImage: [GraphCMS_Seo!]
+  authorAvatar: [GraphCMS_Author!]
+  coverImagePost: [GraphCMS_Post!]
+  bookCoverBook: [GraphCMS_Book!]
+  pageBackgroundBook: [GraphCMS_Book!]
+  bibliographyBook: [GraphCMS_Book!]
+  flagTerritory: [GraphCMS_Territory!]
+  posterImageVideo: [GraphCMS_Video!]
+  seriesImageSeries: [GraphCMS_Series!]
+  imagePhoto: [GraphCMS_Photo!]
+  fileReaderGuide: [GraphCMS_ReaderGuide!]
+  coverImageReaderGuide: [GraphCMS_ReaderGuide!]
+  marqueePromotion: [GraphCMS_Promotion!]
+  imageExclusive: [GraphCMS_Exclusive!]
+  thumbnailDownload: [GraphCMS_Download!]
+  fileDownload: [GraphCMS_Download!]
+  iconCommunity: [GraphCMS_Community!]
+  imageAudio: [GraphCMS_Audio!]
+  fileAudio: [GraphCMS_Audio!]
+  featuredImageAppearance: [GraphCMS_Appearance!]
+  bioAboutImageContentSetting: [GraphCMS_ContentSetting!]
+  size800X600Download: [GraphCMS_Download!]
+  size1024X768Download: [GraphCMS_Download!]
+  size1280X960Download: [GraphCMS_Download!]
+  size1920X1080Download: [GraphCMS_Download!]
+  screensaver_macDownload: [GraphCMS_Download!]
+  screensaverFilePcDownload: [GraphCMS_Download!]
+  ringtoneZipFileDownload: [GraphCMS_Download!]
+  size2560X1440Download: [GraphCMS_Download!]
+  imagePromotion: [GraphCMS_Promotion!]
+  otherPostImagesPost: [GraphCMS_Post!]
+  coverImageAudio: [GraphCMS_Audio!]
+  featuredImageDownload: [GraphCMS_Download!]
+  coverImageDownload: [GraphCMS_Download!]
+  coverImageExclusive: [GraphCMS_Exclusive!]
+  downloadFileExclusive: [GraphCMS_Exclusive!]
+  bookCoversDownload: [GraphCMS_Download!]
+  coverImagePhoto: [GraphCMS_Photo!]
+  downloadFilePhoto: [GraphCMS_Photo!]
+  featuredImageReaderGuide: [GraphCMS_ReaderGuide!]
+  coverImageVideo: [GraphCMS_Video!]
+  downloadFileVideo: [GraphCMS_Video!]
+  url: String
 }
 
 enum GraphCMS_Locale {

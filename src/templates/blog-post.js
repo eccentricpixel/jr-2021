@@ -7,10 +7,10 @@ function BlogPostTemplate({
   data: { postContent, coverImage }
 }) {
   return (
-    <article class="text-gray-600 body-font py-12">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="text-center mb-20">
-          <h1 class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">{post.title}</h1>
+    <article className="text-gray-600 body-font py-12">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="text-center mb-20">
+          <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">{post.title}</h1>
           <dl className="space-y-10">
             <div>
               <dt className="sr-only">Published on</dt>
@@ -20,7 +20,7 @@ function BlogPostTemplate({
             </div>
           </dl>
         </div>
-        <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
+        <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
           <div className="divide-y divide-gray-200 lg:pb-0 lg:col-span-3 lg:row-span-2">
             {coverImage && (
               <GatsbyImage

@@ -1,36 +1,12 @@
 import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
 import Image from "@graphcms/react-image";
-
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 function BookTemplate({
-    data: { pageImage, bookImage, retailers, bookContent, faqs },
+    data: { retailers, bookContent, faqs },
     pageContext: { nextBook, book, previousBook },
 }) {    
- 
-  const bookCover = {
-    handle: bookContent.bookCover.handle,
-    width: bookContent.bookCover.width,
-    height: bookContent.bookCover.height
-  }
-  // let pageBackground;
-  // if(pageImage){
-  //   // pageBackground = <img src={pageImage.url} className="w-screen absolute top-0 right-0 placeholder-transparent" alt="" />
-  //   background = getImage(pageImage.url)
-  //   pageBackground = <GatsbyImage image={background} alt={book.title} />
-  // }else {
-  //   pageBackground = '';
-  // }
-
-  // let bookCover;
-  // if(bookImage){
-  //   // bookCover = <img src={bookImage.url} className="w-full placeholder-transparent" alt="" />
-  //   cover = getImage(bookImage.url)
-  //   bookCover = <GatsbyImage image={cover} alt={book.title} />
-  // } else {
-  //   bookCover = '';
-  // }
   
   return (
     <article>
@@ -40,7 +16,7 @@ function BookTemplate({
         </div>
       </header>
       <div className="page_background w-screen absolute top-0 right-0 -z-1">
-       
+      
       </div>
       <section       
         id="book_overview"
@@ -48,7 +24,7 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-          <Image image={bookCover} />
+          {bookContent.bookCover && <GatsbyImage image={bookContent.bookCover.localFile.childImageSharp.gatsbyImageData} />}
             
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
@@ -217,10 +193,46 @@ function BookTemplate({
                 }
               </div>
             </div>
-            <div><a href={bookContent.indieBound} target="_blank" className="font-extrabold block text-lg">Indie Bound:</a> <div className="block"></div></div>
-            <div><a href={bookContent.kobo} target="_blank" className="font-extrabold block text-lg">Kobo:</a> <div className="block"></div></div>
-            <div><a href={bookContent.thePoisonedPen} target="_blank" className="font-extrabold block text-lg">The Poisoned Pen:</a> <div className="block"></div></div>
-            <div><a href={bookContent.tor} target="_blank" className="font-extrabold block text-lg">Tor:</a> <div className="block"></div></div>
+            <div>
+              <a href={bookContent.indieBound} target="_blank" className="font-extrabold block text-lg">IndieBound:</a>
+              <div className="block">
+                {retailers.nodes.map((retailer) =>
+                    retailer.title == "IndieBound" &&
+                      <p className="text-sm">{retailer.description}</p>  
+                    )
+                  }
+              </div>
+            </div>
+            <div>
+              <a href={bookContent.kobo} target="_blank" className="font-extrabold block text-lg">Kobo:</a> 
+              <div className="block">
+                {retailers.nodes.map((retailer) =>
+                    retailer.title == "Kobo" &&
+                      <p className="text-sm">{retailer.description}</p>  
+                    )
+                  }
+              </div>
+            </div>
+            <div>
+              <a href={bookContent.thePoisonedPen} target="_blank" className="font-extrabold block text-lg">The Poisoned Pen:</a>
+              <div className="block">
+                {retailers.nodes.map((retailer) =>
+                    retailer.title == "The Poisoned Pen" &&
+                      <p className="text-sm">{retailer.description}</p>  
+                    )
+                  }
+              </div>
+            </div>
+            <div>
+              <a href={bookContent.tor} target="_blank" className="font-extrabold block text-lg">Tor Books - Macmillan Publishers:</a> 
+              <div className="block">
+                {retailers.nodes.map((retailer) =>
+                    retailer.title == "Tor Books - Macmillan Publishers" &&
+                      <p className="text-sm">{retailer.description}</p>  
+                    )
+                  }
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -262,11 +274,7 @@ function BookTemplate({
 }
 
 export const pageQuery = graphql`
-  fragment BookAssetFields on GraphCMS_Asset {
-    id    
-    url
-    
-  }
+  
 
   fragment BookFaqs on GraphCMS_Faq {
     id
@@ -280,12 +288,7 @@ export const pageQuery = graphql`
   
 
   query BookQuery($id: String!) {
-    bookImage: graphCmsAsset(bookCoverBook: {elemMatch: {id: {eq: $id}}}) {
-      ...BookAssetFields
-    }
-    pageImage: graphCmsAsset(pageBackgroundBook: {elemMatch: {id: {eq: $id}}}) {
-      ...BookAssetFields
-    }
+    
     retailers: allGraphCmsRetailer {
       nodes {
         id
@@ -314,9 +317,19 @@ export const pageQuery = graphql`
       }
       bookCover {
         url
-        handle
-        height
-        width
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }        
+        }      
+      }
+      pageBackground {                        
+        url
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }        
+        }      
       }
       bookNumber
       subheading

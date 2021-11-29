@@ -2,27 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { globalHistory, useLocation } from '@reach/router'
 import cx from 'classnames'
-
+//import { useContentSettings } from '../hooks/useContentSettings'
 import Logo from '../svg/white-logo.svg'
 import Transition from './transition'
+
 
 function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const location = useLocation()
-  const { series } = useStaticQuery(graphql`
-    {
-      series: allGraphCmsContentSetting {
-        nodes {
-          seriesPlural {
-            remoteId
-            title
-            slug
-          }
-        }
-      }
-      
-    }
-  `)
+
+  //const { settings: allGraphCmsContentSetting } = useContentSettings();  
+
+
+  
 
   useEffect(
     () =>
@@ -91,23 +83,23 @@ function Header() {
                 aria-label="Main menu"
                 aria-haspopup="true"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-          <div class="container px-5 py-10 mx-auto">
-            <div class="text-center mb-10 mx-auto max-w-7xl">
+          <div className="container px-5 py-10 mx-auto">
+            <div className="text-center mb-10 mx-auto max-w-7xl">
               <Link to="/" aria-label="Home">
                 <Logo className="h-15 mx-auto" />              
               </Link>              
             </div>
-            <div class="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl">
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+            <div className="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/about">ABOUT</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                   <Link to="/about" aria-label="">
                     Biography
                   </Link>
@@ -125,14 +117,14 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/books">BOOKS</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
-                  {series.nodes.map(item => {                                            
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                  {/* {seriesPlural.map(item => {                                            
                     return (
-                      item.seriesPlural.map(link => {
+                      item.map(link => {
                         const isActive = location.pathname.startsWith(`/${link.slug}`)
                         return (                                
                           <Link
@@ -146,14 +138,14 @@ function Header() {
                     )
                     
                   
-                  })}
+                  })} */}
                 </nav>
               </div>
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/media">MEDIA</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                   <Link to="/videos" aria-label="">
                     Videos
                   </Link>
@@ -177,11 +169,11 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/extras">EXTRAS</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                   <Link to="/downloads" aria-label="">
                     Downloads
                   </Link>
@@ -205,11 +197,11 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/news">News &amp; Events</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                   <Link to="/news" aria-label="">
                     News
                   </Link>
@@ -221,11 +213,11 @@ function Header() {
                   </Link>                  
                 </nav>
               </div>              
-              <div class="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 class="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
                   <Link to="/contact">CONTACT</Link>
                 </h2>
-                <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                   <Link to="/ask-jim" aria-label="">
                     Ask Jim
                   </Link>

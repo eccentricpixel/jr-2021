@@ -1,147 +1,155 @@
-import React from 'react'
+import React,{useState,useEffect,useRef} from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import ReactPlayer from 'react-player'
+import Fade from 'react-reveal/Fade'
 
-function VideosPage({ data: { allGraphCmsVideo } }) {
+function VideosPage({ data: { allGraphCmsVideo, allGraphCmsSeries } }) {
+  const categoryData = allGraphCmsSeries.nodes.map((series) => {  
+    return (
+      series.slug
+    )
+  })
+  const [index,setIndex] = useState(0)
+  const [category,setCategory] = useState(['All'])
+
   return (
-    <div className="">
-        <div className="page_background w-screen absolute top-0 right-0 -z-1">
-            
-        </div>
-      <div className="pt-6 pb-8 space-y-2 md:space-y-5">
-        <h1 className="text-3xl leading-9 font-extrabold text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          
-        </h1>
-        <p className="text-lg leading-7 text-gray-500">
-          
-        </p>
-      </div>
-
-
-      
-
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          
-          {allGraphCmsVideo.nodes.map((video, i) => {
-            return(
-              i % 2 == 0 ? 
-              <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-                <div className="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
+    <div>
+      <div className="marquee bg-gradient-to-r from-gray-100 py-8">
+        <div className="contentWrapper flex gap-4 mx-auto mt-20">        
+          <div id="sidebar" className="flex-shrink invisible xl:visible">              
+              <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
+                <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Browse The Vault</div>
+                <div className="jumpNav__menu uppercase font-bold text-xs">                
+                    <ul>
+                    <li className="mb-1"><a onClick={()=>{setCategory(['sigma-series'])}}>Sigma Series <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['moonfall-saga'])}}>Moonfall Saga <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['individual-adventures'])}}>Individual Adventures <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['tucker-wayne-series'])}}>Tucker Wayne Series <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['the-order-of-the-sanguines'])}}>Sanguines Series <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['jake-ransom-series'])}}>Jake Ransom Series <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['short-stories'])}}>Short Stories <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['anthologies'])}}>Anthologies <span className="extender"></span></a></li>                
+                      <li className="mb-1"><a onClick={()=>{setCategory(['collaborations'])}}>Collaborations <span className="extender"></span></a></li>
+                    </ul>
                 </div>
-                <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                    <Link
-                      to={`/videos/${video.slug}`}
-                      className="text-gray-900"
-                    >
-                      {video.title}
-                    </Link>
-                  </h2>
-                  <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                  <Link
-                    to={`/videos/${video.slug}`}
-                    className="mt-3 text-indigo-500 inline-flex items-center"
-                    aria-label={`Read "${video.title}"`}
-                  >
-                    Go To Video
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </Link>
-                </div>
+                <div className="jumpNav__search">
+                    
+                </div>          
               </div>
+          </div>
 
-              :
-
-
-              <div className="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-                <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-2">
-                    <Link
-                      to={`/videos/${video.slug}`}
-                      className="text-gray-900"
-                    >
-                      {video.title}
-                    </Link>
-                  </h2>
-                  <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                  <Link
-                    to={`/videos/${video.slug}`}
-                    className="mt-3 text-indigo-500 inline-flex items-center"
-                    aria-label={`Read "${video.title}"`}
-                  >
-                    Go To Video
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </Link>
-                </div>
-                <div className="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                    <circle cx="6" cy="6" r="3"></circle>
-                    <circle cx="6" cy="18" r="3"></circle>
-                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                  </svg>
-                </div>
-              </div>
-            )
-          })}
-          
-        </div>
-      </section>
-
-{/*       
-      <ul className="">
-        {allGraphCmsVideo.nodes.map((video) => {
-          return (
-            <li key={video.id} className="py-12">
-              <article className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline max-w-lg mx-auto">
-                
-                <div className="space-y-5 xl:col-span-4">
-                  <div className="space-y-6">
-                    <h2 className="text-2xl leading-8 font-bold tracking-tight">
-                      <Link
-                        to={`/videos/${video.slug}`}
-                        className="text-gray-900"
-                      >
-                        {video.title}
-                      </Link>
-                    </h2>
-                    <div className='player-wrapper'>
-                      <ReactPlayer
-                        className='react-player'
-                        url={`http://www.youtube.com/watch?v=${video.youTubeVimeoID}`}
-                        width='100%'
-                        height='100%'
-                      />
-                    </div>
-                    {video.description && (
-                      <div className="prose max-w-none text-gray-500">
-                        <div dangerouslySetInnerHTML={{__html: video.description.html}}></div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="text-base leading-6 font-medium">
-                    <Link
-                      to={`/videos/${video.slug}`}
-                      className="text-purple-500 hover:text-purple-600"
-                      aria-label={`Read "${video.title}"`}
-                    >
-                      Read more &rarr;
-                    </Link>
-                  </div>
+          <div className="overflow-hidden flex-grow">
+            <div className="w-full contentMain">
+              <section className="text-gray-600 body-font">
+                <div className="py-24 mx-auto">
                   
+                  <Fade bottom opposite cascade>
+                  {allGraphCmsVideo.nodes.map((video, i) => {
+                    return(
+                      i % 2 == 0 ? 
+                      
+                      <div className="grid grid-rows-3 grid-flow-col gap-4">
+                            <div className="row-span-3 col-span-2">
+                                <div className='player-wrapper mb-10 h-20'>
+                                  {video.youTubeVimeoID &&
+                                    <ReactPlayer
+                                      className='react-player'
+                                      url={`//www.youtube.com/watch?v=${video.youTubeVimeoID}`}
+                                      width='100%'
+                                      height='100%'                                   
+                                    />                                 
+                                  }
+                              </div> 
+                            </div>
+                            <div className="col-span-1">
+                                
+                                <Link
+                                  to={`/videos/${video.slug}`}
+                                  className="text-gray-900"
+                                >
+                                  {video.title}
+                                </Link>
+                              
+                            </div>
+                            <div className="row-span-2 col-span-1">
+                                <div className="w-full block">
+                                    {/* {video.description && (
+                                    <div className="text-gray-500">
+                                      <div dangerouslySetInnerHTML={{__html: video.description.html}}></div>
+                                    </div>
+                                  )} */}
+                                </div>
+                              
+                                <Link
+                                  to={`/videos/${video.slug}`}
+                                  className="mt-3 text-indigo-500 inline-flex items-center"
+                                  aria-label={`Read "${video.title}"`}
+                                >
+                                  Go To Video
+                                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                  </svg>
+                                </Link>
+                              </div>
+                            </div>
+                          
+                      :
+
+
+                      <div className="grid grid-rows-3 grid-flow-col gap-4">
+                            <div className="row-span-3 col-span-2">
+                                <div className='player-wrapper mb-10 h-20'>
+                                  {video.youTubeVimeoID &&
+                                    <ReactPlayer
+                                      className='react-player'
+                                      url={`//www.youtube.com/watch?v=${video.youTubeVimeoID}`}
+                                      width='100%'
+                                      height='100%'                                   
+                                    />                                 
+                                  }
+                              </div> 
+                            </div>
+                            <div className="col-span-1">
+                                
+                                <Link
+                                  to={`/videos/${video.slug}`}
+                                  className="text-gray-900"
+                                >
+                                  {video.title}
+                                </Link>
+                              
+                            </div>
+                            <div className="row-span-2 col-span-1">
+                                <div className="w-full block">
+                                    {/* {video.description && (
+                                    <div className="text-gray-500">
+                                      <div dangerouslySetInnerHTML={{__html: video.description.html}}></div>
+                                    </div>
+                                  )} */}
+                                </div>
+                              
+                                <Link
+                                  to={`/videos/${video.slug}`}
+                                  className="mt-3 text-indigo-500 inline-flex items-center"
+                                  aria-label={`Read "${video.title}"`}
+                                >
+                                  Go To Video
+                                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                  </svg>
+                                </Link>
+                              </div>
+                            </div>
+                    )
+                  })}
+                  </Fade>
                 </div>
-              </article>
-            </li>
-          )
-        })}
-      </ul> */}
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -157,6 +165,13 @@ export const videoPageQuery = graphql`
         slug
         title   
         youTubeVimeoID     
+      }
+    }
+    allGraphCmsSeries {
+      nodes {
+        id
+        slug
+        title
       }
     }
   }
