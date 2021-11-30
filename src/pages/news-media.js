@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player'
 import Fade from 'react-reveal/Fade'
 import { Helmet } from 'react-helmet'
 
-function ContactPage({
+function NewsMediaPage({
     data: { pageContent }
 }) {
        
@@ -20,11 +20,11 @@ return (
                         <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Browse The Vault</div>
                         <div className="jumpNav__menu uppercase font-bold text-xs">                
                             <ul>
-                                <li className="mb-2"><Link to="/ask-jim" className="active">Ask Jim <span className="extender"></span></Link></li>      
-                                <li className="mb-2"><Link to="/newsletter-sign-up">Newsletter Sign-Up <span className="extender"></span></Link></li>      
+                                <li className="mb-2"><Link to="/ask-jim" className="">Ask Jim <span className="extender"></span></Link></li>      
+                                <li className="mb-2"><Link to="/newsletter-sign-up" className="">Newsletter Sign-Up <span className="extender"></span></Link></li>      
                                 <li className="mb-2"><Link to="/autographs">Autographs <span className="extender"></span></Link></li>  
-                                <li className="mb-2"><Link to="/contribute">Contribute <span className="extender"></span></Link></li>                                                                
-                                <li className="mb-2"><Link to="/news-media">News Media <span className="extender"></span></Link></li>  
+                                <li className="mb-2"><Link to="/contribute" >Contribute <span className="extender"></span></Link></li>                                                                
+                                <li className="mb-2"><Link to="/news-media" className="active">News Media <span className="extender"></span></Link></li>  
                                 <li className="mb-2"><Link to="/publishers">Publisher Info <span className="extender"></span></Link></li>  
                                 <li className="mb-2"><Link to="/press-kit">Press Kit <span className="extender"></span></Link></li>  
                             </ul>
@@ -71,7 +71,7 @@ return (
 
 export const contactPageQuery = graphql`
   {
-    pageContent: graphCmsContactForm(title: {eq: "Ask Jim"}) {
+    pageContent: graphCmsContactForm(title: {eq: "News Media"}) {
         title
         email
         link
@@ -84,4 +84,4 @@ export const contactPageQuery = graphql`
     }
   }
 `
-export default ContactPage
+export default NewsMediaPage

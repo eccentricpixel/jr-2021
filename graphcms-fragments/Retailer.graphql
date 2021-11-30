@@ -6,8 +6,8 @@ fragment Retailer on Retailer {
   publishedAt
   title
   tags
-  link
   description
+  link
   createdBy {
     ... on User {
       remoteTypeName: __typename
@@ -38,6 +38,13 @@ fragment Retailer on Retailer {
   }
   books {
     ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  scheduledIn {
+    ... on ScheduledOperation {
       remoteTypeName: __typename
       remoteId: id
       stage

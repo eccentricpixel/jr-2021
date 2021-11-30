@@ -41,4 +41,11 @@ fragment Venue on Venue {
     }
   }
   state
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

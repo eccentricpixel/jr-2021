@@ -43,6 +43,13 @@ fragment Seo on Seo {
       stage
     }
   }
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
   remoteParent: parent {
     ... on Page {
       remoteTypeName: __typename

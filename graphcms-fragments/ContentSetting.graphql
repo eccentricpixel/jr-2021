@@ -46,7 +46,6 @@ fragment ContentSetting on ContentSetting {
       text
     }
   }
-  blurbAboutPage
   blurbInternational {
     ... on RichText {
       raw
@@ -181,6 +180,13 @@ fragment ContentSetting on ContentSetting {
   }
   books {
     ... on Book {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  scheduledIn {
+    ... on ScheduledOperation {
       remoteTypeName: __typename
       remoteId: id
       stage

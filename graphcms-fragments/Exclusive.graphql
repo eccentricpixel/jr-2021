@@ -89,4 +89,11 @@ fragment Exclusive on Exclusive {
     }
   }
   promotionType
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

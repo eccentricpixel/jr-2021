@@ -847,7 +847,6 @@ type GraphCMS_ContentSetting implements Node @dontInfer {
   bioExtendedContent: GraphCMS_ContentSettingBioExtendedContentRichText
   pageTurningAdventuresIntro: GraphCMS_RichText
   pageTurningAdventuresExtendedContent: GraphCMS_RichText
-  blurbAboutPage: String
   blurbInternational: GraphCMS_RichText
   blurbSelectATerritory: GraphCMS_RichText
   blurbBibliography: GraphCMS_RichText

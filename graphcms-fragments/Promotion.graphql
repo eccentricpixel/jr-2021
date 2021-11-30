@@ -64,4 +64,11 @@ fragment Promotion on Promotion {
     }
   }
   promotionType
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

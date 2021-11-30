@@ -116,4 +116,11 @@ fragment Series on Series {
     }
   }
   layoutStyle
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

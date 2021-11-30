@@ -169,4 +169,11 @@ fragment Download on Download {
     }
   }
   type
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

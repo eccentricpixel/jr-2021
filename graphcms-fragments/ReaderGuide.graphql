@@ -87,4 +87,11 @@ fragment ReaderGuide on ReaderGuide {
     }
   }
   categories
+  scheduledIn {
+    ... on ScheduledOperation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
 }

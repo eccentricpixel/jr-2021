@@ -4,6 +4,7 @@ fragment Book on Book {
   createdAt
   updatedAt
   publishedAt
+  international
   filterKeywords
   title
   subheading
@@ -73,7 +74,6 @@ fragment Book on Book {
   kobo
   thePoisonedPen
   torBooksMacmillanPublishers
-  international
   createdBy {
     ... on User {
       remoteTypeName: __typename
@@ -212,6 +212,13 @@ fragment Book on Book {
   }
   territories {
     ... on Territory {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  scheduledIn {
+    ... on ScheduledOperation {
       remoteTypeName: __typename
       remoteId: id
       stage
