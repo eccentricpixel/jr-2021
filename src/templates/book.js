@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
-import Image from "@graphcms/react-image";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 function BookTemplate({

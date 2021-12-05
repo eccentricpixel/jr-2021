@@ -17,7 +17,7 @@ return (
             <div className="contentWrapper flex gap-4 mx-auto">        
                 <div id="sidebar" className="flex-shrink invisible xl:visible">              
                     <div id="jumpNav" className="sticky top-40 rounded-md filterContainer light-mode">
-                        <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Browse The Vault</div>
+                        <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">What Would You Like To Do?</div>
                         <div className="jumpNav__menu uppercase font-bold text-xs">                
                             <ul>
                                 <li className="mb-2"><Link to="/ask-jim" className="active">Ask Jim <span className="extender"></span></Link></li>      

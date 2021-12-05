@@ -97,9 +97,10 @@ module.exports = {
         endpoint: process.env.GRAPHCMS_ENDPOINT,
         token: process.env.GRAPHCMS_TOKEN,
         buildMarkdownNodes: true,
-        downloadLocalImages: true,
+        downloadLocalImages: true,        
       },
-    }
+    },
+    
     
   ],
 }

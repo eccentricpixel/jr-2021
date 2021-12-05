@@ -21,7 +21,7 @@ exports.createSchemaCustomization= ({ actions }) => {
 
  
  exports.createPages = async ({ graphql, actions: { createPage } }) => {
-    const { data } = await graphql(`
+    const result = await graphql(`
       {
         pages: allGraphCmsPage {
             nodes {
@@ -126,10 +126,28 @@ exports.createSchemaCustomization= ({ actions }) => {
             }
         }
 
+        seriesPlural: allGraphCmsSeries {
+          edges {
+            nextSeries: next {
+              slug
+              title
+            }
+            series: node {
+              id                                                  
+              slug                              
+              title                 
+            }
+            previousSeries: previous {
+              slug
+              title
+            }
+          }
+        }
+
       }
     `);
-    
-    data.pages.nodes.forEach((page) => 
+
+    const pages = result.data.pages.nodes.map(async (page) => {    
         createPage({
             path: `/${page.slug}`,
             component: require.resolve('./src/templates/default-page.js'),
@@ -138,11 +156,13 @@ exports.createSchemaCustomization= ({ actions }) => {
                 id: page.id
             },            
         })
-    );
-    data.posts.edges.forEach(({ nextPost, post, previousPost }) => 
+    })
+    await Promise.all([pages])
+
+    const posts = result.data.posts.edges.map(async (nextPost, post, previousPost) => {        
         createPage({
             path: `/news/${post.slug}`,
-            component: require.resolve('./src/templates/blog-post.js'),
+            component: require.resolve('./src/templates/news-post.js'),
             context: {
                 id: post.id,
                 post,
@@ -150,8 +170,10 @@ exports.createSchemaCustomization= ({ actions }) => {
                 nextPost,
             },            
         })
-    );
-    data.books.edges.forEach(({ nextBook, book, previousBook }) => 
+      })
+      await Promise.all([posts])
+
+    const books = result.data.books.edges.map(async (nextBook, book, previousBook) => {       
         createPage({
             path: `/books/${book.slug}`,
             component: require.resolve('./src/templates/book.js'),
@@ -162,8 +184,11 @@ exports.createSchemaCustomization= ({ actions }) => {
                 nextBook,
             },            
         })
-    );
-    data.faqs.edges.forEach(({ nextFaq, faq, previousFaq }) => 
+    })
+    await Promise.all([books])
+
+
+    const faqs = result.data.faqs.edges.map(async (nextFaq, faq, previousFaq) => { 
         createPage({
             path: `/faqs/${faq.slug}`,
             component: require.resolve('./src/templates/faq.js'),
@@ -174,9 +199,10 @@ exports.createSchemaCustomization= ({ actions }) => {
                 nextFaq,
             },            
         })
-    );
+    })
+    await Promise.all([faqs])
 
-    data.videos.edges.forEach(({ nextVideo, video, previousVideo }) => 
+    const videos = result.data.videos.edges.map(async (nextVideo, video, previousVideo) => { 
         createPage({
             path: `/videos/${video.slug}`,
             component: require.resolve('./src/templates/video.js'),
@@ -187,9 +213,10 @@ exports.createSchemaCustomization= ({ actions }) => {
                 nextVideo,
             },            
         })
-    );
+    })
+    await Promise.all([videos])
 
-    data.photos.edges.forEach(({ nextPhoto, photo, previousPhoto }) => 
+    const photos = result.data.photos.edges.map(async (nextPhoto, photo, previousPhoto) => { 
         createPage({
             path: `/photos/${photo.slug}`,
             component: require.resolve('./src/templates/photo.js'),
@@ -200,7 +227,22 @@ exports.createSchemaCustomization= ({ actions }) => {
                 nextPhoto,
             },            
         })
-    );
+    })
+    await Promise.all([photos])
+
+    const series = result.data.seriesPlural.edges.map(async (nextSeries, series, previousSeries) => { 
+      createPage({
+          path: `/series/${series.slug}`,
+          component: require.resolve('./src/templates/series.js'),
+          context: {
+              id: series.id,
+              series,
+              previousSeries,
+              nextSeries,
+          },            
+      })
+    })
+    await Promise.all([series])
 
     
   };
@@ -255,14 +297,14 @@ exports.createSchemaCustomization= ({ actions }) => {
 
 //   data.posts.edges.forEach(({ nextPost, post, previousPost }) => {
 //     createPage({
-//       component: path.resolve('./src/templates/blog-post.js'),
+//       component: path.resolve('./src/templates/news-post.js'),
 //       context: {
 //         id: post.id,
 //         post,
 //         previousPost,
 //         nextPost,
 //       },
-//       path: `/blog/${post.slug}`,
+//       path: `/news/${post.slug}`,
 //     })
 //   })
 
