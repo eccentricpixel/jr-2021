@@ -74,8 +74,42 @@ p {
     color:var(--accent-2);
 }
 
-
-
+.meta-heading {
+  color: var(--grey-2);
+  font-size:12px;
+  font-weight:100;
+  padding-bottom: 10px;
+}
+.banner-style {
+  background: #910B0A;
+  color:#fff;
+  width:fit-content;
+  padding:0 10px;
+  margin: 0 10px;
+  position: relative;
+  &:before {
+    -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+    background: #910B0A;
+    display:inline-block;
+    content: '';
+    margin-left:-20px;
+    width:20px;
+    position:absolute;
+    height:100%;
+  }
+  &:after {
+    -webkit-clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+    background: #910B0A;
+    display:inline-block;
+    content: '';
+    margin-right:-20px;
+    width:20px;
+    position:absolute;
+    height:100%;
+  }
+}
 
 
 /* media elements */
@@ -229,6 +263,8 @@ p {
 #bookBrowser .releaseDate {
     margin-bottom: 20px;
 }
+
+
 
 /*  contact sections  */
 .contactPages {
@@ -427,6 +463,121 @@ p {
 .page-slug_contact {
 
 }
+
+/* series (books) page **/
+
+.page-slug_series {
+  .page_background {
+    .theBackground {
+      -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 62%, 73% 75%, 0% 75%, 0 0);
+      clip-path: polygon(50% 0%, 100% 0, 100% 62%, 73% 75%, 0% 75%, 0 0);
+      max-height:960px;
+    }
+  }
+
+  .series-loop-background {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-position: center center;
+    background-size: cover;    
+  }
+
+  .series-content {
+    position: relative;
+  }
+ 
+  #wrapper_sigma-series {
+    margin-top:80px;
+    padding-top:250px;
+    padding-bottom: 600px;
+
+    .series-loop-background {
+      background-image: url('../images/series-bg_sigma-series.jpg');
+    }
+    .series-content {
+      p {
+        color: #C4C4AA;
+      }
+    }
+
+  }
+  #wrapper_the-order-of-the-sanguines {
+    -webkit-clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
+    margin-top:200px;
+
+    .series-loop-background {
+      background-image: url('../images/series-bg_sigma-series.jpg');
+    }
+  }
+  
+  $marqueeBookTop: 70px;
+  $marqueeBookContentTop: 70px;
+  #books-marquee {
+    padding-top:$marqueeBookTop;
+        
+    .sidebar-content-controller {
+        padding-bottom: 250px;
+    }
+    .book-browser-section-header {
+        color: var(--grey-2);
+        font-size:12px;
+        font-weight:100;
+        padding-bottom: 10px;
+    }
+    .book_about {
+        padding-top:$marqueeBookContentTop;
+
+        @include desktop-xl {
+            min-width:40vw;
+        }
+
+        .inner-wrapper {
+            max-width:2000px;
+        }
+    }
+  .release-date {
+    margin-bottom:20px;
+    color:#C17C21;
+        span {
+            color:#58380E;
+            padding-right:10px;
+        }
+    }
+    .book_title {
+        color:var(--dark);
+        font-size:40px;
+        margin-bottom: 10px;
+    }
+    .book_lead-text {
+        font-family: var(--font-family-headings);
+        color:var(--black);
+        font-size:1.2rem;
+        margin-bottom:1rem;
+    }
+    .book_body-text {
+        color:var(--black);
+        font-size:1rem;
+    }
+    .book_cover {
+        height:50vh;        
+        display:block;
+        margin:0;
+        text-align: end;
+        
+        img {
+            width:100%;
+            max-width:620px;
+        }
+    }
+    .book_meta {
+        padding-top:$marqueeBookContentTop + 80px;
+        font-size: 12px;
+    }
+  }
+}
+
 
 
 /* media queries */
