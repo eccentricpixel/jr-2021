@@ -173,7 +173,7 @@ exports.createSchemaCustomization= ({ actions }) => {
       })
       await Promise.all([posts])
 
-    const books = result.data.books.edges.map(async (nextBook, book, previousBook) => {       
+    const booksPages = result.data.books.edges.map(async (nextBook, book, previousBook) => {       
         createPage({
             path: `/books/${book.slug}`,
             component: require.resolve('./src/templates/book.js'),
@@ -185,7 +185,7 @@ exports.createSchemaCustomization= ({ actions }) => {
             },            
         })
     })
-    await Promise.all([books])
+    await Promise.all([booksPages])
 
 
     const faqs = result.data.faqs.edges.map(async (nextFaq, faq, previousFaq) => { 

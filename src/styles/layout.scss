@@ -475,6 +475,17 @@ p {
     }
   }
 
+  .bookListSlide {
+    .swiper-slide {
+      //max-height: 20vh;
+    }
+    .bookInageWrapper {
+      height:20vh;
+      max-height: 250px;
+      width:auto;
+    }
+  }
+
   .series-loop-background {
     width:100%;
     height:100%;
@@ -485,17 +496,58 @@ p {
 
   .series-content {
     position: relative;
+
+  }
+  .bookListPagination {
+    text-align: center;
+    min-width:80px;
+    max-width: 130px;
+    .totalCount {
+      padding:20px 10px;
+      border-radius: 5px;
+      background:rgba(0,0,0,0.3);
+      color:var(--accent-2);
+      font-weight: bold;
+
+      span {
+       color:rgba(255,255,255, 0.6); 
+       font-weight: 500;
+      }
+    }
+    .pag-button {
+      background:rgba(255,255,255,0.15);
+      border-radius: 5px;
+      text-align: center;
+      padding:8px;
+      color:#fff;
+      width:44%;
+      svg {
+        margin:0 auto;        
+      }
+    }
   }
  
   #wrapper_sigma-series {
     margin-top:80px;
-    padding-top:250px;
-    padding-bottom: 600px;
+    padding:0;
+    -webkit-clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 65%, 0 31%, 0 0);
+    clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 65%, 0 31%, 0 0);
 
     .series-loop-background {
       background-image: url('../images/series-bg_sigma-series.jpg');
+
+      &:after {
+        @include linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
+        content:'';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
     }
     .series-content {
+      padding-top:150px;
+      padding-bottom:35vh;
+
       p {
         color: #C4C4AA;
       }
@@ -511,6 +563,24 @@ p {
       background-image: url('../images/series-bg_sigma-series.jpg');
     }
   }
+
+  #wrapper_individual-adventures {
+    -webkit-clip-path: polygon(100% 34%, 100% 100%, 0 100%, 0 31%, 0 0);
+    clip-path: polygon(100% 34%, 100% 100%, 0 100%, 0 31%, 0 0);
+    .series-loop-background {
+      background-image: url('../images/series-bg_individual-adventures.png');
+
+      &:after {
+        background: rgba(255,255,255,0.7);
+        content:'';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+    }
+  }
+
+
   
   $marqueeBookTop: 70px;
   $marqueeBookContentTop: 70px;

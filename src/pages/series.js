@@ -2,6 +2,8 @@ import React,{useState,useEffect,useRef} from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Helmet } from 'react-helmet'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook } }) {
 
@@ -12,7 +14,9 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
     })
     const [index,setIndex] = useState(0)
     const [category,setCategory] = useState(['All'])
-console.log(featuredBook.edges[0].node.books[0].bookCover.url)
+    
+
+
   return (
     <div className="py-5">
         <Helmet bodyAttributes={{ class: 'page-slug_series' }} />     
@@ -129,16 +133,17 @@ console.log(featuredBook.edges[0].node.books[0].bookCover.url)
 
 
                         
-                        {allGraphCmsSeries.nodes.map((series) => {
+                        {allGraphCmsSeries.nodes.map((series) => {                            
                         return (
+                            series.slug == 'sigma-series' &&
                             <div id={`wrapper_${series.slug}`} key={series.id} className="py-12 relative">
                                 <div className="series-loop-background"></div>
-                                <div className="series-content py-20 pl-10">
-                                    <div className="grid grid-cols-3 gap-4">                                        
+                                <div className="series-content">
+                                    <div className="grid grid-cols-6 gap-4 mb-20">                                        
                                         <div className=""></div>
-                                        <div className="col-span-2 grid grid-cols-2">
+                                        <div className="col-span-5 lg:col-span-4 grid lg:grid-cols-2">
                                             <div></div>
-                                            <div className="space-y-6 pr-48">
+                                            <div className="space-y-6">
                                                 <h2 className="text-2xl leading-8 font-bold tracking-tight uppercase">
                                                 <Link
                                                     to={`/series/${series.slug}`}
@@ -155,53 +160,68 @@ console.log(featuredBook.edges[0].node.books[0].bookCover.url)
                                             </div>                                            
                                         </div>
                                     </div>
-                                    <div className="bookList grid grid-cols-2 gap-4">
-                                        <div className="bookListPagination pl-96"></div>
-                                        <div className="bookListSlider">
+                                    <div className="bookList grid grid-cols-4 lg:grid-cols-5 gap-4">
+                                        <div className="bookListPagination lg:col-span-2 flex flex-col justify-center items-center text-center justify-self-end">
+                                            <div className="totalCount text-2xl block">16<span className="text-sm block">Books In Series</span></div>
+                                            <div className="block flex self-center mt-2 content-center w-full">
+                                                <div className="pag-button mr-5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                                <div className="pag-button">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
 
-                                            <div className="swiperMainContainer flex-1">              
-                                                <div className="swiper-container w-full overflow-hidden">
-                                                    <div className="swiper-wrapper">                
+                                        </div>
+                                        <div className="bookListSlide col-span-3 lg:col-span-3">
+                                        <Swiper
+                                            spaceBetween={20}
+                                            slidesPerView={5}
+                                            // onSlideChange={() => console.log('slide change')}
+                                            // onSwiper={(swiper) => console.log(swiper)}
+                                        >
+                                            
+      
+
+                                                       
                                                         {allGraphCmsBook.nodes.map((book,key)=>{
                                                         const currentSection=category[index]
                                                         if(book.series.slug===currentSection || currentSection==="All"){
                                                             if(book.bookCover.localFile){
                                                             return(
-                                                            <div className="swiper-slide" key={key} >                                
-                                                                <div className="bookCover">
-                                                                <Link to={`/books/${book.slug}`}>
-                                                                <GatsbyImage
-                                                                    image={book.bookCover.localFile.childImageSharp.gatsbyImageData}
-                                                                    className="w-screen relative top-0 left-0 placeholder-transparent"
-                                                                    alt=""                
-                                                                />
-                                                                </Link>
+                                                            <SwiperSlide key={key} >                                
+                                                                <div className="bookCover filter drop-shadow-3xl">
+                                                                    <Link to={`/books/${book.slug}`}>
+                                                                        <GatsbyImage
+                                                                            image={book.bookCover.localFile.childImageSharp.gatsbyImageData}
+                                                                            layout="constrained"
+                                                                            className="relative placeholder-transparent bookImageWrapper"
+                                                                            alt=""                
+                                                                        />
+                                                                    </Link>
                                                                 </div>
-                                                                <div className="book-meta">
-                                                                <div className="selectedBook text-xs text-gray-400">Selected Book</div>
-                                                                <div className="title">{book.title}</div>
-                                                                    <div className="releaseDate text-xs">94949</div>
-                                                                    <div className="description text-sm">
-                                                                    {book.synopsis && (
-                                                                    <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
-                                                                    )}
-                                                                </div>                            
+                                                                <div className="book-meta absolute hidden">
+                                                                    <div className="selectedBook text-xs text-gray-400">Selected Book</div>
+                                                                    <div className="title">{book.title}</div>
+                                                                        <div className="releaseDate text-xs">94949</div>
+                                                                        <div className="description text-sm">
+                                                                            {book.synopsis && (
+                                                                            <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
+                                                                            )}
+                                                                    </div>                            
                                                                 </div>
-                                                            </div>
+                                                            </SwiperSlide>
                                                             )}
                                                             }
                                                             else{
                                                             return null
                                                             }
                                                         })}
-                                                    </div>
-                                                    
-                                                    
-                                                
-                                                </div>
-                                                          
-                                            
-                                            </div>
+                                                    </Swiper>
 
                                         </div>
                                     </div>
