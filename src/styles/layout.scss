@@ -44,7 +44,7 @@
     --cursive-font-family: "Yeseva One", cursive;
     --decorative-font-family: 'Abril Fatface', cursive;
 }
-.dark-mode {
+.dark {
     --body-background-color: #030A12;
 }
 
@@ -110,6 +110,70 @@ p {
     height:100%;
   }
 }
+.headerLogo {
+  .cls-4, .cls-7 {
+    color:#ccc;
+  }
+}
+header {
+  z-index:99;
+  &.passive {
+    @include linear-gradient(to right, #091E35, transparent);
+  }
+  &.scrolling-up {
+    background-color:#000;
+    @include linear-gradient(to right, #091E35, transparent);
+  }
+}
+.overlay-main-menu {
+  .main-nav {
+    list-style: none;
+    text-transform: uppercase;
+    padding-left:0;
+    
+    .nav-link {
+        padding: .25rem 1rem;
+        font-size:.9rem;
+    }
+    .level-1 {
+        margin-bottom:1rem;
+    }
+    .parent {        
+        width:100%;   
+        
+        a {
+          background:#000;
+          padding:0 1rem;
+          position:relative;
+          z-index:100;
+        }
+
+        &:before {
+            display: inline-block;
+            content: "";
+            border-top: 1px solid var(--accent-1);                
+            margin: 0 1rem;
+            transform: translateY(10px);
+            position:absolute;
+            width:95%;
+            left:-15%;
+        }
+        
+        
+        
+    }
+    .sub-menu {
+        padding-left:0;
+        a {
+            color:var(--light-1);
+        }
+    }
+  }
+}
+
+
+
+
 
 
 /* media elements */
@@ -527,11 +591,11 @@ p {
     }
   }
  
-  #wrapper_sigma-series {
+  #wrapper_position-1 {
     margin-top:80px;
-    padding:0;
-    -webkit-clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 65%, 0 31%, 0 0);
-    clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 65%, 0 31%, 0 0);
+    padding:0 0 80px 0;
+    -webkit-clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 85%, 0 31%, 0 0);
+    clip-path: polygon(13% 6%, 69% 0, 100% 9%, 100% 100%, 0 85%, 0 31%, 0 0);
 
     .series-loop-background {
       background-image: url('../images/series-bg_sigma-series.jpg');
@@ -546,7 +610,7 @@ p {
     }
     .series-content {
       padding-top:150px;
-      padding-bottom:35vh;
+      padding-bottom:40vh;
 
       p {
         color: #C4C4AA;
@@ -554,19 +618,17 @@ p {
     }
 
   }
-  #wrapper_the-order-of-the-sanguines {
-    -webkit-clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
-    clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
-    margin-top:200px;
 
-    .series-loop-background {
-      background-image: url('../images/series-bg_sigma-series.jpg');
+  #wrapper_position-2 {
+    -webkit-clip-path: polygon(40% 0%, 180% 100%, 0 100%, 0 85%, 0 0);
+    clip-path:polygon(50% 0%, 250% 100%, 0 100%, 0 85%, 0 0);
+    top:-440px;
+    padding-bottom:300px;
+
+    .series-content {
+      padding:200px 0;
     }
-  }
-
-  #wrapper_individual-adventures {
-    -webkit-clip-path: polygon(100% 34%, 100% 100%, 0 100%, 0 31%, 0 0);
-    clip-path: polygon(100% 34%, 100% 100%, 0 100%, 0 31%, 0 0);
+    
     .series-loop-background {
       background-image: url('../images/series-bg_individual-adventures.png');
 
@@ -580,6 +642,39 @@ p {
     }
   }
 
+
+
+  #wrapper_position-3 {    
+    
+    .series-loop-background {
+      background-image: url('../images/series-bg_moonfall-saga.jpg');
+    }
+  }
+
+  // #wrapper_collaborations {    
+    
+  //   .series-loop-background {
+  //     background-image: url('../images/series-bg_moonfall-saga.jpg');
+  //   }
+  // }
+  // #wrapper_short-stories {    
+    
+  //   .series-loop-background {
+  //     background-image: url('../images/series-bg_moonfall-saga.jpg');
+  //   }
+  // }
+  
+  // #wrapper_the-order-of-the-sanguines {
+  //   -webkit-clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
+  //   clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
+  //   margin-top:200px;
+
+  //   .series-loop-background {
+  //     background-image: url('../images/series-bg_sigma-series.jpg');
+  //   }
+  // }
+
+  
 
   
   $marqueeBookTop: 70px;

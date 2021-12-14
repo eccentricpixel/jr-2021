@@ -9,7 +9,7 @@ function NewsPostTemplate({
 }) {
   return (
     <div className="contactPages relative">
-        <Helmet bodyAttributes={{ class: 'page-slug_news dark-mode' }} />        
+        <Helmet bodyAttributes={{ class: 'page-slug_news dark' }} />        
         <h2 className="pt-16 text-center light text-2xl lg:text-4xl uppercase font-heading">{postContent.title}</h2>
         <div className="marquee pb-8 relative z-10">
             <div className="contentWrapper flex gap-4 mx-auto">        
@@ -32,7 +32,7 @@ function NewsPostTemplate({
                     <div className="w-full contentMain">
                                         
                       <article className="text-gray-600 body-font py-12">
-                        <Helmet bodyAttributes={{ class: 'page-slug_news dark-mode' }} />      
+                        
                         <div className="container px-5 py-24 mx-auto">
                           <div className="text-center mb-20">
                             <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">{post.title}</h1>

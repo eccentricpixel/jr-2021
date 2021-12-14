@@ -23,7 +23,7 @@ function BookTemplate({
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <div className="book_cover relative z-10">
-          {bookContent.bookCover && <GatsbyImage image={bookContent.bookCover.localFile.childImageSharp.gatsbyImageData} />}
+          <img src={bookContent.bookCover.url} />
             
         </div>        
         <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-6">          
@@ -117,7 +117,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Amazon" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                    <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -127,7 +127,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Kindle" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -137,7 +137,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Barnes & Noble" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -147,7 +147,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Books-A-Million" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -157,7 +157,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "NOOK" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -167,7 +167,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Bookshop" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -177,7 +177,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "Google Play" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>   
                   )
                 }
               </div>
@@ -187,7 +187,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                   retailer.title == "iBookstore" &&
-                    <p className="text-sm">{retailer.description}</p>  
+                  <p className="text-sm text-white">{retailer.description}</p>  
                   )
                 }
               </div>
@@ -197,7 +197,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                     retailer.title == "IndieBound" &&
-                      <p className="text-sm">{retailer.description}</p>  
+                    <p className="text-sm text-white">{retailer.description}</p>  
                     )
                   }
               </div>
@@ -207,7 +207,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                     retailer.title == "Kobo" &&
-                      <p className="text-sm">{retailer.description}</p>  
+                    <p className="text-sm text-white">{retailer.description}</p>  
                     )
                   }
               </div>
@@ -217,7 +217,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                     retailer.title == "The Poisoned Pen" &&
-                      <p className="text-sm">{retailer.description}</p>  
+                    <p className="text-sm text-white">{retailer.description}</p>  
                     )
                   }
               </div>
@@ -227,7 +227,7 @@ function BookTemplate({
               <div className="block">
                 {retailers.nodes.map((retailer) =>
                     retailer.title == "Tor Books - Macmillan Publishers" &&
-                      <p className="text-sm">{retailer.description}</p>  
+                    <p className="text-sm text-white">{retailer.description}</p>  
                     )
                   }
               </div>

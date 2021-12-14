@@ -2,8 +2,10 @@ import React,{useState,useEffect,useRef} from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Helmet } from 'react-helmet'
+import { Controller, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
 
 function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook } }) {
 
@@ -14,6 +16,16 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
     })
     const [index,setIndex] = useState(0)
     const [category,setCategory] = useState(['All'])
+
+    // const [sigmaSwiper, setSigmaSwiper] = useState(null);
+    // const [individualAdventuresSwiper, setIndividualAdventuresSwiper] = useState(null);
+    // const [moonfallSwiper, setMoonfallSwiper] = useState(null);
+    // const [tuckerWayneSwiper, setTuckerWayneSwiper] = useState(null);
+    // const [sanguinesSwiper, setSanguinesSwiper] = useState(null);
+    // const [jakeRansomSwiper, setJakeRansomSwiper] = useState(null);
+    // const [shortStoriesSwiper, setShortStoriesSwiper] = useState(null);
+    // const [anthologiesSwiper, setAnthologiesSwiper] = useState(null);
+    // const [collaborationsSwiper, setCollaborationsSwiper] = useState(null);
     
 
 
@@ -57,7 +69,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
 
                         <section className="md:grid md:grid-cols-4 md:col-gap-6 pb-16 md:pb-10 max-w-7xl mx-auto px-5 pt-20 relative z-50 max-w-screen-2xl" style={{ gridTemplateRows: 'auto 1fr' }} id="books-marquee">
                             <div className="book_cover relative z-10 overflow-visible">
-                                {featuredBook.edges[0].node.books[0].bookCover && <img src={featuredBook.edges[0].node.books[0].bookCover.url} className="w-full filter drop-shadow-2xl" />}                                
+                                {featuredBook.edges[0].node.books[0].bookCover && <img src={featuredBook.edges[0].node.books[0].bookCover.url} className="w-full filter drop-shadow-2xl" alt="book-cover" />}                                
                             </div>        
                             <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-20">          
                                 <div className="prose max-w-none pt-15 pb-8">
@@ -116,13 +128,13 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                         </div>
                                     </div>
                                     <div className="upcomingBook">
-                                        <StaticImage src="../images/upcoming-book.png" layout="full_width" />
+                                        <StaticImage src="../images/upcoming-book.png" layout="full_width" alt="" />
                                         <h4 className="mt-3 text-lg">Kingdom of Bones</h4>
                                         <div class="release-date text-sm"><span className="pr-4 uppercase">Release Date:</span><div className="banner-style inline-block">August 11, 2021</div></div>
 
                                     </div>
                                     <div className="upcomingBook">
-                                        <StaticImage src="../images/coming-soon.png" layout="full_width" />
+                                        <StaticImage src="../images/coming-soon.png" layout="full_width" alt="" />
                                         <h4 className="mt-3 text-lg">The Starless Crown</h4>
                                         <div class="release-date text-sm"><span className="pr-4 uppercase">Release Date:</span>Summer 2022</div>  
 
@@ -134,17 +146,18 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
 
                         
                         {allGraphCmsSeries.nodes.map((series) => {                            
+                            const seriesSlug = 'sigma-series'
                         return (
-                            series.slug == 'sigma-series' &&
-                            <div id={`wrapper_${series.slug}`} key={series.id} className="py-12 relative">
+                            series.slug == seriesSlug &&
+                            <div id="wrapper_position-1" key={series.id} className={`py-12 relative wrapper_${series.slug}`}>
                                 <div className="series-loop-background"></div>
                                 <div className="series-content">
                                     <div className="grid grid-cols-6 gap-4 mb-20">                                        
                                         <div className=""></div>
                                         <div className="col-span-5 lg:col-span-4 grid lg:grid-cols-2">
                                             <div></div>
-                                            <div className="space-y-6">
-                                                <h2 className="text-2xl leading-8 font-bold tracking-tight uppercase">
+                                            <div className="space-y-6 pr-5">
+                                                <h2 className="text-4xl leading-8 font-bold tracking-tight uppercase">
                                                 <Link
                                                     to={`/series/${series.slug}`}
                                                     className="text-gray-50"
@@ -153,7 +166,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                                 </Link>
                                                 </h2>
                                                 {series.description && (
-                                                <div className="prose max-w-none">
+                                                <div className="prose max-w-none text-lg">
                                                     <div dangerouslySetInnerHTML={{__html: series.description.html}}></div>
                                                 </div>
                                                 )}
@@ -164,12 +177,12 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                         <div className="bookListPagination lg:col-span-2 flex flex-col justify-center items-center text-center justify-self-end">
                                             <div className="totalCount text-2xl block">16<span className="text-sm block">Books In Series</span></div>
                                             <div className="block flex self-center mt-2 content-center w-full">
-                                                <div className="pag-button mr-5">
+                                            <div className="pag-button mr-4" id={`pag-prev_${series.slug}`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                         <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
                                                     </svg>
                                                 </div>
-                                                <div className="pag-button">
+                                                <div className="pag-button" id={`pag-next_${series.slug}`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                     </svg>
@@ -178,50 +191,48 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
 
                                         </div>
                                         <div className="bookListSlide col-span-3 lg:col-span-3">
-                                        <Swiper
-                                            spaceBetween={20}
-                                            slidesPerView={5}
-                                            // onSlideChange={() => console.log('slide change')}
-                                            // onSwiper={(swiper) => console.log(swiper)}
-                                        >
-                                            
-      
+                                            <Swiper
+                                                modules={[Navigation]}
+                                                spaceBetween={20}
+                                                slidesPerView={5}
+                                                navigation={{
+                                                    nextEl: '#pag-next_'+series.slug,
+                                                    prevEl: '#pag-prev_'+series.slug
+                                                }}
+                                                // onSlideChange={() => console.log('slide change')}
+                                                // onSwiper={(swiper) => console.log(swiper)}
+                                            >
+                                                {allGraphCmsBook.nodes.map((book,key)=>{
+                                                    return(
+                                                        book.series.slug == seriesSlug &&
 
-                                                       
-                                                        {allGraphCmsBook.nodes.map((book,key)=>{
-                                                        const currentSection=category[index]
-                                                        if(book.series.slug===currentSection || currentSection==="All"){
-                                                            if(book.bookCover.localFile){
-                                                            return(
-                                                            <SwiperSlide key={key} >                                
-                                                                <div className="bookCover filter drop-shadow-3xl">
-                                                                    <Link to={`/books/${book.slug}`}>
-                                                                        <GatsbyImage
-                                                                            image={book.bookCover.localFile.childImageSharp.gatsbyImageData}
-                                                                            layout="constrained"
-                                                                            className="relative placeholder-transparent bookImageWrapper"
-                                                                            alt=""                
-                                                                        />
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="book-meta absolute hidden">
-                                                                    <div className="selectedBook text-xs text-gray-400">Selected Book</div>
-                                                                    <div className="title">{book.title}</div>
-                                                                        <div className="releaseDate text-xs">94949</div>
-                                                                        <div className="description text-sm">
-                                                                            {book.synopsis && (
-                                                                            <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
-                                                                            )}
-                                                                    </div>                            
-                                                                </div>
-                                                            </SwiperSlide>
-                                                            )}
-                                                            }
-                                                            else{
-                                                            return null
-                                                            }
-                                                        })}
-                                                    </Swiper>
+                                                        <SwiperSlide key={key} >                                
+                                                            <div className="bookCover">
+                                                                <Link to={`/books/${book.slug}`}>
+                                                                    <img
+                                                                        src={book.bookCover.url}
+                                                                        layout="constrained"
+                                                                        className="relative placeholder-transparent bookImageWrapper"
+                                                                        alt="book-cover"                
+                                                                    />
+                                                                </Link>
+                                                            </div>
+                                                            <div className="book-meta absolute hidden">
+                                                                <div className="selectedBook text-xs text-gray-400">Selected Book</div>
+                                                                <div className="title">{book.title}</div>
+                                                                    <div className="releaseDate text-xs">94949</div>
+                                                                    <div className="description text-sm">
+                                                                        {book.synopsis && (
+                                                                        <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
+                                                                        )}
+                                                                </div>                            
+                                                            </div>
+                                                        </SwiperSlide>
+                                                        
+                                                    )
+                                                    
+                                                })}
+                                            </Swiper>
 
                                         </div>
                                     </div>
@@ -229,6 +240,105 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                             </div>                            
                         )
                         })}
+
+
+                        {allGraphCmsSeries.nodes.map((series) => {                            
+                            const seriesSlug = 'individual-adventures'
+                        return (
+                            series.slug == seriesSlug &&
+                            <div id="wrapper_position-2" key={series.id} className={`py-12 relative wrapper_${series.slug}`}>
+                                <div className="series-loop-background"></div>
+                                <div className="series-content">
+                                    <div className="grid grid-cols-10 gap-4 mb-20">                                        
+                                        <div className=""></div>
+                                        <div className="col-span-5">
+                                            <div></div>
+                                            <div className="space-y-6 pr-5">
+                                                <h2 className="text-4xl leading-8 font-bold tracking-tight uppercase">
+                                                <Link
+                                                    to={`/series/${series.slug}`}
+                                                    className="text-black"
+                                                >
+                                                    {series.title}
+                                                </Link>
+                                                </h2>
+                                                {series.description && (
+                                                <div className="prose max-w-none text-lg font-medium">
+                                                    <div dangerouslySetInnerHTML={{__html: series.description.html}}></div>
+                                                </div>
+                                                )}
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div className="bookList grid grid-cols-7 gap-4">
+                                        <div className="bookListPagination flex flex-col justify-center items-center text-center justify-self-end">
+                                            <div className="totalCount text-2xl block">16<span className="text-sm block">Books In Series</span></div>
+                                            <div className="block flex self-center mt-2 content-center w-full">
+                                            <div className="pag-button mr-4" id={`pag-prev_${series.slug}`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                                <div className="pag-button" id={`pag-next_${series.slug}`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div className="bookListSlide col-span-6">
+                                            <Swiper
+                                                modules={[Navigation]}
+                                                spaceBetween={20}
+                                                slidesPerView={6}
+                                                navigation={{
+                                                    nextEl: '#pag-next_'+series.slug,
+                                                    prevEl: '#pag-prev_'+series.slug
+                                                }}
+                                                // onSlideChange={() => console.log('slide change')}
+                                                // onSwiper={(swiper) => console.log(swiper)}
+                                            >
+                                                {allGraphCmsBook.nodes.map((book,key)=>{
+                                                    return(
+                                                        book.series.slug == seriesSlug &&
+                                                        
+                                                        <SwiperSlide key={key} >                                
+                                                            <div className="bookCover ">
+                                                                <Link to={`/books/${book.slug}`}>
+                                                                    <img
+                                                                        src={book.bookCover.url}
+                                                                        layout="constrained"
+                                                                        className="relative placeholder-transparent bookImageWrapper"
+                                                                        alt="book-cover"                
+                                                                    />
+                                                                </Link>
+                                                            </div>
+                                                            <div className="book-meta absolute hidden">
+                                                                <div className="selectedBook text-xs text-gray-400">Selected Book</div>
+                                                                <div className="title">{book.title}</div>
+                                                                    <div className="releaseDate text-xs">94949</div>
+                                                                    <div className="description text-sm">
+                                                                        {book.synopsis && (
+                                                                        <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
+                                                                        )}
+                                                                </div>                            
+                                                            </div>
+                                                        </SwiperSlide>
+                                                        
+                                                    )
+                                                    
+                                                })}
+                                            </Swiper>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        )
+                        })}
+
+                       
                     
 
 
@@ -305,11 +415,12 @@ export const seriesPageQuery = graphql`
           slug
         }
         bookCover {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+            url
+            localFile {
+                childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
+                }
             }
-          }
         }
       }
     }

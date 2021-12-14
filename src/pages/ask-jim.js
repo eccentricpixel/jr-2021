@@ -11,7 +11,7 @@ function ContactPage({
        
 return (
     <div className="contactPages relative">
-        <Helmet bodyAttributes={{ class: 'page-slug_contact dark-mode' }} />        
+        <Helmet bodyAttributes={{ class: 'page-slug_contact dark' }} />        
         <h2 className="pt-16 text-center light text-2xl lg:text-4xl uppercase font-heading">{pageContent.title}</h2>
         <div className="marquee pb-8 relative z-10">
             <div className="contentWrapper flex gap-4 mx-auto">        

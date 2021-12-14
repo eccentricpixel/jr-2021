@@ -3,19 +3,47 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import { globalHistory, useLocation } from '@reach/router'
 import cx from 'classnames'
 //import { useContentSettings } from '../hooks/useContentSettings'
-import Logo from '../svg/white-logo.svg'
+import Logo from '../svg/james-rollins-logo.svg'
 import Transition from './transition'
 
 
 function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const location = useLocation()
-
   //const { settings: allGraphCmsContentSetting } = useContentSettings();  
-
-
   
+  const [scrollDir, setScrollDir] = useState("scrolling down");
 
+  useEffect(() => {
+    const threshold = 0;
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateScrollDir = () => {
+      const scrollY = window.pageYOffset;
+
+      if (Math.abs(scrollY - lastScrollY) < threshold) {
+        ticking = false;
+        return;
+      }
+      setScrollDir(scrollY > lastScrollY ? "scrolling down" : "scrolling up");
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollDir);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    console.log(scrollDir);
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollDir]);
+  
   useEffect(
     () =>
       globalHistory.listen(({ action }) => {
@@ -27,12 +55,12 @@ function Header() {
   const toggleMobileNavOpen = () => setMobileNavOpen((open) => !open)
   
   return (
-    <header className="py-5 px-5 absolute z-50 w-full bg-gradient-to-r from-gray-600 via-transparent sticky top-0">
+    <header className={`py-5 px-5 absolute w-full top-0 ${scrollDir == 'scrolling up' ? "scrolling-up sticky" : "passive"}`}>
       <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start w-screen">
         <div className="flex items-center flex-grow flex-shrink-0">
           <div className="flex items-center justify-between w-full">
             <Link to="/" aria-label="Home">
-              <Logo className="h-10" />              
+              <Logo className="h-10 headerLogo" />              
             </Link>
             <div className="-mr-2 flex items-center">
               <button
@@ -73,7 +101,7 @@ function Header() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <div className="bg-black w-screen h-screen absolute top-0 left-0 text-white bg-opacity-90">
+        <div className="bg-black w-screen h-screen absolute top-0 left-0 text-white overlay-main-menu">
           <div id="closeMainMenu" className="-mr-2 flex items-center absolute top-5 right-8">
               <button
                 onClick={() => toggleMobileNavOpen()}
@@ -90,16 +118,16 @@ function Header() {
             </div>
           <div className="container px-5 py-10 mx-auto">
             <div className="text-center mb-10 mx-auto max-w-7xl">
-              <Link to="/" aria-label="Home">
-                <Logo className="h-15 mx-auto" />              
+              <Link to="/" aria-label="Home" className="block max-w-2xl mb-20 mx-auto">
+                <Logo className="h-15" />              
               </Link>              
             </div>
-            <div className="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl">
+            <div className="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl main-nav">
               <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
-                  <Link to="/about">ABOUT</Link>
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
+                  <Link to="/about">ABOUT <span></span></Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/about" aria-label="">
                     Biography
                   </Link>
@@ -118,10 +146,10 @@ function Header() {
                 </nav>
               </div>
               <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/books">BOOKS</Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   {/* {seriesPlural.map(item => {                                            
                     return (
                       item.map(link => {
@@ -142,10 +170,10 @@ function Header() {
                 </nav>
               </div>
               <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/media">MEDIA</Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/videos" aria-label="">
                     Videos
                   </Link>
