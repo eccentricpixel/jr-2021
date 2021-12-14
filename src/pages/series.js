@@ -39,7 +39,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                 alt=""                
             />
         </div>
-        <div className="marquee py-8">
+        <div className="marquee py-8" id="latest-release">
             <div className="flex gap-4 mx-auto">        
                 <div id="sidebar" className="flex-shrink invisible xl:visible left-16">              
                     <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
@@ -47,9 +47,10 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                         <div className="jumpNav__menu uppercase font-bold text-xs">                
                             <ul>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['sigma-series'])}} className="active">Latest Release <span className="extender"></span></a></li>
+                                <li className="mb-3"><a onClick={()=>{setCategory(['upcoming'])}}>Upcoming <span className="extender"></span></a></li>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['sigma-series'])}}>Sigma Series <span className="extender"></span></a></li>
-                                <li className="mb-3"><a onClick={()=>{setCategory(['moonfall-saga'])}}>Moonfall Saga <span className="extender"></span></a></li>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['individual-adventures'])}}>Individual Adventures <span className="extender"></span></a></li>
+                                <li className="mb-3"><a onClick={()=>{setCategory(['moonfall-saga'])}}>Moonfall Saga <span className="extender"></span></a></li>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['tucker-wayne-series'])}}>Tucker Wayne Series <span className="extender"></span></a></li>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['the-order-of-the-sanguines'])}}>Sanguines Series <span className="extender"></span></a></li>
                                 <li className="mb-3"><a onClick={()=>{setCategory(['jake-ransom-series'])}}>Jake Ransom Series <span className="extender"></span></a></li>
@@ -67,12 +68,12 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                 <div className="overflow-hidden flex-grow">
                     <div className="w-full contentMain">
 
-                        <section className="md:grid md:grid-cols-4 md:col-gap-6 pb-16 md:pb-10 max-w-7xl mx-auto px-5 pt-20 relative z-50 max-w-screen-2xl" style={{ gridTemplateRows: 'auto 1fr' }} id="books-marquee">
+                        <section className="md:grid md:grid-cols-3 lg:grid-cols-4 md:col-gap-6 pb-16 md:pb-10 mx-auto px-5 pt-20 relative z-50" style={{ gridTemplateRows: 'auto 1fr' }} id="books-marquee">
                             <div className="book_cover relative z-10 overflow-visible">
                                 {featuredBook.edges[0].node.books[0].bookCover && <img src={featuredBook.edges[0].node.books[0].bookCover.url} className="w-full filter drop-shadow-2xl" alt="book-cover" />}                                
                             </div>        
-                            <div className="lg:pb-0 md:col-span-3 md:row-span-2 px-20">          
-                                <div className="prose max-w-none pt-15 pb-8">
+                            <div className="lg:pb-0 md:col-span-2 lg:col-span-3 md:row-span-2 px-20">          
+                                <div className="prose max-w-none pt-15 pb-8 max-w-5xl">
                                     <div class="book-browser-section-header">Latest Release</div>
                                     <h1 className="book-title text-3xl leading-9 font-light text-gray-900 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
                                     {featuredBook.edges[0].node.books[0].title}
@@ -151,7 +152,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                             series.slug == seriesSlug &&
                             <div id="wrapper_position-1" key={series.id} className={`py-12 relative wrapper_${series.slug}`}>
                                 <div className="series-loop-background"></div>
-                                <div className="series-content">
+                                <div className="series-content" id={seriesSlug}>
                                     <div className="grid grid-cols-6 gap-4 mb-20">                                        
                                         <div className=""></div>
                                         <div className="col-span-5 lg:col-span-4 grid lg:grid-cols-2">
@@ -248,7 +249,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                             series.slug == seriesSlug &&
                             <div id="wrapper_position-2" key={series.id} className={`py-12 relative wrapper_${series.slug}`}>
                                 <div className="series-loop-background"></div>
-                                <div className="series-content">
+                                <div className="series-content" id={seriesSlug}>
                                     <div className="grid grid-cols-10 gap-4 mb-20">                                        
                                         <div className=""></div>
                                         <div className="col-span-5">
@@ -291,7 +292,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                             <Swiper
                                                 modules={[Navigation]}
                                                 spaceBetween={20}
-                                                slidesPerView={6}
+                                                slidesPerView={7}
                                                 navigation={{
                                                     nextEl: '#pag-next_'+series.slug,
                                                     prevEl: '#pag-prev_'+series.slug
@@ -304,7 +305,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                                         book.series.slug == seriesSlug &&
                                                         
                                                         <SwiperSlide key={key} >                                
-                                                            <div className="bookCover ">
+                                                            <div className="bookCover">
                                                                 <Link to={`/books/${book.slug}`}>
                                                                     <img
                                                                         src={book.bookCover.url}
@@ -332,6 +333,109 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                             </Swiper>
 
                                         </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                        )
+                        })}
+
+
+                        {allGraphCmsSeries.nodes.map((series) => {                            
+                            const seriesSlug = 'moonfall-saga'
+                        return (
+                            series.slug == seriesSlug &&
+                            <div id="wrapper_position-3" key={series.id} className={`py-12 relative wrapper_${series.slug}`}>
+                                <div className="series-loop-background"></div>
+                                <div className="series-content">
+                                    <div className="grid grid-flow-row-dense grid-cols-2 gap-4">   
+                                        
+                                    
+                                        <div className="bookList grid grid-cols-3 xl:grid-cols-4 gap-4">
+                                            
+                                            <div className="bookListSlide col-span-3 xl:col-span-4 h-full">
+                                                <Swiper
+                                                    modules={[Navigation]}
+                                                    spaceBetween={20}
+                                                    slidesPerView={3}
+                                                    dir="rtl"
+                                                    navigation={{
+                                                        nextEl: '#pag-next_'+series.slug,
+                                                        prevEl: '#pag-prev_'+series.slug
+                                                    }}
+                                                    // onSlideChange={() => console.log('slide change')}
+                                                    // onSwiper={(swiper) => console.log(swiper)}
+                                                >
+                                                    {allGraphCmsBook.nodes.map((book,key)=>{
+                                                        return(
+                                                            book.series.slug == seriesSlug &&
+
+                                                            <SwiperSlide key={key} >                                
+                                                                <div className="bookCover">
+                                                                    <Link to={`/books/${book.slug}`}>
+                                                                        <img
+                                                                            src={book.bookCover.url}
+                                                                            layout="constrained"
+                                                                            className="relative placeholder-transparent bookImageWrapper"
+                                                                            alt="book-cover"                
+                                                                        />
+                                                                    </Link>
+                                                                </div>
+                                                                <div className="book-meta absolute hidden">
+                                                                    <div className="selectedBook text-xs text-gray-400">Selected Book</div>
+                                                                    <div className="title">{book.title}</div>
+                                                                        <div className="releaseDate text-xs">94949</div>
+                                                                        <div className="description text-sm">
+                                                                            {book.synopsis && (
+                                                                            <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
+                                                                            )}
+                                                                    </div>                            
+                                                                </div>
+                                                            </SwiperSlide>
+                                                            
+                                                        )
+                                                        
+                                                    })}
+                                                </Swiper>
+                                            </div>
+                                        </div>
+
+                                        <div className="theContent max-w-4xl">
+
+                                            <div className="space-y-6 p-10">
+                                                <h2 className="text-4xl leading-8 font-bold tracking-tight uppercase">
+                                                <Link
+                                                    to={`/series/${series.slug}`}
+                                                    className="text-gray-50"
+                                                >
+                                                    {series.title}
+                                                </Link>
+                                                </h2>
+                                                {series.description && (
+                                                <div className="prose max-w-none text-lg">
+                                                    <div dangerouslySetInnerHTML={{__html: series.description.html}}></div>
+                                                </div>
+                                                )}
+
+                                                <div className="bookListPagination lg:col-span-2 flex flex-col justify-center items-center text-center justify-self-end">
+                                                    <div className="totalCount text-2xl block">16<span className="text-sm block">Books In Series</span></div>
+                                                    <div className="block flex self-center mt-2 content-center w-full">
+                                                    <div className="pag-button mr-4" id={`pag-prev_${series.slug}`}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                                                            </svg>
+                                                        </div>
+                                                        <div className="pag-button" id={`pag-next_${series.slug}`}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>                                            
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>                            

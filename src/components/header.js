@@ -123,7 +123,7 @@ function Header() {
               </Link>              
             </div>
             <div className="flex flex-wrap -m-4 uppercase mx-auto max-w-7xl main-nav">
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
                 <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/about">ABOUT <span></span></Link>
                 </h2>
@@ -145,31 +145,45 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
                 <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/books">BOOKS</Link>
                 </h2>
                 <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
-                  {/* {seriesPlural.map(item => {                                            
-                    return (
-                      item.map(link => {
-                        const isActive = location.pathname.startsWith(`/${link.slug}`)
-                        return (                                
-                          <Link
-                            key={link.remoteId}
-                            to={`/series/${link.slug}`}                              
-                          >
-                            {link.title}
-                          </Link>                          
-                        )                        
-                      })
-                    )
-                    
-                  
-                  })} */}
+                  <Link to="/series#latest-release" aria-label="">
+                    Latest Release
+                  </Link>
+                  <Link to="/series#upcoming" aria-label="">
+                    Upcoming
+                  </Link>
+                  <Link to="/series#sigma-series" aria-label="">
+                    Sigma Series
+                  </Link>
+                  <Link to="/series#individual-adventures" aria-label="">
+                    Individual Adventures
+                  </Link>
+                  <Link to="/series#moonfall-saga" aria-label="">
+                    Moonfall Saga
+                  </Link>
+                  <Link to="/series#tucker-wayne-series" aria-label="">
+                    The Order of the Sanguines
+                  </Link>
+                  <Link to="/series#jake-ransom" aria-label="">
+                    Jake Ransom
+                  </Link>
+                  <Link to="/series#short-stories" aria-label="">
+                    Short Stories
+                  </Link>
+                  <Link to="/series#anthologies" aria-label="">
+                    Anthologies
+                  </Link>
+                  <Link to="/series#collaborations" aria-label="">
+                    Collaborations
+                  </Link>
+
                 </nav>
               </div>
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
                 <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/media">MEDIA</Link>
                 </h2>
@@ -197,11 +211,11 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/extras">EXTRAS</Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/downloads" aria-label="">
                     Downloads
                   </Link>
@@ -225,11 +239,11 @@ function Header() {
                   </Link>
                 </nav>
               </div>
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/news">News &amp; Events</Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/news" aria-label="">
                     News
                   </Link>
@@ -241,11 +255,11 @@ function Header() {
                   </Link>                  
                 </nav>
               </div>              
-              <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400">
+              <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
+                <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
                   <Link to="/contact">CONTACT</Link>
                 </h2>
-                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/ask-jim" aria-label="">
                     Ask Jim
                   </Link>
