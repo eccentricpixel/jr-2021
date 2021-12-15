@@ -110,7 +110,7 @@ function BookTemplate({
       </section>
       <section id="book_buyLinks" className="py-10 bg-gradient-to-r from-yellow-700 via-red-700 to-red-900 my-10">
         <div className="py-10 container mx-auto text-white gap-10 grid grid-cols-3">
-          <h2 className="text-3xl tracking-widest uppercase" ><span>Buy The Book</span><span className="block text-lg tracking-wide normal-case">at any one of these retailers</span></h2>        
+          <h2 className="text-3xl tracking-widest uppercase text-white" ><span>Buy The Book</span><span className="block text-lg tracking-wide normal-case text-white">at any one of these retailers</span></h2>        
           <div className="col-span-2 gap-4 grid">
             <div>
               <a href={bookContent.amazon} target="_blank" className="font-extrabold block text-lg">Amazon:</a> 

@@ -118,11 +118,11 @@ p {
 header {
   z-index:99;
   &.passive {
-    @include linear-gradient(to right, #091E35, transparent);
+    @include linear-gradient(to right, #091E35 10%, transparent 70%);
   }
   &.scrolling-up {
     background-color:#000;
-    @include linear-gradient(to right, #091E35, transparent);
+    @include linear-gradient(to right, #091E35 10%, transparent 70%);
   }
 }
 .overlay-main-menu {
@@ -529,7 +529,7 @@ header {
     .theBackground {
       -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 62%, 73% 75%, 0% 75%, 0 0);
       clip-path: polygon(50% 0%, 100% 0, 100% 62%, 73% 75%, 0% 75%, 0 0);
-      height:60vh;
+      height:60vmax;
     }
   }
 
@@ -617,7 +617,7 @@ header {
   }
 
   #wrapper_position-2 {
-    -webkit-clip-path: polygon(40% 0%, 180% 100%, 0 100%, 0 85%, 0 0);
+    -webkit-clip-path: polygon(50% 0%, 250% 100%, 0 100%, 0 85%, 0 0);
     clip-path:polygon(50% 0%, 250% 100%, 0 100%, 0 85%, 0 0);
     top:-440px;
     padding-bottom:300px;
@@ -631,6 +631,11 @@ header {
       left: 0;
       height: 25%;
       z-index: 1;
+    }
+
+    .pag-button {
+      background:rgba(0,0,0,0.5);      
+      color:#fff;
     }
 
     .series-content {
@@ -656,7 +661,7 @@ header {
 
   #wrapper_position-3 {    
     top:-450px;
-    padding: 0 0 400px 0;
+    padding: 0 0 500px 0;
 
     &:before {
       content: '';
@@ -671,7 +676,7 @@ header {
 
 
     .series-content {
-      padding:50px 0 300px 0;
+      padding:50px 0 500px 0;
       z-index: 2;
       position: relative;
     }
@@ -680,28 +685,104 @@ header {
     }
   }
 
-  // #wrapper_collaborations {    
-    
-  //   .series-loop-background {
-  //     background-image: url('../images/series-bg_moonfall-saga.jpg');
-  //   }
-  // }
-  // #wrapper_short-stories {    
-    
-  //   .series-loop-background {
-  //     background-image: url('../images/series-bg_moonfall-saga.jpg');
-  //   }
-  // }
-  
-  // #wrapper_the-order-of-the-sanguines {
-  //   -webkit-clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
-  //   clip-path: polygon(50% 0%, 100% 22%, 100% 75%, 34% 57%, 0% 75%, 0% 25%);
-  //   margin-top:200px;
+  #wrapper_position-4 {
+    background:#000;
+    top:-500px;
 
-  //   .series-loop-background {
-  //     background-image: url('../images/series-bg_sigma-series.jpg');
-  //   }
-  // }
+    .series-content {
+      padding:0 0 200px 0;
+      z-index:2;
+
+      p {
+        color:var(--grey-2);
+      }
+    }
+  }
+
+  #wrapper_position-5 {
+    // -webkit-clip-path: polygon(50% 0%, 250% 100%, 0 100%, 0 85%, 0 0);
+    // clip-path:polygon(50% 0%, 250% 100%, 0 100%, 0 85%, 0 0);
+    background:#000;
+    top:-500px;
+
+    .series-loop-background {
+      background-image: url('../images/series-bg_sanguines.jpg');
+      opacity:0.5;
+    }
+
+    .series-content {
+      padding:0 0 350px 0;
+      z-index:2;
+
+      p {
+        color:var(--light-4);
+      }
+    }
+    &:before {
+      content: '';
+      @include linear-gradient(to bottom, #000, transparent);
+      width:100%;
+      position: absolute;
+      top: 0px;
+      left: 0;
+      height: 35%;
+      z-index: 1;
+    }
+
+    &:after {
+      content: '';
+      @include linear-gradient(to top, #091E35, transparent);
+      width:100%;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      height: 35%;
+      z-index: 1;
+    }
+  }
+
+  #wrapper_position-6 {
+    background:#091E35;
+    top:-505px;
+
+    .series-content {
+      padding-bottom: 100px;
+    }
+  }
+
+  #wrapper_position-7 {
+    -webkit-clip-path: polygon(110% 0%, 80% 80%, 0 100%, 0 85%, 0 0);
+    clip-path: polygon(110% 0%, 80% 80%, 0 100%, 0 85%, 0 0);
+    background:#091E35;
+    top:-510px;
+
+    .series-content {
+      padding:200px 0 300px 0;
+    }
+  }
+
+  #wrapper_position-8 {    
+    //background:#B1B2B1;
+    top:-500px;
+
+    .series-content {
+      padding:200px 0;
+    }
+
+    
+  }
+  #wrapper_position-9 {
+    background:none;
+    top:-500px;
+
+    .series-content {
+      padding:200px 0;
+    }
+  }
+
+
+
+ 
 
   
 

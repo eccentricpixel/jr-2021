@@ -60,32 +60,37 @@ function Footer() {
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">BOOKS</h2>
             <nav className="list-none mb-10">
-              {/* {series.nodes.map(item => {                                            
-                  return (
-                    item.seriesPlural.map(link => {
-                      const isActive = location.pathname.startsWith(`/${link.slug}`)
-                      return (      
-                        <li>
-                          <Link
-                            key={link.remoteId}
-                            to={`/series/${link.slug}`}
-                            className={cx(
-                              '',
-                              {
-                                'text-blue-700': isActive,
-                                'border-transparent text-gray-600 hover:text-gray-800': !isActive,
-                              }
-                            )}
-                          >
-                            {link.title}
-                          </Link>
-                        </li>
-                      )                        
-                    })
-                  )
-                  
-                
-              })} */}
+                  <li><Link to="/series#latest-release" aria-label="">
+                    Latest Release
+                  </Link></li>
+                  <li><Link to="/series#upcoming" aria-label="">
+                    Upcoming
+                  </Link></li>
+                  <li><Link to="/series#sigma-series" aria-label="">
+                    Sigma Series
+                  </Link></li>
+                  <li><Link to="/series#individual-adventures" aria-label="">
+                    Individual Adventures
+                  </Link></li>
+                  <li><Link to="/series#moonfall-saga" aria-label="">
+                    Moonfall Saga
+                  </Link></li>
+                  <li><Link to="/series#tucker-wayne-series" aria-label="">
+                    The Order of the Sanguines
+                  </Link></li>
+                  <li><Link to="/series#jake-ransom" aria-label="">
+                    Jake Ransom
+                  </Link></li>
+                  <li><Link to="/series#short-stories" aria-label="">
+                    Short Stories
+                  </Link></li>
+                  <li><Link to="/series#anthologies" aria-label="">
+                    Anthologies
+                  </Link></li>
+                  <li><Link to="/series#collaborations" aria-label="">
+                    Collaborations
+                  </Link></li>
+
             </nav>
           </div>
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
