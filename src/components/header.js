@@ -140,14 +140,14 @@ function Header() {
                   <Link to="/tips-for-writers" aria-label="">
                     Tips For Writers
                   </Link>
-                  <Link to="/philanthropy" aria-label="">
+                  {/* <Link to="/philanthropy" aria-label="">
                     Philanthropy
-                  </Link>
+                  </Link> */}
                 </nav>
               </div>
               <div className="p-4 lg:w-1/6 sm:w-1/2 w-full">
                 <h2 className="font-medium title-font tracking-widest mb-4 text-sm text-center sm:text-left text-blue-400 parent">
-                  <Link to="/books">BOOKS</Link>
+                  <Link to="/series">BOOKS</Link>
                 </h2>
                 <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5 sub-menu">
                   <Link to="/series#latest-release" aria-label="">

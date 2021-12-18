@@ -2,67 +2,74 @@ import React,{useState,useEffect,useRef} from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Swiper from 'swiper';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import SwiperCore, {
+  Navigation
+} from 'swiper';
+SwiperCore.use([Navigation]);
 
-//function IndexPage({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } }) {
-const IndexPage = ({ data: { reviews } }) => {
-  // const categoryData = allGraphCmsSeries.nodes.map((series) => {  
-  //   return (
-  //     series.slug
-  //   )
-  // })
-  // const [index,setIndex] = useState(0)
-  // const [category,setCategory] = useState(['All'])
-  // const swiper = useRef(null);
+const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } }) => {
+//const IndexPage = ({ data: { reviews } }) => {
+  const categoryData = allGraphCmsSeries.nodes.map((series) => {  
+    return (
+      series.slug
+    )
+  })
+  const [index,setIndex] = useState(0)
+  const [category,setCategory] = useState(['All'])
+  const swiper = useRef(null);
+  
   
 
-  // useEffect(()=>{
-  //     swiper.current = new Swiper('.swiper-container',{
-  //         effect: 'coverflow',
-  //         grabCursor: true,
-  //         centeredSlides: true,
-  //         slidesPerView: 'auto',
-  //         mousewheel: true,          
-  //         // coverflowEffect: {
-  //         //   rotate: 50,
-  //         //   stretch: 0,
-  //         //   depth: 100,
-  //         //   modifier: 1,
-  //         //   slideShadows : true,
-  //         // },
-  //         pagination: {
-  //           el: '.swiper-pagination',
-  //         },
-  //         navigation: {
-  //           nextEl: '.swiper-button-next',
-  //           prevEl: '.swiper-button-prev',
-  //         },
+  useEffect(()=>{
+      swiper.current = new Swiper('.swiper-container',{
+          effect: 'creative',
+          grabCursor: true,
+          centeredSlides: true,
+          slidesPerView: 5,
+          //mousewheel: true,          
+          // coverflowEffect: {
+          //   rotate: 50,
+          //   stretch: 0,
+          //   depth: 100,
+          //   modifier: 1,
+          //   slideShadows : true,
+          // },
+          // pagination: {
+          //   el: '.swiper-pagination',
+          // },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
           
-  //         // breakpoints: {
-  //         //   2000: {              
-  //         //     slidesPerView: 5
-  //         //   },
-  //         //   1280: {              
-  //         //     slidesPerView: 3
-  //         //   }            
-  //         // }
-  //       })
-  // },[])
+          // breakpoints: {
+          //   2000: {              
+          //     slidesPerView: 5
+          //   },
+          //   1280: {              
+          //     slidesPerView: 3
+          //   }            
+          // }
+        })
+  },[])
 
-  // useEffect(()=>{
-  //     swiper.current.update();
-  // },[index])
+  useEffect(()=>{
+      swiper.current.update();
+  },[index])
 
 
   return (
     <div>
-      {/* <div className="marquee bg-gradient-to-r from-gray-100 py-8">
+      <div className="marquee bg-gradient-to-r from-gray-100 py-8">
         <div className="contentWrapper flex gap-4 mx-auto mt-20">        
           <div id="sidebar" className="flex-shrink invisible xl:visible">              
               <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
                 <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Browse The Vault</div>
                 <div className="jumpNav__menu uppercase font-bold text-xs">                
                     <ul>
-                      <li className="mb-1"><a href="#latest-release" className="active">Latest Releases <span className="extender"></span></a></li>
+                      <li className="mb-1"><a onClick={()=>{setCategory(['sigma-series'])}}className="active">All Books <span className="extender"></span></a></li>
                       <li className="mb-1"><a href="#upcoming" className="">Upcoming <span className="extender"></span></a></li>
                       <li className="mb-1"><a onClick={()=>{setCategory(['sigma-series'])}}>Sigma Series <span className="extender"></span></a></li>
                       <li className="mb-1"><a onClick={()=>{setCategory(['moonfall-saga'])}}>Moonfall Saga <span className="extender"></span></a></li>
@@ -83,23 +90,23 @@ const IndexPage = ({ data: { reviews } }) => {
 
           <div className="overflow-hidden flex-grow">
             <div id="bookBrowser" className="w-full">            
-              <div className="swiperMainContainer flex-1">              
+              <div className="swiperMainContainer flex-1 relative">              
                 <div className="swiper-container w-full overflow-hidden">
                   <div className="swiper-wrapper">                
                     {allGraphCmsBook.nodes.map((book,key)=>{
                       const currentSection=category[index]
                       if(book.series.slug===currentSection || currentSection==="All"){
-                        if(book.bookCover.localFile){
+                        if(book.bookCover.url){
                         return(
                           <div className="swiper-slide" key={key} >                                
                             <div className="bookCover">
-                            <Link to={`/books/${book.slug}`}>
-                              <GatsbyImage
-                                  image={book.bookCover.localFile.childImageSharp.gatsbyImageData}
-                                  className="w-screen relative top-0 left-0 placeholder-transparent"
+                            
+                              <img
+                                  src={book.bookCover.url}
+                                  className="w-full relative top-0 left-0 placeholder-transparent"
                                   alt=""                
                               />
-                              </Link>
+                              
                             </div>
                             <div className="book-meta">
                               <div className="selectedBook text-xs text-gray-400">Selected Book</div>
@@ -109,6 +116,7 @@ const IndexPage = ({ data: { reviews } }) => {
                                 {book.synopsis && (
                                   <div dangerouslySetInnerHTML={{__html: book.synopsis?.html}}></div>
                                 )}
+                                <Link to={`/books/${book.slug}`}>Read More</Link>
                               </div>                            
                             </div>
                           </div>
@@ -120,7 +128,7 @@ const IndexPage = ({ data: { reviews } }) => {
                     })}
                   </div>
                   
-                  <div className="swiper-pagination"></div>                
+                  {/* <div className="swiper-pagination"></div>                 */}
                   <div className="swiper-button-prev"></div>
                   <div className="swiper-button-next"></div>
                 </div>
@@ -153,7 +161,7 @@ const IndexPage = ({ data: { reviews } }) => {
           </div>
         </div>
       </section>
-                */}
+               
 
      
 
@@ -165,45 +173,46 @@ const IndexPage = ({ data: { reviews } }) => {
 
 export const indexPageQuery = graphql`
   {
-    # allGraphCmsBook(
-    #   sort: {fields: releaseDate, order: DESC}
-    #   filter: {international: {eq: false}, series: {slug: {ne: null}}}
-    # ) {
-    #   nodes {
-    #     id
-    #     releaseDate: formattedDate
-    #     synopsis {
-    #       html
-    #     }
-    #     slug
-    #     title
-    #     series {
-    #       id
-    #       slug
-    #     }
-    #     bookCover {
-    #       localFile {
-    #         childImageSharp {
-    #           gatsbyImageData(layout: FULL_WIDTH)
-    #         }
-    #       }
-    #     }
-    #   }
-    # }
-    # allGraphCmsSeries {
-    #   nodes {
-    #     id
-    #     slug
-    #     title
-    #   }
-    # }
-    # bio: allGraphCmsContentSetting {
-    #   nodes {
-    #     bioIntro {
-    #       html
-    #     }
-    #   }
-    # }
+    allGraphCmsBook(
+      sort: {fields: releaseDate, order: DESC}
+      filter: {international: {eq: false}, series: {slug: {ne: null}}}
+    ) {
+      nodes {
+        id
+        releaseDate: formattedDate
+        synopsis {
+          html
+        }
+        slug
+        title
+        series {
+          id
+          slug
+        }
+        bookCover {
+          url
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
+            }
+          }
+        }
+      }
+    }
+    allGraphCmsSeries {
+      nodes {
+        id
+        slug
+        title
+      }
+    }
+    bio: allGraphCmsContentSetting {
+      nodes {
+        bioIntro {
+          html
+        }
+      }
+    }
     reviews: allGraphCmsCriticalAcclaim(limit: 1, filter: {approvalStatus: {eq: true}}) {
       edges {
         node {

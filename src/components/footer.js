@@ -50,15 +50,15 @@ function Footer() {
                   Tips For Writers
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/philanthropy" aria-label="" className="text-gray-600 hover:text-gray-800">
                   Philanthropy
                 </Link>
-              </li>
+              </li> */}
             </nav>
           </div>
           <div className="lg:w-1/6 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">BOOKS</h2>
+            <Link to="/series" ><h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">BOOKS</h2></Link>
             <nav className="list-none mb-10">
                   <li><Link to="/series#latest-release" aria-label="">
                     Latest Release

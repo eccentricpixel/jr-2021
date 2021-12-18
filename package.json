@@ -4,10 +4,11 @@
   "description": "The official James Rollins website",
   "version": "2.0.0",
   "author": "Elijah Shepard",
-  "dependencies": {    
+  "dependencies": {
     "autoprefixer": "^10.4.0",
     "classnames": "^2.3.1",
     "gatsby": "^4.1.4",
+    "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-env-variables": "^2.0.0",
     "gatsby-plugin-google-analytics": "^4.0.0",
     "gatsby-plugin-image": "^2.3.0",
@@ -19,7 +20,7 @@
     "gatsby-plugin-sass": "^5.2.0",
     "gatsby-plugin-sharp": "^4.0.1",
     "gatsby-source-filesystem": "^4.0.0",
-    "gatsby-source-graphcms": "^2.6.0",    
+    "gatsby-source-graphcms": "^2.6.0",
     "gatsby-transformer-sharp": "^4.0.0",
     "node-sass": "^6.0.1",
     "postcss": "^8.3.11",
@@ -32,7 +33,8 @@
     "react-reveal": "^1.2.2",
     "react-transition-group": "^4.4.2",
     "sass": "^1.43.5",
-    "swiper": "^7.2.0"
+    "swiper": "^7.2.0",
+    "vanilla-lazyload": "^17.5.0"
   },
   "devDependencies": {
     "netlify-cli": "^6.14.25",
