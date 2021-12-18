@@ -49,6 +49,7 @@
 }
 
 
+
 body {
     overflow-x: hidden;  
     font-family:var(--font-family-base);      
@@ -56,7 +57,7 @@ body {
 }
 
 .prose h1 {
-    @apply font-light;
+    font-weight: 100;
 }    
 h2 {
     color:var(--dark-1);
@@ -336,8 +337,8 @@ header {
     min-height:70vh;
   }
   .swiper-container {
-    perspective: 700px;
-    //overflow:visible;
+    //perspective: 700px;
+    overflow:hidden;
   }
   .swiper-wrapper {
     display:flex;
@@ -345,10 +346,8 @@ header {
     box-sizing: content-box;
     align-items: center;
   }
-  .swiper-slide {
-      min-height: 70vh;
-      width: 100%;
-      max-width: 12vw;
+  .swiper-slide {      
+      width: 100%;      
       height: calc(100% - 50px);
       text-align: center;
       //display: flex;
@@ -360,12 +359,10 @@ header {
       justify-content: flex-end;
       background-color: transparent;
       color: #111827;    
-      padding: 0px;
-      margin-left: -1%;
-      margin-right: -1%;
+      padding: 0px;      
       min-height: 55vh;
       backface-visibility: hidden;
-      transform: translate(0px, 0px) translate3d(0, 0, 0) scale(0.75);
+      //transform: translate(0px, 0px) translate3d(0, 0, 0) scale(0.75);
       flex-shrink: 0;
       position: relative;
       opacity: 0;
@@ -382,16 +379,23 @@ header {
   }
   .swiper-slide-prev {
     opacity: 1;
+    transform: scale(0.75) translateX(calc(120px)) translate3d(0px, 0px, 0px) rotateY(0deg);
   }
   .swiper-slide-next {
     opacity: 1;
+    transform: scale(0.75) translateX(calc(-120px)) translate3d(0px, 0px, 0px) rotateY(0deg);
   }
   .swiper-slide-active {
-      max-width:15vw;
+      //max-width:15vw;
       z-index:10;
       opacity:1;
       backface-visibility: visible;
-      transform: translate3d(calc(0), calc(0px), calc(0px)) rotateX(0deg) rotateY(-15deg) rotateZ(0deg) scale(1);
+      transform-style: preserve-3d;
+      perspective: 700px;
+
+      .bookCover{
+        transform: translatex(0) translate3d(0,0,0) rotateX(0deg) rotateY(-20deg) rotateZ(0deg) scale(1);
+      }
   }
   .book-meta {
       margin-top:40px;
@@ -604,9 +608,7 @@ header {
 
 
 /* page slug overrides */
-.page-slug_contact {
 
-}
 
 /* series (books) page **/
 
@@ -620,9 +622,7 @@ header {
   }
 
   .bookListSlide {
-    .swiper-slide {
-      //max-height: 20vh;
-    }
+    
     .bookInageWrapper {
       height:20vh;
       max-height: 250px;
