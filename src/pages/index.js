@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { Helmet } from 'react-helmet'
 import Swiper from 'swiper';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -19,22 +20,24 @@ const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
   const [index,setIndex] = useState(0)
   const [category,setCategory] = useState(['All'])
   const swiper = useRef(null);
-  
+  const bookNumber = 0;
   
 
   useEffect(()=>{
       swiper.current = new Swiper('.swiper-container',{
-          effect: 'creative',
+          effect: 'slide',
+          speed: 500,
           grabCursor: true,
           centeredSlides: true,
           slidesPerView: 5,
+          //virtualTranslate: true,
           //mousewheel: true,          
           // coverflowEffect: {
           //   rotate: 50,
           //   stretch: 0,
           //   depth: 100,
           //   modifier: 1,
-          //   slideShadows : true,
+          //   slideShadows : false,
           // },
           // pagination: {
           //   el: '.swiper-pagination',
@@ -62,6 +65,7 @@ const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
 
   return (
     <div>
+      <Helmet bodyAttributes={{ class: 'page-slug_home' }} />     
       <div className="marquee bg-gradient-to-r from-gray-100 py-8">
         <div className="contentWrapper flex gap-4 mx-auto mt-20">        
           <div id="sidebar" className="flex-shrink invisible xl:visible">              
@@ -93,12 +97,14 @@ const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
               <div className="swiperMainContainer flex-1 relative">              
                 <div className="swiper-container w-full overflow-hidden">
                   <div className="swiper-wrapper">                
+                    
                     {allGraphCmsBook.nodes.map((book,key)=>{
+                      
                       const currentSection=category[index]
                       if(book.series.slug===currentSection || currentSection==="All"){
                         if(book.bookCover.url){
                         return(
-                          <div className="swiper-slide" key={key} >                                
+                          <div className="swiper-slide" key={key} data-slide-position={key}>                                
                             <div className="bookCover">
                             
                               <img
@@ -148,7 +154,7 @@ const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
             <button className="inline-flex text-blue uppercase border-blue border-2 font-medium py-1 px-6 mt-5 outline text-md">Learn More</button>            
           </div>
           <div className="col-span-4 relative">
-            <div className="m-15 bg-black text-white px-15 py-15 mr-0">
+            <div className="bioBackground">
               <StaticImage src="../images/about-img.jpg" className="absolute z-20 right-0 top-0 w-1/2" alt="" />
                 <div className="z-30 relative leading-loose text-lg p-5">
                   {bio.nodes.map(bio => {

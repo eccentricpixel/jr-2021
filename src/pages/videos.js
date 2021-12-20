@@ -4,6 +4,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import ReactPlayer from 'react-player/lazy'
 import Fade from 'react-reveal/Fade'
 import LazyLoad from "vanilla-lazyload"
+import { Helmet } from 'react-helmet'
 
 
 function VideosPage({ data: { allGraphCmsVideo, allGraphCmsSeries } }) {
@@ -17,7 +18,9 @@ function VideosPage({ data: { allGraphCmsVideo, allGraphCmsSeries } }) {
 
   return (
     <div>
-      <div className="marquee bg-gradient-to-r from-gray-100 py-8">
+      <Helmet bodyAttributes={{ class: 'page-slug_videos' }} />     
+      <div className="background"></div>
+      <div className="bg-gradient-to-r from-gray-100 py-8">
         <div className="contentWrapper flex gap-4 mx-auto mt-20">        
           <div id="sidebar" className="flex-shrink invisible xl:visible">              
               <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
@@ -69,11 +72,11 @@ function VideosPage({ data: { allGraphCmsVideo, allGraphCmsSeries } }) {
                               </div>
                               <div className="">
                                   <div className="w-full block">
-                                      {/* {video.description && (
+                                      {video.description && (
                                       <div className="text-gray-500">
                                         <div dangerouslySetInnerHTML={{__html: video.description.html}}></div>
                                       </div>
-                                    )} */}
+                                    )}
                                   </div>
                                 
                                   <Link
@@ -87,7 +90,7 @@ function VideosPage({ data: { allGraphCmsVideo, allGraphCmsSeries } }) {
                                     </svg>
                                   </Link>
 
-                                  {video.links &&
+                                  {video.links && video.links.length > 0 &&
 
                                     <div className="referencedLinks mt-10">
                                       <h5>Links Mentioned In Video</h5>

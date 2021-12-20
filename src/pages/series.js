@@ -40,7 +40,7 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
             />
         </div>
         <div className="marquee py-8" id="latest-release">
-            <div className="flex gap-4 mx-auto">        
+            <div className="flex gap-4 mx-auto contentWrapper">        
                 <div id="sidebar" className="flex-shrink invisible xl:visible left-16">              
                     <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
                         <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Browse The Vault</div>
@@ -144,6 +144,13 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                             </div>
                         </section>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div className="overflow-hidden flex gap-4 flex-grow mx-auto">
+            <div className="w-full contentMain">
 
                         
                         {allGraphCmsSeries.nodes.map((series) => {                            
@@ -760,8 +767,8 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
                                                     slidesPerView={4}
                                                     dir="rtl"
                                                     navigation={{
-                                                        nextEl: '#pag-next_'+series.slug,
-                                                        prevEl: '#pag-prev_'+series.slug
+                                                        nextEl: '#pag-prev_'+series.slug,
+                                                        prevEl: '#pag-next_'+series.slug
                                                     }}
                                                     // onSlideChange={() => console.log('slide change')}
                                                     // onSwiper={(swiper) => console.log(swiper)}
@@ -1047,8 +1054,8 @@ function SeriesPage({ data: { allGraphCmsSeries, featuredBook, allGraphCmsBook }
 
 
                         
-                    </div>
-                </div>
+                    
+                
             </div>
         </div>
     

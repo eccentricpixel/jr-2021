@@ -24,7 +24,7 @@ function CriticalAcclaimPage({ data: { reviews } }) {
             <section className="text-gray-600 body-font">
                 <div className="container px-5 py-24 mx-auto">
                     <h1 className="flex justify-center">
-                        <StaticImage src="../images/critical-acclaim-header@2x.png" width="300" className="mb-10 block" alt="" />
+                        <StaticImage src="../images/critical-acclaim-header@2x.png" width="300" className="mb-10 block" alt="" placeholder="transparent" />
                     </h1>
                     <div className="flex flex-wrap -m-4">
                     {reviews.edges.map((review) => {

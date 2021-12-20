@@ -6,10 +6,11 @@ import { Helmet } from 'react-helmet'
 
 function NewsPage({ data: { allGraphCmsPost } }) {
   return (
-    <div className="contactPages relative">
+    <div className="relative">
         <Helmet bodyAttributes={{ class: 'page-slug_news dark' }} />        
-        {/* <h2 className="pt-16 text-center light text-2xl lg:text-4xl uppercase font-heading">{pageContent.title}</h2>
-        <div className="marquee pb-8 relative z-10">
+        <div className="background"></div>
+        <h2 className="pt-36 text-center light text-2xl lg:text-4xl uppercase font-heading">News & Events</h2>
+        <div className="pb-8 relative z-10">
             <div className="contentWrapper flex gap-4 mx-auto">        
                 <div id="sidebar" className="flex-shrink invisible xl:visible">              
                     <div id="jumpNav" className="sticky top-40 rounded-md filterContainer light-mode">
@@ -17,6 +18,7 @@ function NewsPage({ data: { allGraphCmsPost } }) {
                         <div className="jumpNav__menu uppercase font-bold text-xs">                
                             <ul>
                                 <li className="mb-2"><Link to="#" className="active">Latest News <span className="extender"></span></Link></li>      
+                                <li className="mb-2"><Link to="#">Events <span className="extender"></span></Link></li>    
                                 <li className="mb-2"><Link to="#">Highlights <span className="extender"></span></Link></li>                                      
                             </ul>
                         </div>
@@ -32,17 +34,17 @@ function NewsPage({ data: { allGraphCmsPost } }) {
                       <section class="py-20">
                         <div class="container px-4 mx-auto">
                           <div class="flex flex-wrap -mx-4 -mb-4">
-                          {allGraphCmsPost.nodes.map((post) => {
+                          {allGraphCmsPost.nodes.map((post, i) => {
                             return (
-                              i % 5 == 0 ? 
+                              i % 2 == 0 ? 
                               <div class="w-full lg:w-2/3 px-4 mb-12" key={post.id} >
                                 <div class="flex h-96 mb-6">
                                   <img class="w-full h-full object-cover rounded-lg" src="mockup-assets/images/gray-500-horizontal.png" alt="" />
                                 </div>
-                                <span class="text-xs font-bold text-gray-500">{post.date}</span>
-                                <h2 class="mb-2 text-3xl font-bold font-heading">{post.title}</h2>
-                                <div class="mb-4 text-lg text-gray-500 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                                <Link class="flex items-center text-lg font-bold text-gray-700 hover:text-gray-800" href="#">
+                                <span class="text-xs font-bold text-gray-100">{post.date}</span>
+                                <h2 class="mb-2 text-3xl font-bold font-heading text-white">{post.title}</h2>
+                                <div class="mb-4 text-lg text-gray-50 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
+                                <Link class="flex items-center text-lg font-medium text-gray-500 hover:text-gray-100" href="#">
                                   <span>Read More</span>
                                   <span>
                                     <svg class="ml-1 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,9 +61,9 @@ function NewsPage({ data: { allGraphCmsPost } }) {
                                   <img class="w-full h-full object-cover rounded-lg" src="mockup-assets/images/gray-500-horizontal.png" alt="" />
                                 </div>
                                 <span class="text-xs font-bold text-gray-500">{post.date}</span>
-                                <h2 class="mb-2 text-3xl font-bold font-heading">{post.title}</h2>
-                                <div class="mb-4 text-lg text-gray-500 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                                <Link class="flex items-center text-lg font-bold text-gray-700 hover:text-gray-800" href="#">
+                                <h2 class="mb-2 text-3xl text-white font-bold font-heading">{post.title}</h2>
+                                <div class="mb-4 text-lg text-gray-50 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
+                                <Link class="flex items-center text-lg font-medium text-gray-500 hover:text-gray-100" href="#">
                                   <span>Read More</span>
                                   <span>
                                     <svg class="ml-1 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,69 +73,8 @@ function NewsPage({ data: { allGraphCmsPost } }) {
                                 </Link>
                               </div>
 
-                              :
 
-                              <div class="w-full lg:w-1/3 px-4 mb-12" key={post.id} >
-                                <div class="flex h-96 mb-6">
-                                  <img class="w-full h-full object-cover rounded-lg" src="mockup-assets/images/gray-500-horizontal.png" alt="" />
-                                </div>
-                                <span class="text-xs font-bold text-gray-500">{post.date}</span>
-                                <h2 class="mb-2 text-3xl font-bold font-heading">{post.title}</h2>
-                                <div class="mb-4 text-lg text-gray-500 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                                <Link class="flex items-center text-lg font-bold text-gray-700 hover:text-gray-800" href="#">
-                                  <span>Read More</span>
-                                  <span>
-                                    <svg class="ml-1 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                  </span>
-                                </Link>
-                              </div>
-
-                              :
-
-                              <div class="w-full lg:w-1/3 px-4 mb-12" key={post.id} >
-                                <div class="flex h-96 mb-6">
-                                  <img class="w-full h-full object-cover rounded-lg" src="mockup-assets/images/gray-500-horizontal.png" alt="" />
-                                </div>
-                                <span class="text-xs font-bold text-gray-500">{post.date}</span>
-                                <h2 class="mb-2 text-3xl font-bold font-heading">{post.title}</h2>
-                                <div class="mb-4 text-lg text-gray-500 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                                <Link
-                                  to={`/news/${post.slug}`}
-                                  className="flex items-center text-lg font-bold text-gray-700 hover:text-gray-800"
-                                >                                
-                                  <span>Read More</span>
-                                  <span>
-                                    <svg class="ml-1 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                  </span>
-                                </Link>
-                              </div>
-
-                              :
-
-
-                              <div class="w-full lg:w-1/3 px-4 mb-12" key={post.id} >
-                                <div class="flex h-96 mb-6">
-                                  <img class="w-full h-full object-cover rounded-lg" src="mockup-assets/images/gray-500-horizontal.png" alt="" />
-                                </div>
-                                <span class="text-xs font-bold text-gray-500">{post.date}</span>
-                                <h2 class="mb-2 text-3xl font-bold font-heading">{post.title}</h2>
-                                <div class="mb-4 text-lg text-gray-500 leading-loose" dangerouslySetInnerHTML={{__html: post.excerpt}}></div>
-                                <Link
-                                  to={`/news/${post.slug}`}
-                                  className="flex items-center text-lg font-bold text-gray-700 hover:text-gray-800"
-                                >                                
-                                  <span>Read More</span>
-                                  <span>
-                                    <svg class="ml-1 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                  </span>
-                                </Link>
-                              </div>
+                             
 
                             )
                           })}
@@ -146,7 +87,7 @@ function NewsPage({ data: { allGraphCmsPost } }) {
                     </div>
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
 
   )
