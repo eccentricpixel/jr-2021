@@ -148,12 +148,14 @@ const IndexPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
         </div>
       </div>
       <section className="text-gray-600 body-font">
-        <div className="py-24 grid grid-cols-6 justify-items-end">
-          <div className="col-start-2 text-right">
+        <div className="xl:py-24 grid xl:grid-cols-6 xl:justify-items-end">
+          <div className="xl:col-start-2 text-center xl:text-right">
             <h2 className="text-5xl font-thin mt-40">WHO IS JAMES ROLLINS</h2>
-            <button className="inline-flex text-blue uppercase border-blue border-2 font-medium py-1 px-6 mt-5 outline text-md">Learn More</button>            
+            <Link to="/about">
+              <button className="inline-flex text-blue uppercase border-blue border-2 font-medium py-1 px-6 mt-5 outline text-md mb-20">Learn More</button>
+            </Link>            
           </div>
-          <div className="col-span-4 relative">
+          <div className="xl:col-span-4 relative">
             <div className="bioBackground">
               <StaticImage src="../images/about-img.jpg" className="absolute z-20 right-0 top-0 w-1/2" alt="" />
                 <div className="z-30 relative leading-loose text-lg p-5">

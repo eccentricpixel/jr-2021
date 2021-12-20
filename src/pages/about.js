@@ -113,7 +113,7 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
       <div class="contentWrapper mx-auto">
         <div class="grid grid-cols-12 px-10 mx-auto">
             <div class="md:col-span-3 text-right px-10 pt-20">
-                <div class="section-heading font-thin text-3xl">See For Yourself</div>
+                <div class="section-heading font-thin text-5xl">See For Yourself</div>
                 <div class="blurb">
                   <p className="text-left pt-10">Here are some highlights from the media section.</p>
                 </div>
