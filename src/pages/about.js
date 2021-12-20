@@ -4,11 +4,14 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { Helmet } from 'react-helmet'
 import Swiper from 'swiper';
 import 'swiper/scss';
+import 'swiper/scss/effect-fade';
+import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
 import SwiperCore, {
-  Navigation
+  EffectFade,Navigation,Pagination
 } from 'swiper';
-SwiperCore.use([Navigation]);
+
+SwiperCore.use([EffectFade,Navigation,Pagination]);
 
 const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } }) => {
   const categoryData = allGraphCmsSeries.nodes.map((series) => {  
@@ -24,7 +27,13 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
   useEffect(()=>{
       swiper.current = new Swiper('.swiper-container',{
           effect: 'fade',
+          fadeEffect: {
+            crossFade: true
+          },
           speed: 500,
+          pagination: {
+            "clickable": true
+          },
           grabCursor: true,
           centeredSlides: true,
           autoplay: true,
@@ -45,11 +54,11 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
   return (
 
   <div>
-    <section className="about" id="bio">
+    <section id="bibliography">
       <Helmet bodyAttributes={{ class: 'page-slug_about' }} />        
       <div className="background"></div>
-      <h2 className="pt-36 text-center light text-2xl lg:text-4xl uppercase font-heading">About</h2>
-      <div className="contentWrapper flex gap-4 mx-auto py-20">   
+      <h2 className="pt-16 text-center light text-2xl lg:text-4xl uppercase font-heading relative z-20">About</h2>
+      <div className="contentWrapper flex gap-4 mx-auto pt-8 xl:py-20 pb-20">   
         <div id="sidebar" className="flex-shrink invisible xl:visible">              
             <div id="jumpNav" className="sticky top-40 rounded-md filterContainer">
               <div className="jumpNav__heading bg-white bg-opacity-25 text-xs text-gray-400 italic pl-0 p-1 pr-3 relative mb-2">Get Familiar</div>
@@ -65,41 +74,49 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
               </div>          
             </div>
         </div>
-        <div className="container about-wrapper">
+        <div className="container marquee-content-wrapper">
             <div className="d-flex justify-content-center">                                             
               <div className="grid grid-cols-6 justify-items-end">
-                <div className="col-span-4 relative">
+                <div className="col-span-6 relative">
                   <div className="bioBackground">
-                    <StaticImage src="../images/about-img.jpg" className="absolute z-20 right-0 top-0 w-1/2" alt="" />
+                    <StaticImage src="../images/about-img.jpg" className="absolute z-20 right-0 top-0 w-full xl:w-1/2" alt="" />
                       <div className="z-30 relative leading-loose text-lg p-5">
                         {bio.nodes.map(bio => {
                             return(                        
-                              <div className="bioText" dangerouslySetInnerHTML={{__html: bio.bioIntro?.html}}></div>
+                              <div className="bioText font-light" dangerouslySetInnerHTML={{__html: bio.bioIntro?.html}}></div>
                             )
                         })}
                       </div>
                   </div>
                 </div>
-              </div>
-              <div className="extendedBio py-20 leading-loose text-black">
-                {bio.nodes.map(bio => {
-                      return(                        
-                        <div dangerouslySetInnerHTML={{__html: bio.bioExtendedContent?.html}}></div>
-                      )
-                  })}
-              </div>
-
+              </div>              
             </div>
         </div>
       </div>
     </section>
 
+    <section className="contentWrapper mx-auto justify-content-center extendedBio">
+      <div className="grid grid-cols-6">
+        <div></div>
+        <div className="leading-loose text-black font-light col-span-4">
+            {bio.nodes.map(bio => {
+                  return(                        
+                    <div dangerouslySetInnerHTML={{__html: bio.bioExtendedContent?.html}}></div>
+                  )
+              })}
+          </div>
+        </div>
+        <div></div>
+    </section>
+
     <section className="py-20" id="featuredMedia">
-      <div class="contentWrapper">
-        <div class="grid grid-cols-12">
-            <div class="md:grid-span-3">
-                <div class="section-heading">See For Yourself</div>
-                <div class="blurb"></div>
+      <div class="contentWrapper mx-auto">
+        <div class="grid grid-cols-12 px-10 mx-auto">
+            <div class="md:col-span-3 text-right px-10 pt-20">
+                <div class="section-heading font-thin text-3xl">See For Yourself</div>
+                <div class="blurb">
+                  <p className="text-left pt-10">Here are some highlights from the media section.</p>
+                </div>
             </div>
             <div class="md:col-span-9">
                 <div class="flex align-content-around flex-wrap">
@@ -110,8 +127,7 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
                     <div class="media-shell"></div>
                     <div class="media-shell"></div>
                     <div class="media-shell"></div>
-                    <div class="media-shell"></div>
-                    <div class="media-shell"></div>
+                    <div class="media-shell"></div>                    
                     <div class="media-shell view-more"></div>
                 </div>
             </div>
@@ -120,40 +136,65 @@ const AboutPage = ({ data: { allGraphCmsBook, allGraphCmsSeries, bio, reviews } 
     </section>
 
     <section id="themesAndLocations">
-            <div className="swiperMainContainer flex-1 relative">              
-                <div className="swiper-container w-full overflow-hidden">
-                  <div className="swiper-wrapper">                
-                    
-                    {allGraphCmsBook.nodes.map((book,key)=>{
+      <div className="container mx-auto">
+        <div className="grid grid-cols-12">
+          <div className="section-content md:col-span-9 mr-10 relative -top-10">
+            <div className="bg"></div>
+            <div className="leading-loose text-white font-light col-span-4 p-20">
+              {bio.nodes.map(bio => {
+                  return(                        
+                    <>
+                      <div className="introContent text-4xl font-thin" dangerouslySetInnerHTML={{__html: bio.pageTurningAdventuresIntro?.html}}></div>
+                      <div className="text-2xl" dangerouslySetInnerHTML={{__html: bio.pageTurningAdventuresExtendedContent?.html}}></div>
+                    </>
+                  )
+                })}
+            </div>
+          </div>
+          <div className="md:col-span-3">                        
+            <div className="book-billboard relative -top-10 px-10">
+                <div className="swiperMainContainer flex-1 relative -top-10">              
+                    <div className="swiper-container w-full overflow-hidden">
+                      <div className="swiper-wrapper">                
+                        
+                        {allGraphCmsBook.nodes.map((book,key)=>{
+                          
+                          const currentSection=category[index]
+                          if(book.series.slug===currentSection || currentSection==="All"){
+                            if(book.bookCover.url){
+                            return(
+                              <div className="swiper-slide" key={key} data-slide-position={key}>                                
+                                <div className="bookCover">
+                                
+                                  <img
+                                      src={book.bookCover.url}
+                                      className="w-full relative top-0 left-0 placeholder-transparent"
+                                      alt=""                
+                                  />
+                                  
+                                </div>                            
+                              </div>
+                            )}
+                            }
+                            else{
+                              return null
+                            }
+                        })}
+                      </div>
                       
-                      const currentSection=category[index]
-                      if(book.series.slug===currentSection || currentSection==="All"){
-                        if(book.bookCover.url){
-                        return(
-                          <div className="swiper-slide" key={key} data-slide-position={key}>                                
-                            <div className="bookCover">
-                            
-                              <img
-                                  src={book.bookCover.url}
-                                  className="w-full relative top-0 left-0 placeholder-transparent"
-                                  alt=""                
-                              />
-                              
-                            </div>                            
-                          </div>
-                        )}
-                        }
-                        else{
-                          return null
-                        }
-                    })}
+                      {/* <div className="swiper-pagination"></div>                 */}
+                      <div className="swiper-button-prev"></div>
+                      <div className="swiper-button-next"></div>
+                    </div>
                   </div>
-                  
-                  {/* <div className="swiper-pagination"></div>                 */}
-                  <div className="swiper-button-prev"></div>
-                  <div className="swiper-button-next"></div>
+                </div>
+                <div className="book-list">
+                  <div className=""></div>
+
                 </div>
               </div>
+          </div>             
+      </div> 
     </section>
 
 
@@ -203,6 +244,12 @@ export const aboutPageQuery = graphql`
           html
         }
         bioExtendedContent {
+          html
+        }
+        pageTurningAdventuresIntro {
+          html
+        }
+        pageTurningAdventuresExtendedContent {
           html
         }
       }
